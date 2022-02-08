@@ -1,4 +1,4 @@
-package tims;
+package tssm;
 
 import java.io.IOException;
 import javafx.fxml.FXML;

@@ -1,4 +1,4 @@
-package tims;
+package tssm;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
