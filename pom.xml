@@ -4,12 +4,59 @@
     <groupId>tssm</groupId>
     <artifactId>tssm</artifactId>
     <version>1.0.0.0</version>
+
+    <developers>
+        <developer>
+            <id>ec</id>
+            <name>Edwin Cuaran</name>
+            <email>edwin.cuaran@correounivalle.edu.co</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>fn</id>
+            <name>Franklyn Narvaez</name>
+            <email>franklyn.narvaez@correounivalle.edu.co</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>cv</id>
+            <name>Christian Sanchez</name>
+            <email>christian.valenzuela@correounivalle.edu.co</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>vs</id>
+            <name>Víctor Sapuyes</name>
+            <email>victor.sapuyes@correounivalle.edu.co</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <inceptionYear>2022</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -33,6 +80,7 @@
             <version>42.3.2</version>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
