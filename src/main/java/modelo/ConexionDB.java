@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 public class ConexionDB {
 
     /**
-     * Crea una conexion con la base de datos
+     * Crea una conexión con la base de datos
      * @return Connection
      */
     public static Connection conectar() {
@@ -19,13 +19,8 @@ public class ConexionDB {
         try {
             Class.forName("org.postgresql.Driver");
             con = DriverManager.getConnection(url,user,pwd);
-            System.out.println("Connection exitosa");
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error DataBase");
-            alert.setContentText("Error "+ e);
-            alert.showAndWait();
+            System.out.println(e.getMessage());
         }
         return con;
     }
