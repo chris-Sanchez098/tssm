@@ -1,4 +1,4 @@
-module tims {
+module tssm {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;

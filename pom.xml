@@ -111,7 +111,7 @@
                         <!-- Usage: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>tssm.App</mainClass>
+                            <mainClass>tssm/tssm.App</mainClass>
                         </configuration>
                     </execution>
                 </executions>
