@@ -6,4 +6,6 @@ module tssm {
 
     opens tssm to javafx.fxml;
     exports tssm;
+    exports controlador;
+    opens controlador to javafx.fxml;
 }
