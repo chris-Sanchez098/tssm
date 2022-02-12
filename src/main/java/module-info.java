@@ -5,7 +5,9 @@ module tssm {
     requires org.postgresql.jdbc;
 
     opens tssm to javafx.fxml;
+    opens views to javafx.fxml;
     exports tssm;
-    exports controlador;
-    opens controlador to javafx.fxml;
+    exports views;
 }
+
+

@@ -1,4 +1,4 @@
-package modelo;
+package model;
 
 import java.security.NoSuchAlgorithmException;
 
