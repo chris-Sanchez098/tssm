@@ -1,7 +1,6 @@
 package tssm;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,7 +19,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("primary"), 800, 500);
         stage.setScene(scene);
         stage.show();
 
