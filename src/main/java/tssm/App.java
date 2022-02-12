@@ -22,7 +22,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("primary"), 800, 500);
         stage.setScene(scene);
         stage.show();
-
+        stage.setResizable(false);
         stage.setOnCloseRequest(event -> {
             event.consume();
             logoutEvent(stage);

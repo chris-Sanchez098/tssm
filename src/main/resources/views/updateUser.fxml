@@ -84,7 +84,7 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" style="-fx-background-color: lightgreen;" text="Aceptar">
+            <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updatedateEvent" style="-fx-background-color: lightgreen;" text="Aceptar">
                <HBox.margin>
                   <Insets left="20.0" right="10.0" />
                </HBox.margin>

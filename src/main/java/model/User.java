@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class User {
 
     private int cc;
@@ -31,7 +33,9 @@ public class User {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if(!(name == "")){
+            this.name = name;
+        }
     }
 
     public String getUser() {
@@ -39,7 +43,9 @@ public class User {
     }
 
     public void setUser(String user) {
-        this.user = user;
+        if(!(user == "")) {
+            this.user = user;
+        }
     }
 
     public String getPwd() {
@@ -47,7 +53,9 @@ public class User {
     }
 
     public void setPwd(String pwd) {
-        this.pwd = pwd;
+        if(!(pwd == "")) {
+            this.pwd = pwd;
+        }
     }
 
     public String getRol() {
@@ -55,7 +63,9 @@ public class User {
     }
 
     public void setRol(String rol) {
-        this.rol = rol;
+        if(!(rol == "")) {
+            this.rol = rol;
+        }
     }
 
     public Boolean getStatus() {
@@ -65,4 +75,14 @@ public class User {
     public void setStatus(Boolean status) {
         this.status = status;
     }
+
+    public boolean pwdEqualUser(){
+       return Objects.equals(user, pwd);
+    }
+
+    public boolean checkPwd(){
+        String path = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+        return pwd.matches(path);
+    }
+
 }
