@@ -9,7 +9,7 @@ public class ConexionDB {
      * Crea una conexión con la base de datos
      * @return Connection
      */
-    public static Connection conectar() {
+    public static Connection connect() {
         Connection con = null;
         String url = "jdbc:postgresql://ec2-35-153-35-94.compute-1.amazonaws.com:5432/dd8kpht0jpvq85";
         String user = "phrwkhfzhkagve";
