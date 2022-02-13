@@ -62,7 +62,8 @@ public class UserTest {
     public void pwdTests(){
         assertAll("several pwd",
                 () -> assertFalse(User.checkPwd("neveu")),
-                () -> assertTrue(User.checkPwd("Victor123@"))
+                () -> assertTrue(User.checkPwd("Victor123@*-as-")),
+                () -> assertTrue(User.checkPwd("ABC2021-A-*a"))
         );
     }
 }

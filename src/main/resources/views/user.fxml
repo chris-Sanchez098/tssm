@@ -52,7 +52,7 @@
          </font>
       </Button>
       <Label fx:id="lError" layoutX="14.0" layoutY="260.0" prefHeight="16.0" prefWidth="283.0" textFill="RED" />
-      <Button fx:id="bClean" layoutX="283.0" layoutY="245.0" mnemonicParsing="false" onAction="#clean" prefHeight="29.0" prefWidth="92.0" text="LImpiar">
+      <Button fx:id="bClean" layoutX="283.0" layoutY="245.0" mnemonicParsing="false" onAction="#clean" pickOnBounds="false" prefHeight="29.0" prefWidth="92.0" text="LImpiar">
          <font>
             <Font size="15.0" />
          </font>

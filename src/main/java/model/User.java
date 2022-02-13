@@ -125,7 +125,7 @@ public class User {
      * @return boolean, password check
      */
     public static boolean checkPwd(String password){
-        String path = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+        String path = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=_-])(?=\\S+$).{8,}$";
         return password.matches(path);
     }
 }

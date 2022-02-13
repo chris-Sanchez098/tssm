@@ -48,19 +48,23 @@ public class UserController implements Initializable {
         cbRol.setItems(option);
     }
 
+    /**
+     * Deja la GUI es su estado inicial
+     */
     public void cleanGUI() {
         tfName.setText("");
         tfUser.setText("");
         tfCC.setText("");
         pfPwd.setText("");
         pfPwdConfirm.setText("");
+        lError.setText("");
     }
 
     /**
-     * Verifica que todos los campos necesarios esten llenos
+     * Verifica que todos los campos necesarios se encuentren llenos
      * @return boolean
      */
-    public boolean validad() {
+    public boolean checkEmptyField() {
         try {
             Integer.parseInt(tfCC.getText());
             tfName.getText();
@@ -71,6 +75,31 @@ public class UserController implements Initializable {
             return true;
         } catch (Exception e) {
             return false;
+        }
+    }
+
+    /**
+     * Muestra un mensaje de error si la contraseña no cumple con la politica,
+     * no coincide y es igual al user.
+     * @param pwdCheck boolean
+     * @param equal boolean
+     * @param pwdUser boolean
+     */
+    public void erroMsg(boolean pwdCheck, boolean equal, boolean pwdUser) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setTitle("Creación usuario");
+
+        if (!pwdCheck) {
+            alert.setContentText("La contraseña no cumple la politica:\n"
+                    +"Logitud minima 8 caracteres, debe contener minusculas, mayusculas, numero y simbolos.");
+            alert.showAndWait();
+        } else if (!equal) {
+            alert.setContentText("Las contraseñas no coinciden.");
+            alert.showAndWait();
+        } else {
+            alert.setContentText("Usuario y contraseña no deben ser iguales");
+            alert.showAndWait();
         }
     }
 
@@ -86,23 +115,22 @@ public class UserController implements Initializable {
 
     @FXML
     private void create(ActionEvent event) {
-        if(validad()) {
+        if(checkEmptyField()) {
             int cc = Integer.parseInt(tfCC.getText());
-            String name = tfName.getText();
+            String name = tfName.getText().toLowerCase();
             String rol = cbRol.getSelectionModel().getSelectedItem();
             String pwd = pfPwd.getText();
             String pwdC = pfPwdConfirm.getText();
-            String user = tfUser.getText();
+            String user = tfUser.getText().toLowerCase();
 
-            if(User.checkPwd(pwd) && pwd.equals(pwdC) && !pwd.equals(user)) {
+            boolean check = User.checkPwd(pwd);
+            boolean equal = pwd.equals(pwdC);
+            boolean userPwd = !pwd.equals(user);
+            if(check && equal && userPwd) {
                 String encryptPwd = MD5.encrypt(pwd);
-                CRUD.insertUser(cc,name,user,encryptPwd,rol,true);
+                CRUD.insertUser(cc, name, user, encryptPwd, rol, true);
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setTitle("Creación usuario");
-                alert.setContentText("El usuario "+ user + " no se fue creado");
-                alert.showAndWait();
+                erroMsg(check,equal,userPwd);
             }
         } else {
             lError.setText("Verifique que los campos esten llenos");
