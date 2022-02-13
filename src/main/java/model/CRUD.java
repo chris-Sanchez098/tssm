@@ -2,7 +2,7 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
+import javafx.scene.control.Alert;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -28,8 +28,22 @@ public class CRUD extends ConexionDB {
             st.close();
             connection.close();
 
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Creación usuario");
+            alert.setContentText("El usuario "+ user + " fue creado con exito!!");
+            alert.showAndWait();
+
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            if(e.getMessage().subSequence(0,16).equals("ERROR: duplicate")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Creación usuario");
+                alert.setContentText("El numero de identifiación" + cc + "ya existe.");
+                alert.showAndWait();
+            } else {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
