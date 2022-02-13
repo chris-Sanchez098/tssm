@@ -32,13 +32,17 @@ public class CRUD extends ConexionDB {
 
     /**
      * Actualiza un usuario de acuerdo
-     * @param info Información necesaria
+     * @param user User with date to update
+     * @param cc Current user cc
      */
-    public void updateUser(String info) {
+    public static void updateUser(User user, int cc) {
         try {
+            String password = MD5.encrypt(user.getPwd());
             Connection connection = connect();
             Statement st = connection.createStatement();
-            String query = "";
+            String query = "UPDATE usuarios SET cc = '" + user.getCc() + "',nombre = '" + user.getName() + "',usuario = '" + user.getUser() +
+                    "',clave = '" + password + "',rol = '"+ user.getRol() + "',estado = '" + user.getStatus()
+                    + "' WHERE cc = '" + cc + "';";
             st.executeUpdate(query);
             st.close();
             connection.close();

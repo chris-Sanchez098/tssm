@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import model.CRUD;
 import model.User;
 
 import java.net.URL;
@@ -63,6 +64,8 @@ public class UpdateUserController implements Initializable {
         user.setRol(rol);
         user.setUser(newUser.getText());
         user.setName(newName.getText());
+
+        CRUD.updateUser(user,1004675446);
     }
 
     @FXML

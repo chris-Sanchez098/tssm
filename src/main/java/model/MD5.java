@@ -5,10 +5,10 @@ import java.security.NoSuchAlgorithmException;
 public class MD5 {
 
     /**
-     * @param str
+     * @param str an string
      * @return encrypted str under MD5
      */
-    public String encrypt(String str){
+    public static String encrypt(String str){
         try {
             java.security.MessageDigest js = java.security.MessageDigest.getInstance("MD5");
 
