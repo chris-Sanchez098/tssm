@@ -87,7 +87,8 @@ public class User {
      */
     public void setPwd(String pwd) {
         if(!(Objects.equals(pwd, ""))) {
-            this.pwd = pwd;
+            String password = MD5.encrypt(pwd);
+            this.pwd = password;
         }
     }
     /**

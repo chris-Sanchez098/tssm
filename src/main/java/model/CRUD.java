@@ -1,7 +1,10 @@
 package model;
 
-import javafx.scene.control.Alert;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class CRUD extends ConexionDB {
@@ -37,11 +40,10 @@ public class CRUD extends ConexionDB {
      */
     public static void updateUser(User user, int cc) {
         try {
-            String password = MD5.encrypt(user.getPwd());
             Connection connection = connect();
             Statement st = connection.createStatement();
             String query = "UPDATE usuarios SET cc = '" + user.getCc() + "',nombre = '" + user.getName() + "',usuario = '" + user.getUser() +
-                    "',clave = '" + password + "',rol = '"+ user.getRol() + "',estado = '" + user.getStatus()
+                    "',clave = '" + user.getPwd() + "',rol = '"+ user.getRol() + "',estado = '" + user.getStatus()
                     + "' WHERE cc = '" + cc + "';";
             st.executeUpdate(query);
             st.close();
@@ -69,4 +71,29 @@ public class CRUD extends ConexionDB {
             System.out.println(e.getMessage());
         }
     }
+
+    public static ObservableList<User>  selectUser(int cc) {
+        ObservableList<User> userObservableList = FXCollections.observableArrayList();
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            String query = "SELECT u.nombre, u.usuario, u.rol, u.clave, u.estado FROM usuarios u where cc='" + cc + "';";
+            ResultSet result = st.executeQuery(query);
+            while (result.next()){
+                String name = result.getString("nombre");
+                String userName = result.getString("usuario");
+                String rol = result.getString("rol");
+                Boolean status = result.getBoolean("estado");
+                String pwd = result.getString("clave");
+                User user = new User( cc , name, userName, pwd, rol, status);
+                userObservableList.add(user);
+            }
+            st.close();
+            connection.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return userObservableList;
+    }
+
 }

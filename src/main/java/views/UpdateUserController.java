@@ -78,6 +78,11 @@ public class UpdateUserController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList("","Administrador", "Gerente", "Operador");
         newRol.setItems(list);
         rol = "";
-        user = new User(1193075514, "Victor Sapuyes", "neveu", "Victor123@","gerente", true);
+        user = CRUD.selectUser(1193075514).get(0);
+        currentName.setText(user.getName());
+        currentUser.setText(user.getUser());
+        currentCC.setText(String.valueOf(user.getCc()));
+        currentRol.setText(user.getRol());
+
     }
 }
