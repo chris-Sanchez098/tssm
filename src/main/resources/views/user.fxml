@@ -40,17 +40,22 @@
             <Font name="Segoe UI" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="tfName" layoutX="224.0" layoutY="18.0" onMouseClicked="#clean" prefHeight="25.0" prefWidth="247.0" />
-      <TextField fx:id="tfUser" layoutX="224.0" layoutY="55.0" onMouseClicked="#clean" prefHeight="25.0" prefWidth="247.0" />
-      <TextField fx:id="tfCC" layoutX="224.0" layoutY="90.0" onMouseClicked="#clean" prefHeight="25.0" prefWidth="247.0" />
-      <ComboBox fx:id="cbRol" focusTraversable="false" layoutX="224.0" layoutY="128.0" onMouseClicked="#clean" prefWidth="150.0" />
-      <PasswordField fx:id="pfPwd" layoutX="224.0" layoutY="167.0" onMouseClicked="#clean" prefHeight="24.0" prefWidth="247.0" />
-      <PasswordField fx:id="pfPwdConfirm" layoutX="224.0" layoutY="201.0" onMouseClicked="#clean" prefHeight="24.0" prefWidth="247.0" />
+      <TextField fx:id="tfName" layoutX="224.0" layoutY="18.0" onMouseClicked="#cleanError" prefHeight="25.0" prefWidth="247.0" />
+      <TextField fx:id="tfUser" layoutX="224.0" layoutY="55.0" onMouseClicked="#cleanError" prefHeight="25.0" prefWidth="247.0" />
+      <TextField fx:id="tfCC" layoutX="224.0" layoutY="90.0" onMouseClicked="#cleanError" prefHeight="25.0" prefWidth="247.0" />
+      <ComboBox fx:id="cbRol" focusTraversable="false" layoutX="224.0" layoutY="128.0" onMouseClicked="#cleanError" prefWidth="150.0" />
+      <PasswordField fx:id="pfPwd" layoutX="224.0" layoutY="167.0" onMouseClicked="#cleanError" prefHeight="24.0" prefWidth="247.0" />
+      <PasswordField fx:id="pfPwdConfirm" layoutX="224.0" layoutY="201.0" onMouseClicked="#cleanError" prefHeight="24.0" prefWidth="247.0" />
       <Button fx:id="bCreate" layoutX="393.0" layoutY="245.0" mnemonicParsing="false" onAction="#create" prefHeight="29.0" prefWidth="76.0" text="Crear">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
       <Label fx:id="lError" layoutX="14.0" layoutY="260.0" prefHeight="16.0" prefWidth="283.0" textFill="RED" />
+      <Button fx:id="bClean" layoutX="283.0" layoutY="245.0" mnemonicParsing="false" onAction="#clean" prefHeight="29.0" prefWidth="92.0" text="LImpiar">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

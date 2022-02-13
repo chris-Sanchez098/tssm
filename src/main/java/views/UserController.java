@@ -31,6 +31,8 @@ public class UserController implements Initializable {
     private ComboBox<String> cbRol;
     @FXML
     private Button bCreate;
+    @FXML
+    private Button bClean;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -44,6 +46,14 @@ public class UserController implements Initializable {
         ObservableList<String> option =
                 FXCollections.observableArrayList("Administrador", "Gerente", "Operador");
         cbRol.setItems(option);
+    }
+
+    public void cleanGUI() {
+        tfName.setText("");
+        tfUser.setText("");
+        tfCC.setText("");
+        pfPwd.setText("");
+        pfPwdConfirm.setText("");
     }
 
     /**
@@ -65,23 +75,26 @@ public class UserController implements Initializable {
     }
 
     @FXML
-    private void clean(MouseEvent event) {
+    private void cleanError(MouseEvent event) {
         lError.setText("");
+    }
+
+    @FXML
+    private void clean(ActionEvent event) {
+        cleanGUI();
     }
 
     @FXML
     private void create(ActionEvent event) {
         if(validad()) {
-
             int cc = Integer.parseInt(tfCC.getText());
             String name = tfName.getText();
             String rol = cbRol.getSelectionModel().getSelectedItem();
             String pwd = pfPwd.getText();
             String pwdC = pfPwdConfirm.getText();
             String user = tfUser.getText();
-            User usr = new User(cc, name, user, pwd, rol, true);
 
-            if(usr.check(pwdC,pwd)) {
+            if(User.checkPwd(pwd) && pwd.equals(pwdC) && !pwd.equals(user)) {
                 String encryptPwd = MD5.encrypt(pwd);
                 CRUD.insertUser(cc,name,user,encryptPwd,rol,true);
             } else {

@@ -39,7 +39,7 @@ public class CRUD extends ConexionDB {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setTitle("Creación usuario");
-                alert.setContentText("El numero de identifiación" + cc + "ya existe.");
+                alert.setContentText("El numero de identifiación " + cc + " ya existe.");
                 alert.showAndWait();
             } else {
                 System.out.println(e.getMessage());
