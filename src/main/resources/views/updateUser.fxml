@@ -118,7 +118,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" />
                </VBox.margin>
             </TextField>
-            <ComboBox fx:id="newRol" prefWidth="150.0">
+            <ComboBox fx:id="newRol" onAction="#selectEvent" prefWidth="150.0">
                <VBox.margin>
                   <Insets bottom="15.0" left="10.0" right="10.0" />
                </VBox.margin>

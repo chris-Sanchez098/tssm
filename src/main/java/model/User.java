@@ -11,6 +11,15 @@ public class User {
     private String rol;
     private Boolean status;
 
+    /**
+     * Constructor
+     * @param cc cedula
+     * @param name nombre
+     * @param user usuario
+     * @param pwd contraseña
+     * @param rol cargo
+     * @param status estado
+     */
     public User(int cc, String name, String user, String pwd, String rol, Boolean status) {
         this.cc = cc;
         this.name = name;
@@ -20,66 +29,107 @@ public class User {
         this.status = status;
     }
 
+    /**
+     * @return int, get cc user
+     */
     public int getCc() {
         return cc;
     }
 
+    /**
+     * @param cc, cc number of a user
+     */
     public void setCc(int cc) {
         this.cc = cc;
     }
 
+    /**
+     * @return str, get name user
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name, name of a user
+     */
     public void setName(String name) {
-        if(!(name == "")){
+        if(!(Objects.equals(name, ""))){
             this.name = name;
         }
     }
 
+    /**
+     * @return str, get user (login)
+     */
     public String getUser() {
         return user;
     }
 
+    /**
+     * @param user, login
+     */
     public void setUser(String user) {
-        if(!(user == "")) {
+        if(!(Objects.equals(user, ""))) {
             this.user = user;
         }
     }
 
+    /**
+     * @return str, get pwd
+     */
     public String getPwd() {
         return pwd;
     }
 
+    /**
+     * @param pwd, password of a user
+     */
     public void setPwd(String pwd) {
-        if(!(pwd == "")) {
+        if(!(Objects.equals(pwd, ""))) {
             this.pwd = pwd;
         }
     }
-
+    /**
+     * @return str, get rol
+     */
     public String getRol() {
         return rol;
     }
 
+    /**
+     * @param rol, rol of a user
+     */
     public void setRol(String rol) {
-        if(!(rol == "")) {
+        if(!(Objects.equals(rol, ""))) {
             this.rol = rol;
         }
     }
 
+    /**
+     * @return boolean, get status
+     */
     public Boolean getStatus() {
         return status;
     }
 
+    /**
+     * @param status, status of a user
+     */
     public void setStatus(Boolean status) {
         this.status = status;
     }
 
+    /**
+     * @return boolean, check if user and password are equal
+     */
     public boolean pwdEqualUser(){
        return Objects.equals(user, pwd);
     }
 
+    /**
+     * @return boolean, password check
+     */
     public boolean checkPwd(){
         String path = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
         return pwd.matches(path);
