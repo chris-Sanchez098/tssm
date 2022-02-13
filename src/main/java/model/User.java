@@ -24,7 +24,7 @@ public class User {
         this.cc = cc;
         this.name = name;
         this.user = user;
-        this.pwd = pwd;
+        this.pwd = MD5.encrypt(pwd);
         this.rol = rol;
         this.status = status;
     }
@@ -121,19 +121,14 @@ public class User {
         this.status = status;
     }
 
-    /**
-     * @return boolean, check if user and password are equal
-     */
-    public boolean pwdEqualUser(){
-       return Objects.equals(user, pwd);
-    }
 
     /**
      * @return boolean, password check
      */
-    public boolean checkPwd(){
+    public static boolean checkPwd(String password){
         String path = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
-        return pwd.matches(path);
+        return password.matches(path);
     }
+
 
 }

@@ -20,7 +20,7 @@ public class UserTest {
                 () -> assertEquals(1193075514, user.getCc()),
                 () -> assertEquals("Victor Sapuyes", user.getName()),
                 () -> assertEquals("neveu", user.getUser()),
-                () -> assertEquals("Victor123@", user.getPwd()),
+                () -> assertEquals("722b70566647a753d42031ca15bfdd46", user.getPwd()),
                 () -> assertEquals("gerente", user.getRol()),
                 () -> assertEquals(true, user.getStatus())
                 );
@@ -46,12 +46,12 @@ public class UserTest {
                 () -> assertEquals(1004675446, user.getCc()),
                 () -> assertEquals("Franklyn Narvaez", user.getName()),
                 () -> assertEquals("donal", user.getUser()),
-                () -> assertEquals("Fran1234@", user.getPwd()),
+                () -> assertEquals("8d47b2268251748326a921f1cb46a004", user.getPwd()),
                 () -> assertEquals("administrador", user.getRol()),
                 () -> assertEquals(false, user.getStatus()),
                 () -> assertEquals("Victor Sapuyes", user1.getName()),
                 () -> assertEquals("neveu", user1.getUser()),
-                () -> assertEquals("Victor123@", user1.getPwd()),
+                () -> assertEquals("722b70566647a753d42031ca15bfdd46", user1.getPwd()),
                 () -> assertEquals("gerente", user1.getRol())
         );
     }
@@ -60,12 +60,9 @@ public class UserTest {
     @DisplayName(value = "pwd tests")
 
     public void pwdTests(){
-        user1.setPwd("neveu");
         assertAll("several pwd",
-                () -> assertEquals(true, user.checkPwd()),
-                () -> assertEquals(false, user1.checkPwd()),
-                () -> assertEquals(true, user1.pwdEqualUser()),
-                () -> assertEquals(false, user.pwdEqualUser())
+                () -> assertEquals(false, User.checkPwd("neveu")),
+                () -> assertEquals(true, User.checkPwd("Victor123@"))
         );
     }
 }

@@ -1,13 +1,18 @@
 package views;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import model.CRUD;
 import model.User;
 
@@ -51,12 +56,6 @@ public class UpdateUserController implements Initializable {
 
     @FXML
     public void updatedateEvent(ActionEvent event){
-        if(!newPass.getText().isEmpty() && !newPassCon.getText().isEmpty()){
-            if(Objects.equals(newPass.getText(), newPassCon.getText())){
-                user.setPwd(newPass.getText());
-                System.out.println("Clave aceptada" + user.getPwd());
-            }
-        }
         if(!newCC.getText().isEmpty()){
             user.setCc(Integer.parseInt(newCC.getText()));
             System.out.println("CC aceptada");
@@ -65,11 +64,38 @@ public class UpdateUserController implements Initializable {
         user.setUser(newUser.getText());
         user.setName(newName.getText());
 
-        CRUD.updateUser(user,1004675446);
+        if(!newPass.getText().isEmpty() && !newPassCon.getText().isEmpty()){
+            if(Objects.equals(newPass.getText(), newPassCon.getText())){
+                user.setPwd(newPass.getText());
+                if(User.checkPwd(newPass.getText())){
+                    CRUD.updateUser(user,1004675446);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Creación usuario");
+                    alert.setContentText("El usuario "+ user.getName() + " fue modificado");
+                    alert.showAndWait();
+                }else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Modificar usuario");
+                    alert.setContentText("El usuario "+ currentName.getText() + " no fue modificado, la contraseña no cumple los requerimientos");
+                    alert.showAndWait();
+                }
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Modificar usuario");
+                alert.setContentText("El usuario "+ currentName.getText() + " no fue modificado, la contraseña no coincide");
+                alert.showAndWait();
+            }
+        }
+
+
     }
 
+
     @FXML
-    public void selectEvent(ActionEvent event){
+    private void selectEvent(ActionEvent event){
         rol = newRol.getSelectionModel().getSelectedItem().toString();
     }
 
@@ -83,6 +109,15 @@ public class UpdateUserController implements Initializable {
         currentUser.setText(user.getUser());
         currentCC.setText(String.valueOf(user.getCc()));
         currentRol.setText(user.getRol());
+        newCC.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    newCC.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
 
     }
 }
