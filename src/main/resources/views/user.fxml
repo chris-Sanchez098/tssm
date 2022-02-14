@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="296.0" prefWidth="483.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.UserController">
+<AnchorPane prefHeight="296.0" prefWidth="483.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.CreateUserController">
    <children>
       <Label fx:id="lName" layoutX="17.0" layoutY="21.0" text="Nombre:">
          <font>

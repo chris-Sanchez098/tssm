@@ -1,5 +1,7 @@
 package views;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,7 +15,7 @@ import model.User;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class UserController implements Initializable {
+public class CreateUserController implements Initializable {
 
     @FXML
     private Label lError;
@@ -37,6 +39,15 @@ public class UserController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initCB();
+        tfCC.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if(!newValue.matches("\\d*")) {
+                    tfCC.setText(newValue.replaceAll("[^\\d]",""));
+                }
+            }
+        });
     }
 
     /**
@@ -66,7 +77,7 @@ public class UserController implements Initializable {
      */
     public boolean checkEmptyField() {
         try {
-            Integer.parseInt(tfCC.getText());
+            tfCC.getText();
             tfName.getText();
             cbRol.getSelectionModel().getSelectedItem();
             pfPwd.getText();
@@ -116,7 +127,7 @@ public class UserController implements Initializable {
     @FXML
     private void create(ActionEvent event) {
         if(checkEmptyField()) {
-            int cc = Integer.parseInt(tfCC.getText());
+            String cc = tfCC.getText();
             String name = tfName.getText().toLowerCase();
             String rol = cbRol.getSelectionModel().getSelectedItem();
             String pwd = pfPwd.getText();
