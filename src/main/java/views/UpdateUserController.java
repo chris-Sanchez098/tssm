@@ -57,7 +57,7 @@ public class UpdateUserController implements Initializable {
     @FXML
     public void updatedateEvent(ActionEvent event){
         if(!newCC.getText().isEmpty()){
-            user.setCc(Integer.parseInt(newCC.getText()));
+            user.setCc(newCC.getText());
             System.out.println("CC aceptada");
         }
         user.setRol(rol);
@@ -104,7 +104,7 @@ public class UpdateUserController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList("","Administrador", "Gerente", "Operador");
         newRol.setItems(list);
         rol = "";
-        user = CRUD.selectUser(1193075514).get(0);
+        user = CRUD.selectUser("1193075514").get(0);
         currentName.setText(user.getName());
         currentUser.setText(user.getUser());
         currentCC.setText(String.valueOf(user.getCc()));

@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class User {
 
-    private int cc;
+    private String cc;
     private String name;
     private String user;
     private String pwd;
@@ -20,7 +20,7 @@ public class User {
      * @param rol cargo
      * @param status estado
      */
-    public User(int cc, String name, String user, String pwd, String rol, Boolean status) {
+    public User(String cc, String name, String user, String pwd, String rol, Boolean status) {
         this.cc = cc;
         this.name = name;
         this.user = user;
@@ -32,14 +32,14 @@ public class User {
     /**
      * @return int, get cc user
      */
-    public int getCc() {
+    public String getCc() {
         return cc;
     }
 
     /**
      * @param cc, cc number of a user
      */
-    public void setCc(int cc) {
+    public void setCc(String cc) {
         this.cc = cc;
     }
 
@@ -125,7 +125,7 @@ public class User {
      * @return boolean, password check
      */
     public static boolean checkPwd(String password){
-        String path = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=_-])(?=\\S+$).{8,}$";
+        String path = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[.(!@#$%^&+=_-])(?=\\S+$).{8,}$";
         return password.matches(path);
     }
 }

@@ -17,7 +17,7 @@ public class CRUD extends ConexionDB {
      * @param rol cargo
      * @param estado estado
      */
-    public static void insertUser(int cc, String name, String user,
+    public static void insertUser(String cc, String name, String user,
                                   String pwd, String rol, Boolean estado) {
         try {
             Connection connection = connect();
@@ -86,7 +86,7 @@ public class CRUD extends ConexionDB {
         }
     }
 
-    public static ObservableList<User>  selectUser(int cc) {
+    public static ObservableList<User>  selectUser(String cc) {
         ObservableList<User> userObservableList = FXCollections.observableArrayList();
         try {
             Connection connection = connect();

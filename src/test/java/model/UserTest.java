@@ -8,8 +8,8 @@ public class UserTest {
     User user1;
     @BeforeEach
     public void init(){
-        user = new User(1193075514, "Victor Sapuyes", "neveu", "Victor123@","gerente", true);
-        user1 = new User(1193075514, "Victor Sapuyes", "neveu", "Victor123@","gerente", true);
+        user = new User("1193075514", "Victor Sapuyes", "neveu", "Victor123@","gerente", true);
+        user1 = new User("1193075514", "Victor Sapuyes", "neveu", "Victor123@","gerente", true);
     }
 
     @Test
@@ -17,7 +17,7 @@ public class UserTest {
 
     public void getTest(){
         assertAll("several gets",
-                () -> assertEquals(1193075514, user.getCc()),
+                () -> assertEquals("1193075514", user.getCc()),
                 () -> assertEquals("Victor Sapuyes", user.getName()),
                 () -> assertEquals("neveu", user.getUser()),
                 () -> assertEquals("722b70566647a753d42031ca15bfdd46", user.getPwd()),
@@ -30,7 +30,7 @@ public class UserTest {
     @DisplayName(value = "set tests")
 
     public void setTest(){
-        user.setCc(1004675446);
+        user.setCc("1004675446");
         user.setName("Franklyn Narvaez");
         user.setUser("donal");
         user.setPwd("Fran1234@");
