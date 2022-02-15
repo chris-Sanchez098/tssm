@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import model.CRUD;
 import model.MD5;
 import model.User;
@@ -17,8 +16,6 @@ import java.util.ResourceBundle;
 
 public class CreateUserController implements Initializable {
 
-    @FXML
-    private Label lError;
     @FXML
     private TextField tfName;
     @FXML
@@ -31,10 +28,6 @@ public class CreateUserController implements Initializable {
     private PasswordField pfPwdConfirm;
     @FXML
     private ComboBox<String> cbRol;
-    @FXML
-    private Button bCreate;
-    @FXML
-    private Button bClean;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -68,25 +61,19 @@ public class CreateUserController implements Initializable {
         tfCC.setText("");
         pfPwd.setText("");
         pfPwdConfirm.setText("");
-        lError.setText("");
     }
 
     /**
      * Verifica que todos los campos necesarios se encuentren llenos
      * @return boolean
      */
-    public boolean checkEmptyField() {
-        try {
-            tfCC.getText();
-            tfName.getText();
-            cbRol.getSelectionModel().getSelectedItem();
-            pfPwd.getText();
-            pfPwdConfirm.getText();
-            tfUser.getText();
-            return true;
-        } catch (Exception e) {
-            return false;
+    public boolean checkEmptyField(ObservableList<String> lst) {
+        for(String st: lst) {
+            if (st.equals("")) {
+                return false;
+            }
         }
+        return true;
     }
 
     /**
@@ -115,25 +102,22 @@ public class CreateUserController implements Initializable {
     }
 
     @FXML
-    private void cleanError(MouseEvent event) {
-        lError.setText("");
-    }
-
-    @FXML
     private void clean(ActionEvent event) {
         cleanGUI();
     }
 
     @FXML
     private void create(ActionEvent event) {
-        if(checkEmptyField()) {
-            String cc = tfCC.getText();
-            String name = tfName.getText().toLowerCase();
-            String rol = cbRol.getSelectionModel().getSelectedItem();
-            String pwd = pfPwd.getText();
-            String pwdC = pfPwdConfirm.getText();
-            String user = tfUser.getText().toLowerCase();
+        String cc = tfCC.getText();
+        String name = tfName.getText().toLowerCase();
+        String rol = cbRol.getSelectionModel().getSelectedItem();
+        String pwd = pfPwd.getText();
+        String pwdC = pfPwdConfirm.getText();
+        String user = tfUser.getText().toLowerCase();
+        ObservableList<String> list =
+                FXCollections.observableArrayList(cc,name,pwd,pwdC,user);
 
+        if(checkEmptyField(list) && rol == null) {
             boolean check = User.checkPwd(pwd);
             boolean equal = pwd.equals(pwdC);
             boolean userPwd = !pwd.equals(user);
@@ -144,7 +128,11 @@ public class CreateUserController implements Initializable {
                 erroMsg(check,equal,userPwd);
             }
         } else {
-            lError.setText("Verifique que los campos esten llenos");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Creación usuario");
+            alert.setContentText("Verifique que todos los campos esten llenos.");
+            alert.showAndWait();
         }
     }
 }
