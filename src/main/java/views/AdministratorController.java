@@ -16,20 +16,12 @@ public class AdministratorController  {
 
     @FXML
     private void launch(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(App.class.getResource("/views/user.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.setTitle("Creación usuarios");
-            stage.showAndWait();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        App.setStage("/views/createUser","Creación usuarios");
     }
+
+    @FXML
+    private void updateStage(ActionEvent Event){
+        App.setStage("/views/updateUser","Modificación de usuarios");
+    }
+
 }

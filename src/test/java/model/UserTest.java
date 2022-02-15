@@ -43,7 +43,7 @@ public class UserTest {
         user1.setRol("");
 
         assertAll("several sets",
-                () -> assertEquals(1004675446, user.getCc()),
+                () -> assertEquals("1004675446", user.getCc()),
                 () -> assertEquals("Franklyn Narvaez", user.getName()),
                 () -> assertEquals("donal", user.getUser()),
                 () -> assertEquals("8d47b2268251748326a921f1cb46a004", user.getPwd()),

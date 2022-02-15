@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -38,14 +39,29 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    public void logoutEvent(Stage stage){
+    private void logoutEvent(Stage stage){
         Alert exitAlert = new Alert(Alert.AlertType.CONFIRMATION);
         exitAlert.setTitle("Salir");
         exitAlert.setHeaderText("Vas a salir de la aplicación");
-        exitAlert.setContentText("¿Realmente quieres salir?");
+        exitAlert.setContentText("¿Realmente quieres cerrar sesión?");
 
         if(exitAlert.showAndWait().get() == ButtonType.OK){
             stage.close();
+        }
+    }
+
+     public static void setStage(String addressFxml, String title){
+        try{
+            Scene sceneEmergent;
+            sceneEmergent = new Scene(loadFXML(addressFxml));
+            Stage stageEmergent = new Stage();
+            stageEmergent.initModality(Modality.APPLICATION_MODAL);
+            stageEmergent.setScene(sceneEmergent);
+            stageEmergent.setResizable(false);
+            stageEmergent.setTitle(title);
+            stageEmergent.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

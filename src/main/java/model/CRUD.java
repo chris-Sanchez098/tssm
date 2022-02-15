@@ -52,7 +52,7 @@ public class CRUD extends ConexionDB {
      * @param user User with date to update
      * @param cc Current user cc
      */
-    public static void updateUser(User user, int cc) {
+    public static void updateUser(User user, String cc) {
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
@@ -63,8 +63,21 @@ public class CRUD extends ConexionDB {
             st.close();
             connection.close();
 
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Modificación de usuario");
+            alert.setContentText("El usuario con cédula"+ cc + " fue modificado");
+            alert.showAndWait();
         } catch (Exception e ) {
-            System.out.println(e.getMessage());
+            if(e.getMessage().subSequence(0,16).equals("ERROR: duplicate")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Modificación usuario");
+                alert.setContentText("La cédula " + user.getCc() + " o el usuario "+ user.getUser() +" ya existe.");
+                alert.showAndWait();
+            } else {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -86,12 +99,12 @@ public class CRUD extends ConexionDB {
         }
     }
 
-    public static ObservableList<User>  selectUser(String cc) {
+    public static User selectUser(String cc) {
         ObservableList<User> userObservableList = FXCollections.observableArrayList();
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
-            String query = "SELECT u.nombre, u.usuario, u.rol, u.clave, u.estado FROM usuarios u where cc='" + cc + "';";
+            String query = "SELECT u.nombre, u.usuario, u.rol, u.clave, u.estado FROM usuarios u where cc ='" + cc + "';";
             ResultSet result = st.executeQuery(query);
             while (result.next()){
                 String name = result.getString("nombre");
@@ -107,7 +120,7 @@ public class CRUD extends ConexionDB {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return userObservableList;
+        return userObservableList.get(0);
     }
 
 }

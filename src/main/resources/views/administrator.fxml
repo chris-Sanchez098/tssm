@@ -17,7 +17,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="Modificar">
+            <Button mnemonicParsing="false" onAction="#updateStage" prefHeight="30.0" prefWidth="140.0" text="Modificar">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>

@@ -91,14 +91,12 @@ public class CreateUserController implements Initializable {
         if (!pwdCheck) {
             alert.setContentText("La contraseña no cumple la politica:\n"
                     +"Logitud minima 8 caracteres, debe contener minusculas, mayusculas, numero y simbolos.");
-            alert.showAndWait();
         } else if (!equal) {
             alert.setContentText("Las contraseñas no coinciden.");
-            alert.showAndWait();
         } else {
             alert.setContentText("Usuario y contraseña no deben ser iguales");
-            alert.showAndWait();
         }
+        alert.showAndWait();
     }
 
     @FXML

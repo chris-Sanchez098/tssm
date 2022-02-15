@@ -84,7 +84,7 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updatedateEvent" style="-fx-background-color: lightgreen;" text="Aceptar">
+            <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updateEvent" style="-fx-background-color: slategrey;" text="Aceptar">
                <HBox.margin>
                   <Insets left="20.0" right="10.0" />
                </HBox.margin>
@@ -92,7 +92,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: salmon;" text="Cancelar">
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#cancelEvent" style="-fx-background-color: salmon;" text="Cancelar">
                <HBox.margin>
                   <Insets left="10.0" right="20.0" />
                </HBox.margin>
@@ -103,17 +103,17 @@
    <right>
       <VBox prefHeight="235.0" prefWidth="240.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="newName">
+            <TextField fx:id="newName" onKeyTyped="#colorEvent">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="newUser">
+            <TextField fx:id="newUser" onKeyTyped="#colorEvent">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="newCC">
+            <TextField fx:id="newCC" onKeyTyped="#colorEvent">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" />
                </VBox.margin>
@@ -123,12 +123,12 @@
                   <Insets bottom="15.0" left="10.0" right="10.0" />
                </VBox.margin>
             </ComboBox>
-            <TextField fx:id="newPass">
+            <TextField fx:id="newPass" onKeyTyped="#colorEvent">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="newPassCon">
+            <TextField fx:id="newPassCon" onKeyTyped="#colorEvent">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" />
                </VBox.margin>

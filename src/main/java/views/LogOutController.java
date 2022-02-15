@@ -13,20 +13,19 @@ public class LogOutController {
     Stage stage;
 
     @FXML
-    private Button logOutButton;
-
-    @FXML
     private BorderPane scenePane;
-
+    /**
+     * Log out
+     * @param event get the event
+     */
     public void logoutEvent(ActionEvent event){
         Alert exitAlert = new Alert(Alert.AlertType.CONFIRMATION);
         exitAlert.setTitle("Cerrar Sesión");
-        exitAlert.setHeaderText("Vas a cerrar sesión");
-        exitAlert.setContentText("¿Realmente quieres salir?");
-
+        exitAlert.setHeaderText("Vas a cerrar sesión.");
+        exitAlert.setContentText("¿Realmente quieres cerrar sesión?");
         if(exitAlert.showAndWait().get() == ButtonType.OK){
             stage = (Stage) scenePane.getScene().getWindow();
-             stage.close();
+            stage.close();
         }
     }
 

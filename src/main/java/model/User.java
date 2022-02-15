@@ -40,7 +40,9 @@ public class User {
      * @param cc, cc number of a user
      */
     public void setCc(String cc) {
-        this.cc = cc;
+        if(!(Objects.equals(cc, ""))){
+            this.cc = cc;
+        }
     }
 
     /**
