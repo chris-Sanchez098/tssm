@@ -141,7 +141,7 @@ public class CreateUserController implements Initializable {
             if(check && equal && userPwd) {
                 String encryptPwd = MD5.encrypt(pwd);
                 CRUD.insertUser(cc, name, user, encryptPwd, rol, true);
-                ((Node)(event.getSource())).getScene().getWindow().hide();
+                cleanGUI();
             } else {
                 errorMsg(check,equal,userPwd);
             }

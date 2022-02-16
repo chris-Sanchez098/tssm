@@ -35,15 +35,16 @@ public class CRUD extends ConexionDB {
             alert.showAndWait();
 
         } catch (Exception e) {
-            if(e.getMessage().subSequence(0,16).equals("ERROR: duplicate")) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setTitle("Creación usuario");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Creación usuario");
+            if(e.getMessage().subSequence(55,67).equals("usuarios_pke")) {
                 alert.setContentText("El numero de identifiación " + cc + " ya existe.");
-                alert.showAndWait();
             } else {
-                System.out.println(e.getMessage());
-            }
+                System.out.println(e.getMessage().subSequence(55,67).equals("usuarios_pke"));
+                System.out.println(e.getMessage().subSequence(55,67));
+                alert.setContentText("El usuario " + user + " ya existe.");
+            } alert.showAndWait();
         }
     }
 

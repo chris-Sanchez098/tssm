@@ -18,8 +18,6 @@ import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
 
-    private Stage stage;
-
     @FXML
     private VBox vBox;
 
@@ -36,7 +34,7 @@ public class LogInController implements Initializable {
      */
     @FXML
     private void logInEvent(ActionEvent event){
-        stage = (Stage) vBox.getScene().getWindow();
+        Stage stage = (Stage) vBox.getScene().getWindow();
         stage.close();
         App.setStage("/views/administrator");
     }
