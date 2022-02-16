@@ -15,22 +15,20 @@ import java.io.IOException;
  * JavaFX App
  */
 public class App extends Application {
-
+    private static Stage stage;
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("/views/logIn"), 800, 500);
+        App.stage = stage;
+        scene = new Scene(loadFXML("/views/logIn"));
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);
-        stage.setOnCloseRequest(event -> {
-            event.consume();
-            logoutEvent(stage);
-        });
+
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
@@ -39,18 +37,27 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    private void logoutEvent(Stage stage){
+    /**
+     * alert to close the window
+     * @param stage stage to close
+     */
+    private static void exit(Stage stage){
         Alert exitAlert = new Alert(Alert.AlertType.CONFIRMATION);
         exitAlert.setTitle("Salir");
         exitAlert.setHeaderText("Vas a salir de la aplicación");
-        exitAlert.setContentText("¿Realmente quieres cerrar sesión?");
+        exitAlert.setContentText("¿Realmente quieres salir?");
 
         if(exitAlert.showAndWait().get() == ButtonType.OK){
             stage.close();
         }
     }
 
-     public static void newStage(String addressFxml, String title){
+    /**
+     * open a emergent window
+     * @param addressFxml where it is fxml
+     * @param title for the window
+     */
+    public static void openStage(String addressFxml, String title){
         try{
             Scene sceneEmergent;
             sceneEmergent = new Scene(loadFXML(addressFxml));
@@ -60,6 +67,31 @@ public class App extends Application {
             stageEmergent.setResizable(false);
             stageEmergent.setTitle(title);
             stageEmergent.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * close the window then open a new
+     * @param addressFxml where it is fxml
+     * @throws IOException
+     */
+    public static void setStage(String addressFxml){
+        try{
+            Scene newScene;
+            newScene = new Scene(loadFXML(addressFxml));
+            Stage newStage = new Stage();
+            newStage.setScene(newScene);
+            newStage.show();
+            if(!(addressFxml == "/views/logIn")){
+                newStage.setOnCloseRequest(event -> {
+                    event.consume();
+                    exit(newStage);
+                });
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

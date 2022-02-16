@@ -55,6 +55,11 @@ public class CreateUserController implements Initializable {
         changeColorUpdateButton();
     }
 
+    @FXML
+    private void selectEvent(ActionEvent event){
+        changeColorUpdateButton();
+    }
+
     /**
      * inicializa los valores en el ComboBox cbRol
      */
@@ -161,7 +166,7 @@ public class CreateUserController implements Initializable {
     }
 
     private boolean checkFill(){
-        return !(cbRol.getSelectionModel().getSelectedItem() == null)
+        return !cbRol.getSelectionModel().getSelectedItem().isEmpty()
                 && !tfName.getText().isEmpty() && !tfCC.getText().isEmpty()
                 && !tfUser.getText().isEmpty() && !pfPwd.getText().isEmpty()
                 && !pfPwdConfirm.getText().isEmpty();

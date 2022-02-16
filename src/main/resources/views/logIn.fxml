@@ -8,24 +8,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="352.0" prefWidth="292.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.LogOutController">
+<VBox fx:id="vBox" alignment="CENTER" prefHeight="350.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.LogInController">
     <children>
         <Label text="TSSM">
             <font>
                 <Font size="20.0" />
             </font>
         </Label>
-        <TextField alignment="CENTER" promptText="Usuario">
+        <TextField fx:id="userField" alignment="CENTER" promptText="Usuario">
             <VBox.margin>
                 <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
             </VBox.margin>
         </TextField>
-        <PasswordField alignment="CENTER" promptText="Clave">
+        <PasswordField fx:id="passwordField" alignment="CENTER" promptText="Clave">
             <VBox.margin>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
             </VBox.margin>
         </PasswordField>
-        <Button fx:id="logInButton" defaultButton="true" mnemonicParsing="false" text="Ingresar">
+        <Button fx:id="logInButton" defaultButton="true" mnemonicParsing="false" onAction="#logInEvent" text="Ingresar">
             <VBox.margin>
                 <Insets />
             </VBox.margin>

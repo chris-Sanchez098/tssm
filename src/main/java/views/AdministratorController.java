@@ -8,12 +8,12 @@ public class AdministratorController  {
 
     @FXML
     private void launch(ActionEvent event) {
-        App.newStage("/views/createUser","Creación usuarios");
+        App.openStage("/views/createUser","Creación usuarios");
     }
 
     @FXML
     private void updateStage(ActionEvent event){
-        App.newStage("/views/updateUser","Modificación de usuarios");
+        App.openStage("/views/updateUser","Modificación de usuarios");
     }
 
 }
