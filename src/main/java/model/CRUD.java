@@ -53,7 +53,7 @@ public class CRUD extends ConexionDB {
      * @param user User with date to update
      * @param cc Current user cc
      */
-    public static void updateUser(User user, String cc) {
+    public static boolean updateUser(User user, String cc) {
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
@@ -69,17 +69,18 @@ public class CRUD extends ConexionDB {
             alert.setTitle("Modificación de usuario");
             alert.setContentText("El usuario con cédula"+ cc + " fue modificado");
             alert.showAndWait();
+            return true;
         } catch (Exception e ) {
-            if(e.getMessage().subSequence(0,16).equals("ERROR: duplicate")) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setTitle("Modificación usuario");
-                alert.setContentText("La cédula " + user.getCc() + " o el usuario "+ user.getUser() +" ya existe.");
-                alert.showAndWait();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Modificación de usuario");
+            if(e.getMessage().subSequence(55,67).equals("usuarios_pke")) {
+                alert.setContentText("El numero de identifiación " + user.getCc() + " ya existe.");
             } else {
-                System.out.println(e.getMessage());
-            }
+                alert.setContentText("El usuario " + user.getUser() + " ya existe.");
+            } alert.showAndWait();
         }
+        return false;
     }
 
     /**
