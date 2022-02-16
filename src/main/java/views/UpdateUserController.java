@@ -92,8 +92,9 @@ public class UpdateUserController implements Initializable {
                 }
             }
             if(check){
-                CRUD.updateUser(user, currentCC.getText());
-                ((Node)(event.getSource())).getScene().getWindow().hide();
+                if(CRUD.updateUser(user, currentCC.getText())){
+                    ((Node)(event.getSource())).getScene().getWindow().hide();
+                }
             }
         }
     }
@@ -156,7 +157,7 @@ public class UpdateUserController implements Initializable {
      * Set initial values to labels
      */
     private void currentUser(){
-        user = CRUD.selectUser("1193075514");
+        user = CRUD.selectUser("1234343955");
         currentName.setText(user.getName());
         currentUser.setText(user.getUser());
         currentCC.setText(user.getCc());
