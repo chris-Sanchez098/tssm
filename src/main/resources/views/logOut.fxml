@@ -6,7 +6,7 @@
 
 <BorderPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.LogOutController">
    <right>
-      <Button fx:id="logOutButton" cancelButton="true" mnemonicParsing="false" onAction="#logoutEvent" style="-fx-background-color: paleturquoise;" text="Cerrar Sesión" BorderPane.alignment="CENTER">
+      <Button fx:id="logOutButton" cancelButton="true" mnemonicParsing="false" onAction="#logoutEvent" style="-fx-background-color: lightsteelblue;" text="Cerrar Sesión" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets left="20.0" right="10.0" />
          </BorderPane.margin>

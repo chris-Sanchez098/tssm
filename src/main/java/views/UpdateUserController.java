@@ -1,7 +1,5 @@
 package views;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,16 +41,17 @@ public class UpdateUserController implements Initializable {
     private TextField newCC;
 
     @FXML
-    private ComboBox newRol;
+    private ComboBox<String> newRol;
 
     @FXML
-    private TextField newPass;
+    private PasswordField newPass;
 
     @FXML
-    private TextField newPassCon;
+    private PasswordField newPassCon;
 
     @FXML
     private Button updateButton;
+
     /**
      * Close the stage
      * @param event get the event
@@ -69,7 +68,7 @@ public class UpdateUserController implements Initializable {
     @FXML
     private void updateEvent(ActionEvent event){
         if(lessCheckFill()){
-            Boolean check = true;
+            boolean check = true;
             String pass = newPass.getText();
             String passCon = newPassCon.getText();
             user.setCc(newCC.getText());
@@ -94,6 +93,7 @@ public class UpdateUserController implements Initializable {
             }
             if(check){
                 CRUD.updateUser(user, currentCC.getText());
+                ((Node)(event.getSource())).getScene().getWindow().hide();
             }
         }
     }
@@ -104,7 +104,7 @@ public class UpdateUserController implements Initializable {
      */
     @FXML
     private void selectEvent(ActionEvent event){
-        rol = newRol.getSelectionModel().getSelectedItem().toString();
+        rol = newRol.getSelectionModel().getSelectedItem();
         changeColorUpdateButton();
     }
 
@@ -125,7 +125,7 @@ public class UpdateUserController implements Initializable {
      * @return check
      */
     private boolean lessCheckFill(){
-        return !newRol.getSelectionModel().getSelectedItem().toString().isEmpty()
+        return !newRol.getSelectionModel().getSelectedItem().isEmpty()
                 || !newName.getText().isEmpty() || !newCC.getText().isEmpty()
                 || !newUser.getText().isEmpty() || !newPass.getText().isEmpty()
                 || !newPassCon.getText().isEmpty();
@@ -168,22 +168,21 @@ public class UpdateUserController implements Initializable {
      * @param textField textField to set the property
      */
     private void setOnlyNum(TextField textField){
-        textField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    textField.setText(newValue.replaceAll("[^\\d]", ""));
-                }
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                textField.setText(newValue.replaceAll("[^\\d]", ""));
             }
         });
     }
 
+    /**
+     * change bottom's color grey to do action, grey to not possible action
+     */
     private void changeColorUpdateButton(){
         if(lessCheckFill()){
             updateButton.setStyle("-fx-background-color: lightgreen; ");
         } else{
-            updateButton.setStyle("-fx-background-color: slategrey; ");
+            updateButton.setStyle("-fx-background-color: silver; ");
         }
     }
 }

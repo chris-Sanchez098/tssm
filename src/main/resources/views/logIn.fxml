@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="352.0" prefWidth="292.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.LogOutController">
+    <children>
+        <Label text="TSSM">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <TextField alignment="CENTER" promptText="Usuario">
+            <VBox.margin>
+                <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+            </VBox.margin>
+        </TextField>
+        <PasswordField alignment="CENTER" promptText="Clave">
+            <VBox.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+            </VBox.margin>
+        </PasswordField>
+        <Button fx:id="logInButton" defaultButton="true" mnemonicParsing="false" text="Ingresar">
+            <VBox.margin>
+                <Insets />
+            </VBox.margin>
+        </Button>
+    </children>
+</VBox>

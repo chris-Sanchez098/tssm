@@ -20,7 +20,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("/views/administrator"), 800, 500);
+        scene = new Scene(loadFXML("/views/logIn"), 800, 500);
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);
@@ -50,7 +50,7 @@ public class App extends Application {
         }
     }
 
-     public static void setStage(String addressFxml, String title){
+     public static void newStage(String addressFxml, String title){
         try{
             Scene sceneEmergent;
             sceneEmergent = new Scene(loadFXML(addressFxml));

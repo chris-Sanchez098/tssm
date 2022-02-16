@@ -1,13 +1,13 @@
 package views;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import model.CRUD;
 import model.MD5;
 import model.User;
@@ -28,19 +28,31 @@ public class CreateUserController implements Initializable {
     private PasswordField pfPwdConfirm;
     @FXML
     private ComboBox<String> cbRol;
+    @FXML
+    private Button bCreate;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initCB();
-        tfCC.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if(!newValue.matches("\\d*")) {
-                    tfCC.setText(newValue.replaceAll("[^\\d]",""));
-                }
+        tfCC.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!newValue.matches("\\d*")) {
+                tfCC.setText(newValue.replaceAll("[^\\d]",""));
             }
         });
+    }
+
+    /**
+     * Close the stage
+     * @param event get the event
+     */
+    @FXML
+    private void cancelEvent(ActionEvent event){
+        ((Node)(event.getSource())).getScene().getWindow().hide();
+    }
+
+    @FXML
+    private void colorEvent(KeyEvent event){
+        changeColorUpdateButton();
     }
 
     /**
@@ -48,8 +60,9 @@ public class CreateUserController implements Initializable {
      */
     public void initCB() {
         ObservableList<String> option =
-                FXCollections.observableArrayList("Administrador", "Gerente", "Operador");
+                FXCollections.observableArrayList("","Administrador", "Gerente", "Operador");
         cbRol.setItems(option);
+        cbRol.getSelectionModel().selectFirst();
     }
 
     /**
@@ -61,6 +74,7 @@ public class CreateUserController implements Initializable {
         tfCC.setText("");
         pfPwd.setText("");
         pfPwdConfirm.setText("");
+        cbRol.getSelectionModel().selectFirst();
     }
 
     /**
@@ -83,7 +97,7 @@ public class CreateUserController implements Initializable {
      * @param equal boolean
      * @param pwdUser boolean
      */
-    public void erroMsg(boolean pwdCheck, boolean equal, boolean pwdUser) {
+    public void errorMsg(boolean pwdCheck, boolean equal, boolean pwdUser) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
         alert.setTitle("Creación usuario");
@@ -102,6 +116,7 @@ public class CreateUserController implements Initializable {
     @FXML
     private void clean(ActionEvent event) {
         cleanGUI();
+        changeColorUpdateButton();
     }
 
     @FXML
@@ -114,16 +129,16 @@ public class CreateUserController implements Initializable {
         String user = tfUser.getText().toLowerCase();
         ObservableList<String> list =
                 FXCollections.observableArrayList(cc,name,pwd,pwdC,user);
-
-        if(checkEmptyField(list) && rol == null) {
+        if(checkEmptyField(list) && !(rol == null)) {
             boolean check = User.checkPwd(pwd);
             boolean equal = pwd.equals(pwdC);
             boolean userPwd = !pwd.equals(user);
             if(check && equal && userPwd) {
                 String encryptPwd = MD5.encrypt(pwd);
                 CRUD.insertUser(cc, name, user, encryptPwd, rol, true);
+                ((Node)(event.getSource())).getScene().getWindow().hide();
             } else {
-                erroMsg(check,equal,userPwd);
+                errorMsg(check,equal,userPwd);
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -132,5 +147,23 @@ public class CreateUserController implements Initializable {
             alert.setContentText("Verifique que todos los campos esten llenos.");
             alert.showAndWait();
         }
+    }
+
+    /**
+     * change bottom's color grey to do action, grey to not possible action
+     */
+    private void changeColorUpdateButton(){
+        if(checkFill()){
+            bCreate.setStyle("-fx-background-color: lightgreen; ");
+        } else{
+            bCreate.setStyle("-fx-background-color: silver; ");
+        }
+    }
+
+    private boolean checkFill(){
+        return !(cbRol.getSelectionModel().getSelectedItem() == null)
+                && !tfName.getText().isEmpty() && !tfCC.getText().isEmpty()
+                && !tfUser.getText().isEmpty() && !pfPwd.getText().isEmpty()
+                && !pfPwdConfirm.getText().isEmpty();
     }
 }

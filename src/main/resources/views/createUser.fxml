@@ -15,7 +15,7 @@
             <Font name="Segoe UI" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="lUser" layoutX="16.0" layoutY="58.0" text="Usario:">
+      <Label fx:id="lUser" layoutX="16.0" layoutY="58.0" text="Usuario:">
          <font>
             <Font name="Segoe UI" size="15.0" />
          </font>
@@ -40,22 +40,14 @@
             <Font name="Segoe UI" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="tfName" layoutX="224.0" layoutY="18.0" onMouseClicked="#cleanError" prefHeight="25.0" prefWidth="247.0" />
-      <TextField fx:id="tfUser" layoutX="224.0" layoutY="55.0" onMouseClicked="#cleanError" prefHeight="25.0" prefWidth="247.0" />
-      <TextField fx:id="tfCC" layoutX="224.0" layoutY="90.0" onMouseClicked="#cleanError" prefHeight="25.0" prefWidth="247.0" />
-      <ComboBox fx:id="cbRol" focusTraversable="false" layoutX="224.0" layoutY="128.0" onMouseClicked="#cleanError" prefWidth="150.0" promptText="Seleccione" />
-      <PasswordField fx:id="pfPwd" layoutX="224.0" layoutY="167.0" onMouseClicked="#cleanError" prefHeight="24.0" prefWidth="247.0" />
-      <PasswordField fx:id="pfPwdConfirm" layoutX="224.0" layoutY="201.0" onMouseClicked="#cleanError" prefHeight="24.0" prefWidth="247.0" />
-      <Button fx:id="bCreate" layoutX="393.0" layoutY="245.0" mnemonicParsing="false" onAction="#create" prefHeight="29.0" prefWidth="76.0" text="Crear">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="bClean" layoutX="283.0" layoutY="245.0" mnemonicParsing="false" onAction="#clean" pickOnBounds="false" prefHeight="29.0" prefWidth="92.0" text="LImpiar">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="bCancelar" layoutX="19.0" layoutY="248.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="76.0" text="Cancelar" />
+      <TextField fx:id="tfName" layoutX="224.0" layoutY="18.0" onKeyTyped="#colorEvent" prefHeight="25.0" prefWidth="247.0" />
+      <TextField fx:id="tfUser" layoutX="224.0" layoutY="55.0" onKeyTyped="#colorEvent" prefHeight="25.0" prefWidth="247.0" />
+      <TextField fx:id="tfCC" layoutX="224.0" layoutY="90.0" onKeyTyped="#colorEvent" prefHeight="25.0" prefWidth="247.0" />
+      <ComboBox fx:id="cbRol" focusTraversable="false" layoutX="224.0" layoutY="128.0" prefWidth="150.0" promptText="Seleccione" />
+      <PasswordField fx:id="pfPwd" layoutX="224.0" layoutY="167.0" onKeyTyped="#colorEvent" prefHeight="24.0" prefWidth="247.0" />
+      <PasswordField fx:id="pfPwdConfirm" layoutX="224.0" layoutY="201.0" onKeyTyped="#colorEvent" prefHeight="24.0" prefWidth="247.0" />
+      <Button fx:id="bCreate" defaultButton="true" layoutX="393.0" layoutY="245.0" mnemonicParsing="false" onAction="#create" prefHeight="29.0" prefWidth="76.0" style="-fx-background-color: silver;" text="Crear" />
+      <Button fx:id="bClean" layoutX="299.0" layoutY="245.0" mnemonicParsing="false" onAction="#clean" pickOnBounds="false" prefHeight="29.0" prefWidth="76.0" style="-fx-background-color: skyblue;" text="Limpiar" />
+      <Button fx:id="bCancelar" cancelButton="true" layoutX="19.0" layoutY="248.0" mnemonicParsing="false" onAction="#cancelEvent" prefHeight="29.0" prefWidth="76.0" style="-fx-background-color: salmon;" text="Cancelar" />
    </children>
 </AnchorPane>
