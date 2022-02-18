@@ -164,12 +164,19 @@ public class CRUD extends ConexionDB {
      * Obtiene los usuarios de la base de datos
      * @return ObservableList<User>
      */
-    public static ObservableList<User> getUsers() {
+    public static ObservableList<User> getUsers(String CC) {
         ObservableList<User> userObservableList = FXCollections.observableArrayList();
+        String query;
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
-            String query = "SELECT u.cc, u.nombre, u.usuario, u.rol, u.clave, u.estado FROM usuarios u ;";
+            if(CC.isEmpty()) {
+                query = "SELECT u.cc, u.nombre, u.usuario, u.rol, u.clave, u.estado FROM usuarios u " +
+                        "limit 22;";
+            } else {
+                query = "SELECT u.cc, u.nombre, u.usuario, u.rol, u.clave, u.estado FROM usuarios u " +
+                        "where cc like '" + CC+ '%'+ "';";
+            }
             ResultSet result = st.executeQuery(query);
             while (result.next()){
                 String cc = result.getString("cc");
@@ -179,7 +186,10 @@ public class CRUD extends ConexionDB {
                 Boolean status = result.getBoolean("estado");
                 String pwd = result.getString("clave");
                 User user = new User( cc , name, userName, "Sin pwd", rol, status);
-                userObservableList.add(user);
+
+                if(!userObservableList.contains(user)) {
+                    userObservableList.add(user);
+                }
             }
             st.close();
             connection.close();

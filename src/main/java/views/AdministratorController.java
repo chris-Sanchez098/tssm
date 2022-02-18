@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.CRUD;
 import model.User;
@@ -15,7 +16,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdministratorController implements Initializable {
-
+    @FXML
+    private TextField tfSearch;
     @FXML
     private TableView<User> tbUsers;
     @FXML
@@ -32,9 +34,16 @@ public class AdministratorController implements Initializable {
     private TableColumn<User, Boolean> colStatus;
     @FXML
     private Button bUpdate;
+    @FXML
+    private Button bSearch;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        tfSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!newValue.matches("\\d*")) {
+                tfSearch.setText(newValue.replaceAll("[^\\d]",""));
+            }
+        });
         this.colCC.setCellValueFactory(new PropertyValueFactory<User, String>("cc"));
         this.colName.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
         this.colUser.setCellValueFactory(new PropertyValueFactory<User, String>("user"));
@@ -45,8 +54,15 @@ public class AdministratorController implements Initializable {
 
     @FXML
     private void listUsers(ActionEvent event) {
-        ObservableList<User> items = CRUD.getUsers();
-        this.tbUsers.setItems(items);
+        if(event.getSource() == bUpdate) {
+            ObservableList<User> items = CRUD.getUsers("");
+            this.tbUsers.setItems(items);
+        } else {
+            String cc = tfSearch.getText();
+            ObservableList<User> items = CRUD.getUsers(cc);
+            this.tbUsers.refresh();
+            this.tbUsers.setItems(items);
+        }
     }
 
     @FXML
