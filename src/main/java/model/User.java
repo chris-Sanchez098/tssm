@@ -40,7 +40,7 @@ public class User {
      * @param cc, cc number of a user
      */
     public void setCc(String cc) {
-        if(!(Objects.equals(cc, ""))){
+        if(!cc.isEmpty()){
             this.cc = cc;
         }
     }
@@ -56,7 +56,7 @@ public class User {
      * @param name, name of a user
      */
     public void setName(String name) {
-        if(!(Objects.equals(name, ""))){
+        if(name.isEmpty()){
             this.name = name;
         }
     }
@@ -72,7 +72,7 @@ public class User {
      * @param user, login
      */
     public void setUser(String user) {
-        if(!(Objects.equals(user, ""))) {
+        if(!user.isEmpty()){
             this.user = user;
         }
     }
@@ -88,7 +88,7 @@ public class User {
      * @param pwd, password of a user
      */
     public void setPwd(String pwd) {
-        if(!(Objects.equals(pwd, ""))) {
+        if(pwd.isEmpty()) {
             this.pwd = MD5.encrypt(pwd);
         }
     }
@@ -103,7 +103,7 @@ public class User {
      * @param rol, rol of a user
      */
     public void setRol(String rol) {
-        if(!rol.equals("")) {
+        if(!rol.isEmpty()) {
             this.rol = rol;
         }
     }
@@ -130,7 +130,12 @@ public class User {
         return password.matches(path);
     }
 
+    /**
+     * set password without encrypted
+     * @param pwd password
+     */
     public void setPwdNoEncrypt(String pwd){
         this.pwd = pwd;
     }
+
 }

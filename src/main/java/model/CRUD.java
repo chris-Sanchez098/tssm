@@ -17,7 +17,7 @@ public class CRUD extends ConexionDB {
      * @param rol cargo
      * @param estado estado
      */
-    public static void insertUser(String cc, String name, String user,
+    public static boolean insertUser(String cc, String name, String user,
                                   String pwd, String rol, Boolean estado) {
         try {
             Connection connection = connect();
@@ -37,6 +37,7 @@ public class CRUD extends ConexionDB {
         } catch (Exception e) {
             alertDuplicate(cc, user, e);
         }
+        return false;
     }
 
     /**
@@ -108,6 +109,11 @@ public class CRUD extends ConexionDB {
         return userObservableList;
     }
 
+    /**
+     * search a user then get status, rol and password
+     * @param user to search
+     * @return
+     */
     public static User selectLogin(String user){
 
         ObservableList<User> userObservableList = FXCollections.observableArrayList();
@@ -135,6 +141,12 @@ public class CRUD extends ConexionDB {
         return userObservableList.get(0);
     }
 
+    /**
+     * show an alert about duplicate
+     * @param cc to show
+     * @param user to show
+     * @param e exception
+     */
     private static void alertDuplicate(String cc, String user, Exception e){
         System.out.println(e.getMessage());
         Alert alert = new Alert(Alert.AlertType.ERROR);
