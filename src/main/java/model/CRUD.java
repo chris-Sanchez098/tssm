@@ -3,7 +3,6 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -36,16 +35,7 @@ public class CRUD extends ConexionDB {
             alert.showAndWait();
 
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Creación usuario");
-            if(e.getMessage().subSequence(55,67).equals("usuarios_pke")) {
-                alert.setContentText("El numero de identifiación " + cc + " ya existe.");
-            } else {
-                System.out.println(e.getMessage().subSequence(55,67).equals("usuarios_pke"));
-                System.out.println(e.getMessage().subSequence(55,67));
-                alert.setContentText("El usuario " + user + " ya existe.");
-            } alert.showAndWait();
+            alertDuplicate(cc, user, e);
         }
     }
 
@@ -54,7 +44,7 @@ public class CRUD extends ConexionDB {
      * @param user User with date to update
      * @param cc Current user cc
      */
-    public static void updateUser(User user, String cc) {
+    public static boolean updateUser(User user, String cc) {
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
@@ -70,17 +60,11 @@ public class CRUD extends ConexionDB {
             alert.setTitle("Modificación de usuario");
             alert.setContentText("El usuario con cédula"+ cc + " fue modificado");
             alert.showAndWait();
+            return true;
         } catch (Exception e ) {
-            if(e.getMessage().subSequence(0,16).equals("ERROR: duplicate")) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setTitle("Modificación usuario");
-                alert.setContentText("La cédula " + user.getCc() + " o el usuario "+ user.getUser() +" ya existe.");
-                alert.showAndWait();
-            } else {
-                System.out.println(e.getMessage());
-            }
+            alertDuplicate(user.getCc(), user.getUser(), e);
         }
+        return false;
     }
 
     /**
@@ -101,46 +85,19 @@ public class CRUD extends ConexionDB {
         }
     }
 
-    public static User selectUser(String cc) {
+    public static ObservableList<User> selectUpdateUser(String cc) {
         ObservableList<User> userObservableList = FXCollections.observableArrayList();
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
-            String query = "SELECT u.nombre, u.usuario, u.rol, u.clave, u.estado FROM usuarios u where cc ='" + cc + "';";
+            String query = "SELECT u.nombre, u.usuario, u.rol, u.estado FROM usuarios u where cc ='" + cc + "';";
             ResultSet result = st.executeQuery(query);
             while (result.next()){
                 String name = result.getString("nombre");
                 String userName = result.getString("usuario");
                 String rol = result.getString("rol");
                 Boolean status = result.getBoolean("estado");
-                String pwd = result.getString("clave");
-                User user = new User( cc , name, userName, pwd, rol, status);
-                userObservableList.add(user);
-            }
-            st.close();
-            connection.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return userObservableList.get(0);
-    }
-
-    public static ObservableList<User> getUsers() {
-        ObservableList<User> userObservableList = FXCollections.observableArrayList();
-        try {
-            Connection connection = connect();
-            Statement st = connection.createStatement();
-            String query = "SELECT u.cc, u.nombre, u.usuario, u.rol, u.clave, u.estado FROM usuarios u ;";
-            ResultSet result = st.executeQuery(query);
-            while (result.next()){
-                String cc = result.getString("cc");
-                String name = result.getString("nombre");
-                String userName = result.getString("usuario");
-                String rol = result.getString("rol");
-                Boolean status = result.getBoolean("estado");
-                String pwd = result.getString("clave");
-
-                User user = new User( cc , name, userName, "Sin pwd", rol, status);
+                User user = new User( cc , name, userName, "", rol, status);
                 userObservableList.add(user);
             }
             st.close();
@@ -150,4 +107,45 @@ public class CRUD extends ConexionDB {
         }
         return userObservableList;
     }
+
+    public static User selectLogin(String user){
+
+        ObservableList<User> userObservableList = FXCollections.observableArrayList();
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            String query = "SELECT u.rol, u.clave, u.estado FROM usuarios u where u.usuario ='" + user + "';";
+            ResultSet result = st.executeQuery(query);
+            while (result.next()){
+                String rol = result.getString("rol");
+                String pwd = result.getString("clave");
+                Boolean status = result.getBoolean("estado");
+                User anUser = new User("", "", user, "", rol, status);
+                anUser.setPwdNoEncrypt(pwd);
+                userObservableList.add(anUser);
+            }
+            st.close();
+            connection.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        if(userObservableList.isEmpty()){
+            userObservableList.add(new User("","", "", "", "", false));
+        }
+        return userObservableList.get(0);
+    }
+
+    private static void alertDuplicate(String cc, String user, Exception e){
+        System.out.println(e.getMessage());
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setTitle("Modificación de usuario");
+        if(e.getMessage().subSequence(55,67).equals("usuarios_pke")) {
+            alert.setContentText("El numero de identifiación " + cc + " ya existe.");
+        } else {
+            alert.setContentText("El usuario " + user + " ya existe.");
+        }
+        alert.showAndWait();
+    }
+
 }

@@ -103,7 +103,7 @@ public class User {
      * @param rol, rol of a user
      */
     public void setRol(String rol) {
-        if(!(Objects.equals(rol, ""))) {
+        if(!rol.equals("")) {
             this.rol = rol;
         }
     }
@@ -122,12 +122,15 @@ public class User {
         this.status = status;
     }
 
-
     /**
      * @return boolean, password check
      */
     public static boolean checkPwd(String password){
         String path = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[.(!@#$%^&+=_-])(?=\\S+$).{8,}$";
         return password.matches(path);
+    }
+
+    public void setPwdNoEncrypt(String pwd){
+        this.pwd = pwd;
     }
 }
