@@ -17,7 +17,6 @@ import java.util.ResourceBundle;
 
 public class UpdateUserController implements Initializable {
     User user;
-    String rol;
 
     @FXML
     private Label currentName;
@@ -71,17 +70,17 @@ public class UpdateUserController implements Initializable {
             boolean check = true;
             String pass = newPass.getText();
             String passCon = newPassCon.getText();
+            String login = newUser.getText();
             user.setCc(newCC.getText());
-            user.setRol(rol);
-            user.setUser(newUser.getText());
+            user.setRol(newRol.getSelectionModel().getSelectedItem());
+            user.setUser(login);
             user.setName(newName.getText());
-
-            if(!newPass.getText().isEmpty() && !newPassCon.getText().isEmpty()) {
+            if(!pass.isEmpty() && !passCon.isEmpty()) {
                 if (Objects.equals(pass, passCon)) {
-                    if (User.checkPwd(pass) && !Objects.equals(pass, newUser.getText())) {
-                        user.setPwd(newPass.getText());
+                    if (User.checkPwd(pass) && !pass.equals(login)) {
+                        user.setPwd(pass);
                     } else {
-                        emergent("La contraseña no cumple los mínimos: \n " +
+                        emergent("La contraseña no cumple los mínimos: \n" +
                                 "Mínimo de longitud 8, con al menos una mayúscula," +
                                 " una minúscula, un número y un simbolo, ademas diferente del usuario de acceso.");
                         check = false;
@@ -105,12 +104,11 @@ public class UpdateUserController implements Initializable {
      */
     @FXML
     private void selectEvent(ActionEvent event){
-        rol = newRol.getSelectionModel().getSelectedItem();
         changeColorUpdateButton();
     }
 
     @FXML
-    private void colorEvent(KeyEvent event){
+    private void colorEvent(KeyEvent  event){
         changeColorUpdateButton();
     }
 
@@ -157,7 +155,7 @@ public class UpdateUserController implements Initializable {
      * Set initial values to labels
      */
     private void currentUser(){
-        user = CRUD.selectUser("1234343955");
+        user = CRUD.selectUpdateUser("1193075514").get(0);
         currentName.setText(user.getName());
         currentUser.setText(user.getUser());
         currentCC.setText(user.getCc());

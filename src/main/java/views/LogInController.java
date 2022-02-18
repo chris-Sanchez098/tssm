@@ -10,9 +10,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.CRUD;
+import model.MD5;
+import model.User;
 import tssm.App;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -30,10 +32,20 @@ public class LogInController implements Initializable {
     /**
      * validate data then set a new stage
      * @param event get the event
-     * @throws IOException
      */
     @FXML
     private void logInEvent(ActionEvent event){
+        /**
+        String login = userField.getText();
+        String passWord = MD5.encrypt(passwordField.getText());
+        User user = CRUD.selectLogin(login);
+        String loginUser = user.getUser();
+        if(login.equals(loginUser) && passWord.equals(user.getPwd()) && !loginUser.isEmpty()){
+            Stage stage = (Stage) vBox.getScene().getWindow();
+            stage.close();
+            App.setStage("/views/administrator");
+        }
+        */
         Stage stage = (Stage) vBox.getScene().getWindow();
         stage.close();
         App.setStage("/views/administrator");
