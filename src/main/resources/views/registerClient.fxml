@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="729.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.RegisterClientController">
+   <children>
+      <VBox layoutX="25.0" layoutY="35.0" prefHeight="288.0" prefWidth="114.0">
+         <children>
+            <Label text="Nombre:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="No Cédula/NIT">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Correo:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Dirección:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Tipo cliente:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Plan móvil:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Fecha:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Hora:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Servicio:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Número móvil:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="123.0" layoutY="35.0" prefHeight="350.0" prefWidth="204.0">
+         <children>
+            <TextField fx:id="txtNameOp">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="txtIdentity">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="txtEmail">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="txtAddress">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <ComboBox fx:id="comboxSelectClient" onAction="#clickSelectClient" prefHeight="25.0" prefWidth="196.0" promptText="Seleccionar ">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </ComboBox>
+            <ComboBox fx:id="comboxSelectPlan" onAction="#clickSelectPlan" prefHeight="25.0" prefWidth="201.0" promptText="Seleccionar">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </ComboBox>
+            <TextField fx:id="txtDate">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="txtTime">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="txtService">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="txtPhoneNumber" editable="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+         </children>
+      </VBox>
+      <HBox layoutX="25.0" layoutY="443.0" prefHeight="35.0" prefWidth="316.0">
+         <children>
+            <Button fx:id="btnRegisterClient" mnemonicParsing="false" onAction="#clickRegisterClient" text="Registrar usuario">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="20.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnCancelRegister" mnemonicParsing="false" onAction="#clickCancelRegister" text="Cancelar">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="60.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <VBox layoutX="355.0" layoutY="35.0" prefHeight="315.0" prefWidth="134.0">
+         <children>
+            <Label text="Información del plan:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Separator orientation="VERTICAL" prefHeight="3.0" prefWidth="126.0">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Separator>
+            <Label text="Valor mensual:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Minutos:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Minutos ilimitados:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Gigas de datos:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Gigas en la nube:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Gigas para compartir">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Mensajes ilimitados:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Netflix:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Más detalles:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="508.0" layoutY="35.0" prefHeight="443.0" prefWidth="194.0">
+         <children>
+            <Separator orientation="VERTICAL" prefHeight="63.0" prefWidth="174.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin></Separator>
+            <TextField fx:id="txtPayment" editable="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="txtMinutes" editable="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="txtMinutesUnlimited" editable="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="txtData" editable="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="txtGbCloud" editable="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="txtGbShare" editable="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="txtMsmUnlimited" editable="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="txtNetflix" editable="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextArea fx:id="txtAreaMoreInfo" editable="false" prefHeight="104.0" prefWidth="184.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextArea>
+         </children>
+      </VBox>
+   </children>
+</Pane>
