@@ -3,6 +3,7 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -124,4 +125,29 @@ public class CRUD extends ConexionDB {
         return userObservableList.get(0);
     }
 
+    public static ObservableList<User> getUsers() {
+        ObservableList<User> userObservableList = FXCollections.observableArrayList();
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            String query = "SELECT u.cc, u.nombre, u.usuario, u.rol, u.clave, u.estado FROM usuarios u ;";
+            ResultSet result = st.executeQuery(query);
+            while (result.next()){
+                String cc = result.getString("cc");
+                String name = result.getString("nombre");
+                String userName = result.getString("usuario");
+                String rol = result.getString("rol");
+                Boolean status = result.getBoolean("estado");
+                String pwd = result.getString("clave");
+
+                User user = new User( cc , name, userName, "Sin pwd", rol, status);
+                userObservableList.add(user);
+            }
+            st.close();
+            connection.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return userObservableList;
+    }
 }
