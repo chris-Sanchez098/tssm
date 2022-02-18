@@ -35,32 +35,12 @@ public class AdministratorController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*
-            private String cc;
-    private String name;
-    private String user;
-    private String pwd;
-    private String rol;
-    private Boolean status;
-         */
         this.colCC.setCellValueFactory(new PropertyValueFactory<User, String>("cc"));
         this.colName.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
         this.colUser.setCellValueFactory(new PropertyValueFactory<User, String>("user"));
         this.colPwd.setCellValueFactory(new PropertyValueFactory<User, String>("pwd"));
         this.colRol.setCellValueFactory(new PropertyValueFactory<>("rol"));
         this.colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-
-        /*
-        for (User sr: items) {
-            System.out.println(sr.getName());
-            System.out.println(sr.getUser());
-            System.out.println(sr.getCc());
-            System.out.println(sr.getPwd());
-            System.out.println(sr.getRol());
-            System.out.println(sr.getStatus());
-        }
-        */
-
     }
 
     @FXML
