@@ -2,12 +2,16 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.AdministratorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="1115.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.AdministratorController">
    <top>
-      <fx:include fx:id="logout" source="logOut.fxml" />
+      <fx:include fx:id="logout" prefWidth="1115.0" source="logOut.fxml" />
    </top>
    <left>
       <VBox prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -25,4 +29,23 @@
          </children>
       </VBox>
    </left>
+   <center>
+      <AnchorPane prefHeight="582.0" prefWidth="917.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="tbUsers" layoutX="3.0" layoutY="53.0" prefHeight="566.0" prefWidth="909.0">
+              <columns>
+                <TableColumn fx:id="colCC" editable="false" prefWidth="137.0" resizable="false" sortable="false" text="Identificación" />
+                <TableColumn fx:id="colName" editable="false" prefWidth="298.0" resizable="false" sortable="false" text="Nombre" />
+                  <TableColumn fx:id="colUser" editable="false" minWidth="0.0" prefWidth="192.0" resizable="false" sortable="false" text="Usuario" />
+                  <TableColumn fx:id="colPwd" editable="false" minWidth="0.0" prefWidth="113.0" resizable="false" sortable="false" text="Contraseña" />
+                  <TableColumn fx:id="colRol" editable="false" prefWidth="94.0" resizable="false" sortable="false" text="Cargo" />
+                  <TableColumn fx:id="colStatus" editable="false" prefWidth="73.0" resizable="false" sortable="false" text="Estado" />
+              </columns>
+            </TableView>
+            <Button layoutX="184.0" layoutY="19.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="79.0" text="Buscar" />
+            <TextField layoutX="3.0" layoutY="19.0" />
+            <Button fx:id="bUpdate" layoutX="757.0" layoutY="19.0" mnemonicParsing="false" onAction="#listUsers" prefHeight="22.0" prefWidth="155.0" text="Actualizar tabla" />
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>

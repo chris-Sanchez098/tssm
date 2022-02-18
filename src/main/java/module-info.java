@@ -4,10 +4,12 @@ module tssm {
     requires java.sql;
     requires org.postgresql.jdbc;
 
-    opens tssm to javafx.fxml;
     opens views to javafx.fxml;
     exports tssm;
     exports views;
+    opens tssm to javafx.fxml;
+    exports model;
+    opens model to java.base;
 }
 
 
