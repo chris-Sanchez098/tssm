@@ -86,9 +86,11 @@ public class AdministratorController implements Initializable {
                 updateView.initAttributtes(items, user);
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
+                stage.setTitle("Modificación usuario");
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setScene(scene);
                 stage.showAndWait();
+                this.tbUsers.refresh();
 
             } catch (Exception e) {
                 e.printStackTrace();

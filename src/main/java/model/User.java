@@ -56,7 +56,7 @@ public class User {
      * @param name, name of a user
      */
     public void setName(String name) {
-        if(name.isEmpty()){
+        if(!name.isEmpty()){
             this.name = name;
         }
     }
