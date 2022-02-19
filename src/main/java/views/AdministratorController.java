@@ -3,12 +3,15 @@ package views;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.CRUD;
 import model.User;
 import tssm.App;
@@ -33,17 +36,16 @@ public class AdministratorController implements Initializable {
     @FXML
     private TableColumn<User, Boolean> colStatus;
     @FXML
-    private Button bUpdate;
+    private Button bUpdateUser;
+    @FXML
+    private Button bUpdateTb;
     @FXML
     private Button bSearch;
+    private ObservableList<User> items;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tfSearch.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(!newValue.matches("\\d*")) {
-                tfSearch.setText(newValue.replaceAll("[^\\d]",""));
-            }
-        });
+        setOnlyNum(tfSearch);
         this.colCC.setCellValueFactory(new PropertyValueFactory<User, String>("cc"));
         this.colName.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
         this.colUser.setCellValueFactory(new PropertyValueFactory<User, String>("user"));
@@ -54,14 +56,50 @@ public class AdministratorController implements Initializable {
 
     @FXML
     private void listUsers(ActionEvent event) {
-        if(event.getSource() == bUpdate) {
-            ObservableList<User> items = CRUD.getUsers("");
+        if(event.getSource() == bUpdateTb) {
+            items = CRUD.getUsers("");
             this.tbUsers.setItems(items);
         } else {
             String cc = tfSearch.getText();
             ObservableList<User> items = CRUD.getUsers(cc);
             this.tbUsers.refresh();
             this.tbUsers.setItems(items);
+        }
+    }
+
+    @FXML
+    private void selectUser(MouseEvent event) {
+        User user = this.tbUsers.getSelectionModel().getSelectedItem();
+        if(user != null) {
+            System.out.println("Selection ok");
+        }
+    }
+
+    @FXML
+    public void selectModify(ActionEvent event) {
+        User user = this.tbUsers.getSelectionModel().getSelectedItem();
+        if(event.getSource() == bUpdateUser && user != null) {
+            try{
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/updateUser.fxml"));
+                Parent root = loader.load();
+                UpdateUserController updateView = loader.getController();
+                updateView.initAttributtes(items, user);
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.showAndWait();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Debes seleccionar un usuario");
+            alert.showAndWait();
         }
     }
 
@@ -73,5 +111,17 @@ public class AdministratorController implements Initializable {
     @FXML
     private void updateStage(ActionEvent event){
         App.openStage("/views/updateUser","Modificación de usuarios");
+    }
+
+    /**
+     * Restringe un textField para que solo acepte numeros
+     * @param textField
+     */
+    private void setOnlyNum(TextField textField){
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                textField.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
     }
 }

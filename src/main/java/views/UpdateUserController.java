@@ -16,7 +16,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class UpdateUserController implements Initializable {
-    User user;
+    private User user;
 
     @FXML
     private Label currentName;
@@ -50,6 +50,18 @@ public class UpdateUserController implements Initializable {
 
     @FXML
     private Button updateButton;
+
+    public void initAttributtes(ObservableList<User> users, User user) {
+        this.user = user;
+        this.currentName.setText(user.getName());
+        this.currentCC.setText(user.getCc());
+        this.currentUser.setText(user.getUser());
+        this.currentRol.setText(user.getRol());
+    }
+
+    public User getUser() {
+        return user;
+    }
 
     /**
      * Close the stage
