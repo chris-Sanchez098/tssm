@@ -7,13 +7,13 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="540.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.OperatorController">
+<AnchorPane prefHeight="685.0" prefWidth="1115.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.OperatorController">
    <children>
-      <VBox layoutX="14.0" layoutY="14.0" prefHeight="509.0" prefWidth="153.0">
+      <VBox layoutX="14.0" layoutY="14.0" prefHeight="656.0" prefWidth="163.0">
          <children>
             <ImageView fitHeight="96.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
                <VBox.margin>
@@ -54,66 +54,89 @@
       </VBox>
       <Separator layoutX="177.0" layoutY="14.0" orientation="VERTICAL" prefHeight="509.0" prefWidth="25.0" visible="false" />
       <Separator layoutX="476.0" layoutY="16.0" orientation="VERTICAL" prefHeight="509.0" prefWidth="25.0" visible="false" />
-      <BorderPane layoutX="208.0" layoutY="17.0" prefHeight="509.0" prefWidth="549.0" />
-      <VBox layoutX="228.0" layoutY="24.0" prefHeight="509.0" prefWidth="250.0">
+      <Pane layoutX="221.0" layoutY="18.0" prefHeight="655.0" prefWidth="876.0">
          <children>
-            <Label alignment="CENTER" prefHeight="27.0" prefWidth="243.0" text="Plan 15 GB">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="Descripcion del plan...">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </TextArea>
-            <Label alignment="CENTER" prefHeight="27.0" prefWidth="241.0" text="Plan 25 GB">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="Descripcion del plan...">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </TextArea>
+            <VBox layoutX="3.0" layoutY="21.0" prefHeight="633.0" prefWidth="400.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="389.0" text="Plan 15 GB">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextArea editable="false" prefHeight="150.0" prefWidth="200.0" text="Descripcion del plan...">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextArea>
+                  <ImageView fitHeight="150.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="389.0" text="Plan 25 GB">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextArea editable="false" prefHeight="150.0" prefWidth="383.0" text="Descripcion del plan...">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextArea>
+                  <ImageView fitHeight="150.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox layoutX="456.0" layoutY="19.0" prefHeight="633.0" prefWidth="400.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="389.0" text="Plan 40 GB">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextArea editable="false" prefHeight="150.0" prefWidth="200.0" text="Descripcion del plan...">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextArea>
+                  <ImageView fitHeight="150.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="389.0" text="Plan Ilimitado">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextArea editable="false" prefHeight="150.0" prefWidth="405.0" text="Descripcion del plan...">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextArea>
+                  <ImageView fitHeight="150.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </ImageView>
+               </children>
+            </VBox>
          </children>
-      </VBox>
-      <VBox layoutX="503.0" layoutY="24.0" prefHeight="509.0" prefWidth="250.0">
-         <children>
-            <Label alignment="CENTER" prefHeight="27.0" prefWidth="245.0" text="Plan 40 GB">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </Label>
-            <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="Descripcion del plan...">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </TextArea>
-            <Label alignment="CENTER" prefHeight="27.0" prefWidth="242.0" text="Plan Ilimitado">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </Label>
-            <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="Descripcion del plan...">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </TextArea>
-         </children>
-      </VBox>
+      </Pane>
    </children>
 </AnchorPane>

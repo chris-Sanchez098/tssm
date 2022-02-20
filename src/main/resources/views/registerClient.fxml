@@ -13,14 +13,14 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="729.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.RegisterClientController">
    <children>
-      <VBox layoutX="25.0" layoutY="35.0" prefHeight="288.0" prefWidth="114.0">
+      <VBox layoutX="9.0" layoutY="35.0" prefHeight="288.0" prefWidth="114.0">
          <children>
             <Label text="Nombre:">
                <VBox.margin>
                   <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
                </VBox.margin>
             </Label>
-            <Label text="No Cédula/NIT">
+            <Label text="No Cédula/NIT:">
                <VBox.margin>
                   <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
                </VBox.margin>
@@ -123,7 +123,7 @@
       </VBox>
       <HBox layoutX="25.0" layoutY="443.0" prefHeight="35.0" prefWidth="316.0">
          <children>
-            <Button fx:id="btnRegisterClient" mnemonicParsing="false" onAction="#clickRegisterClient" text="Registrar usuario">
+            <Button fx:id="btnRegisterClient" mnemonicParsing="false" onAction="#clickRegisterClient" text="Registrar cliente">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="20.0" top="5.0" />
                </HBox.margin>
@@ -142,7 +142,7 @@
                   <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
                </VBox.margin>
             </Label>
-            <Separator orientation="VERTICAL" prefHeight="3.0" prefWidth="126.0">
+            <Separator orientation="VERTICAL" prefHeight="3.0" prefWidth="126.0" visible="false">
                <VBox.margin>
                   <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
                </VBox.margin>
@@ -196,7 +196,7 @@
       </VBox>
       <VBox layoutX="508.0" layoutY="35.0" prefHeight="443.0" prefWidth="194.0">
          <children>
-            <Separator orientation="VERTICAL" prefHeight="63.0" prefWidth="174.0">
+            <Separator orientation="VERTICAL" prefHeight="63.0" prefWidth="174.0" visible="false">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin></Separator>

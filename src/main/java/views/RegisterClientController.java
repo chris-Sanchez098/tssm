@@ -4,12 +4,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class RegisterClientController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class RegisterClientController implements Initializable {
     @FXML
     public TextField txtNameOp;
     @FXML
@@ -53,6 +57,12 @@ public class RegisterClientController {
     @FXML
     public ComboBox<String> comboxSelectPlan;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        CBSelectClient();
+        CBSelectPlan();
+    }
+
     @FXML
     public void clickSelectClient(ActionEvent actionEvent) {
 
@@ -82,5 +92,18 @@ public class RegisterClientController {
                 FXCollections.observableArrayList("", "Plan 15 GB", "Plan 25 GB", "Plan 40 GB", "Plan ilimitado");
         comboxSelectPlan.setItems(option);
         comboxSelectPlan.getSelectionModel().selectFirst();
+    }
+
+    /**
+     * Reset GUI state
+     */
+    public void cleanGUI() {
+        txtNameOp.setText("");
+        txtIdentity.setText("");
+        txtEmail.setText("");
+        txtAddress.setText("");
+        comboxSelectClient.getSelectionModel().selectFirst();
+        comboxSelectPlan.getSelectionModel().selectFirst();
+
     }
 }

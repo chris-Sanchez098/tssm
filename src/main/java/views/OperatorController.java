@@ -2,9 +2,14 @@ package views;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import tssm.App;
 
-public class OperatorController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class OperatorController implements Initializable {
     @FXML
     public Button btnInit;
     @FXML
@@ -16,6 +21,11 @@ public class OperatorController {
     @FXML
     public Button btnConsultClient;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
     @FXML
     public void clickInit(ActionEvent actionEvent) {
     }
@@ -26,6 +36,7 @@ public class OperatorController {
 
     @FXML
     public void clickRegisClient(ActionEvent actionEvent) {
+        App.openStage("/views/registerClient", "Registrar cliente");
     }
 
     @FXML
