@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.sql.Connection;
 import java.sql.SQLException;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class DBTest {
@@ -18,12 +20,6 @@ public class DBTest {
     public void connectionTest() {
         con = ConexionDB.connect();
         assertNotNull(con);
-    }
-
-    @Test
-    @DisplayName("Desconexión test")
-    public void disconnectTest() throws SQLException {
-        con.close();
     }
 }
 

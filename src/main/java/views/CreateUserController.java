@@ -34,11 +34,7 @@ public class CreateUserController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initCB();
-        tfCC.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(!newValue.matches("\\d*")) {
-                tfCC.setText(newValue.replaceAll("[^\\d]",""));
-            }
-        });
+        setOnlyNum(tfCC);
     }
 
     /**
@@ -61,7 +57,7 @@ public class CreateUserController implements Initializable {
     }
 
     /**
-     * inicializa los valores en el ComboBox cbRol
+     * initializes the values in the comboBox cbRol
      */
     public void initCB() {
         ObservableList<String> option =
@@ -71,7 +67,7 @@ public class CreateUserController implements Initializable {
     }
 
     /**
-     * Deja la GUI es su estado inicial
+     * Reset GUI state
      */
     public void cleanGUI() {
         tfName.setText("");
@@ -83,7 +79,7 @@ public class CreateUserController implements Initializable {
     }
 
     /**
-     * Verifica que todos los campos necesarios se encuentren llenos
+     * Check that all field are complete
      * @return boolean
      */
     public boolean checkEmptyField(ObservableList<String> lst) {
@@ -96,13 +92,13 @@ public class CreateUserController implements Initializable {
     }
 
     /**
-     * Muestra un mensaje de error si la contraseña no cumple con la politica,
-     * no coincide y es igual al user.
+     * Show alert with error message if the password does not comply
+     * with the policies, password does not match and if user is
+     * equal to the password
      * @param pwdCheck boolean
      * @param equal boolean
-     * @param pwdUser boolean
      */
-    public void errorMsg(boolean pwdCheck, boolean equal, boolean pwdUser) {
+    public void errorMsg(boolean pwdCheck, boolean equal) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
         alert.setTitle("Creación usuario");
@@ -143,7 +139,7 @@ public class CreateUserController implements Initializable {
                 CRUD.insertUser(cc, name, user, encryptPwd, rol, true);
                 cleanGUI();
             } else {
-                errorMsg(check,equal,userPwd);
+                errorMsg(check,equal);
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -155,7 +151,7 @@ public class CreateUserController implements Initializable {
     }
 
     /**
-     * change bottom's color grey to do action, grey to not possible action
+     * Change bottom's color grey to do action, grey to not possible action
      */
     private void changeColorUpdateButton(){
         if(checkFill()){
@@ -165,10 +161,26 @@ public class CreateUserController implements Initializable {
         }
     }
 
+    /**
+     * Check that all textFiel is not empty
+     * @return boolean
+     */
     private boolean checkFill(){
         return !cbRol.getSelectionModel().getSelectedItem().isEmpty()
                 && !tfName.getText().isEmpty() && !tfCC.getText().isEmpty()
                 && !tfUser.getText().isEmpty() && !pfPwd.getText().isEmpty()
                 && !pfPwdConfirm.getText().isEmpty();
+    }
+
+    /**
+     * Restrict a textField to only accept numbers
+     * @param textField to restrict
+     */
+    private void setOnlyNum(TextField textField){
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                textField.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
     }
 }
