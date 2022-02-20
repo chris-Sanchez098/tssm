@@ -31,6 +31,9 @@ public class UpdateUserController implements Initializable {
     private Label currentRol;
 
     @FXML
+    private Label currentStatus;
+
+    @FXML
     private TextField newUser;
 
     @FXML
@@ -41,6 +44,9 @@ public class UpdateUserController implements Initializable {
 
     @FXML
     private ComboBox<String> newRol;
+
+    @FXML
+    private ComboBox<String> newStatus;
 
     @FXML
     private PasswordField newPass;
@@ -57,6 +63,7 @@ public class UpdateUserController implements Initializable {
         this.currentCC.setText(user.getCc());
         this.currentUser.setText(user.getUser());
         this.currentRol.setText(user.getRol());
+        this.currentStatus.setText(user.statusToString());
     }
 
     public User getUser() {
@@ -83,14 +90,11 @@ public class UpdateUserController implements Initializable {
             String pass = newPass.getText();
             String passCon = newPassCon.getText();
             String login = newUser.getText();
-            user.setCc(newCC.getText());
-            user.setRol(newRol.getSelectionModel().getSelectedItem());
-            user.setUser(login);
-            user.setName(newName.getText());
-            if(!pass.isEmpty() && !passCon.isEmpty()) {
+            User updateUser = buildUser(login);
+            if(!pass.isEmpty() || !passCon.isEmpty()) {
                 if (Objects.equals(pass, passCon)) {
                     if (User.checkPwd(pass) && !pass.equals(login)) {
-                        user.setPwd(pass);
+                        updateUser.setPwd(pass);
                     } else {
                         emergent("La contraseña no cumple los mínimos: \n" +
                                 "Mínimo de longitud 8, con al menos una mayúscula," +
@@ -98,12 +102,12 @@ public class UpdateUserController implements Initializable {
                         check = false;
                     }
                 } else {
-                    emergent("La contraseña no coincide.");
+                    emergent("Los campos de la contraseña no coinciden.");
                     check = false;
                 }
             }
             if(check){
-                if(CRUD.updateUser(user, currentCC.getText())){
+                if(CRUD.updateUser(updateUser, user.getCc())){
                     ((Node)(event.getSource())).getScene().getWindow().hide();
                 }
             }
@@ -136,6 +140,7 @@ public class UpdateUserController implements Initializable {
      */
     private boolean lessCheckFill(){
         return !newRol.getSelectionModel().getSelectedItem().isEmpty()
+                || !newStatus.getSelectionModel().getSelectedItem().isEmpty()
                 || !newName.getText().isEmpty() || !newCC.getText().isEmpty()
                 || !newUser.getText().isEmpty() || !newPass.getText().isEmpty()
                 || !newPassCon.getText().isEmpty();
@@ -160,6 +165,10 @@ public class UpdateUserController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList("","Administrador", "Gerente", "Operador");
         newRol.setItems(list);
         newRol.getSelectionModel().selectFirst();
+        ObservableList<String> list1 = FXCollections.observableArrayList("","Habilitado", "Deshabilitado");
+        newStatus.setItems(list1);
+        newStatus.getSelectionModel().selectFirst();
+
     }
 
     /**
@@ -183,5 +192,21 @@ public class UpdateUserController implements Initializable {
         } else{
             updateButton.setStyle("-fx-background-color: silver; ");
         }
+    }
+
+    /**
+     * build a user with new atributes
+     * @param login login user of user
+     * @return user
+     */
+    private User buildUser(String login){
+        User newUser = new User(user.getCc(),user.getName(), user.getUser(),"", user.getRol(), user.getStatus());
+        newUser.setPwdNoEncrypt(user.getPwd());
+        newUser.setCc(newCC.getText());
+        newUser.setRol(newRol.getSelectionModel().getSelectedItem());
+        newUser.setStringStatus(newStatus.getSelectionModel().getSelectedItem());
+        newUser.setUser(login);
+        newUser.setName(newName.getText());
+        return newUser;
     }
 }

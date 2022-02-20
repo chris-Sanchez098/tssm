@@ -73,7 +73,7 @@ public class LogInController implements Initializable {
                 }
                 else{
                     passMessage.setText("Contraseña incorrecta");
-                    blockUser();
+                    blockUser(loginUser);
                 }
             }
             else{
@@ -120,12 +120,14 @@ public class LogInController implements Initializable {
 
     /**
      * block a user (status = false)
+     * @param user to block
      */
-    private void blockUser(){
+    private void blockUser(String user){
         counter += 1;
         if(counter == 5){
             counter = 0;
-            userMessage.setText("El usuario fue bloqueado por acceso irregular");
+            CRUD.setFalseStatus(user);
+            userMessage.setText("El usuario"+ user +"fue bloqueado por acceso irregular");
         }
     }
 }

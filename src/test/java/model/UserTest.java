@@ -25,7 +25,8 @@ public class UserTest {
                 () -> assertEquals("neveu", user.getUser()),
                 () -> assertEquals("722b70566647a753d42031ca15bfdd46", user.getPwd()),
                 () -> assertEquals("Gerente", user.getRol()),
-                () -> assertEquals(true, user.getStatus())
+                () -> assertEquals(true, user.getStatus()),
+                () -> assertEquals("Habilitado", user.statusToString())
         );
     }
 
@@ -43,8 +44,11 @@ public class UserTest {
         user1.setUser("");
         user1.setPwd("");
         user1.setRol("");
+        user1.setStringStatus("");
 
         user2.setPwdNoEncrypt("123");
+        user2.setStringStatus("Inhabilitado");
+
 
         assertAll("Several sets",
                 () -> assertEquals("1004675446", user.getCc()),
@@ -57,6 +61,8 @@ public class UserTest {
                 () -> assertEquals("neveu", user1.getUser()),
                 () -> assertEquals("722b70566647a753d42031ca15bfdd46", user1.getPwd()),
                 () -> assertEquals("Administrador", user1.getRol()),
+                () -> assertTrue(user1.getStatus()),
+                () -> assertFalse(user2.getStatus()),
                 () -> assertEquals("123", user2.getPwd())
         );
     }

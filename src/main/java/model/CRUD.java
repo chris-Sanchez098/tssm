@@ -58,7 +58,7 @@ public class CRUD extends ConexionDB {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setTitle("Modificación de usuario");
-            alert.setContentText("El usuario con cédula"+ cc + " fue modificado");
+            alert.setContentText("El usuario con cédula "+ cc + " fue modificado");
             alert.showAndWait();
             return true;
         } catch (Exception e ) {
@@ -87,8 +87,8 @@ public class CRUD extends ConexionDB {
 
     /**
      * search a user then get status, rol and password
-     * @param user to search
-     * @return
+     * @param user login user to search
+     * @return user
      */
     public static User selectLogin(String user){
 
@@ -174,5 +174,22 @@ public class CRUD extends ConexionDB {
             System.out.println(e.getMessage());
         }
         return userObservableList;
+    }
+
+    /**
+     * set status to false
+     * @param user to set
+     */
+    public static void setFalseStatus(String user){
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            String query = "UPDATE usuarios SET estado = false WHERE usuario ='" + user + "';";
+            st.executeUpdate(query);
+            st.close();
+            connection.close();
+        } catch (Exception e ) {
+            System.out.println(e.getMessage());
+        }
     }
 }

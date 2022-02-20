@@ -154,4 +154,25 @@ public class User {
         return  rolFxml;
     }
 
+    /**
+     * turn status into a string
+     * @return status like string
+     */
+    public String statusToString(){
+        if(status){
+            return "Habilitado";
+        }
+        return "Inhabilitado";
+    }
+
+    /**
+     * set status
+     * @param stringStatus status like a string
+     */
+    public void setStringStatus(String stringStatus){
+        if(!stringStatus.isEmpty()){
+            status = stringStatus.equals("Habilitado");
+        }
+    }
+
 }
