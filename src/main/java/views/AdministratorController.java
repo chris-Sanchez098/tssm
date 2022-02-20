@@ -39,8 +39,7 @@ public class AdministratorController implements Initializable {
     private Button bUpdateUser;
     @FXML
     private Button bUpdateTb;
-    @FXML
-    private Button bSearch;
+
     private ObservableList<User> items;
 
     @Override
@@ -83,7 +82,7 @@ public class AdministratorController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/updateUser.fxml"));
                 Parent root = loader.load();
                 UpdateUserController updateView = loader.getController();
-                updateView.initAttributtes(items, user);
+                updateView.initAttributes(items, user);
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
                 stage.setTitle("Modificación usuario");
@@ -95,7 +94,6 @@ public class AdministratorController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -116,8 +114,8 @@ public class AdministratorController implements Initializable {
     }
 
     /**
-     * Restringe un textField para que solo acepte numeros
-     * @param textField
+     * Restrict a textField to only accept numbers
+     * @param textField to restrict
      */
     private void setOnlyNum(TextField textField){
         textField.textProperty().addListener((observable, oldValue, newValue) -> {

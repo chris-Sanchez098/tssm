@@ -51,7 +51,7 @@ public class UpdateUserController implements Initializable {
     @FXML
     private Button updateButton;
 
-    public void initAttributtes(ObservableList<User> users, User user) {
+    public void initAttributes(ObservableList<User> users, User user) {
         this.user = user;
         this.currentName.setText(user.getName());
         this.currentCC.setText(user.getCc());

@@ -9,15 +9,15 @@ import java.sql.Statement;
 
 public class CRUD extends ConexionDB {
     /**
-     * Inserta un usuario a la base de datos
-     * @param cc cedula
-     * @param name nombre
-     * @param user usuario
-     * @param pwd contraseña
-     * @param rol cargo
-     * @param estado estado
+     * Insert a user into database
+     * @param cc to insert
+     * @param name to insert
+     * @param user to insert
+     * @param pwd to insert
+     * @param rol to insert
+     * @param estado to insert
      */
-    public static boolean insertUser(String cc, String name, String user,
+    public static void insertUser(String cc, String name, String user,
                                   String pwd, String rol, Boolean estado) {
         try {
             Connection connection = connect();
@@ -37,7 +37,6 @@ public class CRUD extends ConexionDB {
         } catch (Exception e) {
             alertDuplicate(cc, user, e);
         }
-        return false;
     }
 
     /**
@@ -86,6 +85,11 @@ public class CRUD extends ConexionDB {
         }
     }
 
+    /**
+     *
+     * @param cc
+     * @return ObservableList<User>
+     */
     public static ObservableList<User> selectUpdateUser(String cc) {
         ObservableList<User> userObservableList = FXCollections.observableArrayList();
         try {
@@ -109,11 +113,6 @@ public class CRUD extends ConexionDB {
         return userObservableList;
     }
 
-    /**
-     * search a user then get status, rol and password
-     * @param user to search
-     * @return
-     */
     public static User selectLogin(String user){
 
         ObservableList<User> userObservableList = FXCollections.observableArrayList();
@@ -161,7 +160,7 @@ public class CRUD extends ConexionDB {
     }
 
     /**
-     * Obtiene los usuarios de la base de datos
+     * Get the users from the database
      * @return ObservableList<User>
      */
     public static ObservableList<User> getUsers(String CC) {
@@ -185,8 +184,8 @@ public class CRUD extends ConexionDB {
                 String rol = result.getString("rol");
                 Boolean status = result.getBoolean("estado");
                 String pwd = result.getString("clave");
-                User user = new User( cc , name, userName, "Sin pwd", rol, status);
-
+                User user = new User( cc , name, userName, "", rol, status);
+                user.setPwdNoEncrypt(pwd);
                 if(!userObservableList.contains(user)) {
                     userObservableList.add(user);
                 }

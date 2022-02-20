@@ -35,9 +35,9 @@
             <TableView fx:id="tbUsers" layoutX="3.0" layoutY="53.0" onMouseClicked="#selectUser" prefHeight="566.0" prefWidth="909.0">
               <columns>
                 <TableColumn fx:id="colCC" editable="false" prefWidth="127.0" resizable="false" text="Identificación" />
-                <TableColumn fx:id="colName" editable="false" prefWidth="257.0" resizable="false" text="Nombre" />
-                  <TableColumn fx:id="colUser" editable="false" minWidth="0.0" prefWidth="137.0" resizable="false" text="Usuario" />
-                  <TableColumn fx:id="colPwd" editable="false" minWidth="0.0" prefWidth="219.0" resizable="false" text="Contraseña" />
+                <TableColumn fx:id="colName" editable="false" prefWidth="259.0" resizable="false" text="Nombre" />
+                  <TableColumn fx:id="colUser" editable="false" minWidth="0.0" prefWidth="99.0" resizable="false" text="Usuario" />
+                  <TableColumn fx:id="colPwd" editable="false" minWidth="0.0" prefWidth="255.0" resizable="false" text="Contraseña" />
                   <TableColumn fx:id="colRol" editable="false" prefWidth="110.0" resizable="false" text="Cargo" />
                   <TableColumn fx:id="colStatus" editable="false" prefWidth="57.0" resizable="false" text="Estado" />
               </columns>
