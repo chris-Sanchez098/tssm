@@ -9,13 +9,13 @@ import java.sql.Statement;
 
 public class CRUD extends ConexionDB {
     /**
-     * Inserta un usuario a la base de datos
-     * @param cc cedula
-     * @param name nombre
-     * @param user usuario
-     * @param pwd contraseña
-     * @param rol cargo
-     * @param estado estado
+     * Insert a user into database
+     * @param cc to insert
+     * @param name to insert
+     * @param user to insert
+     * @param pwd to insert
+     * @param rol to insert
+     * @param estado to insert
      */
     public static void insertUser(String cc, String name, String user,
                                   String pwd, String rol, Boolean estado) {
@@ -137,7 +137,7 @@ public class CRUD extends ConexionDB {
     }
 
     /**
-     * Select users from db
+     * Get users from db
      * @param CC user to search
      * @return ObservableList<User>
      */
@@ -164,7 +164,6 @@ public class CRUD extends ConexionDB {
                 String pwd = result.getString("clave");
                 User user = new User( cc , name, userName, "", rol, status);
                 user.setPwdNoEncrypt(pwd);
-
                 if(!userObservableList.contains(user)) {
                     userObservableList.add(user);
                 }
