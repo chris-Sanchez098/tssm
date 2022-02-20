@@ -137,7 +137,7 @@ public class CRUD extends ConexionDB {
     }
 
     /**
-     * Get users from db
+     * Get the users from the database
      * @param CC user to search
      * @return ObservableList<User>
      */

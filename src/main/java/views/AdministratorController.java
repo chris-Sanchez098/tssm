@@ -38,7 +38,6 @@ public class AdministratorController implements Initializable {
     private Button bUpdateUser;
     @FXML
     private Button bUpdateTb;
-    @FXML
     private ObservableList<User> items;
 
     @Override
