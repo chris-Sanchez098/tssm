@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Objects;
-
 public class User {
 
     private String cc;
@@ -88,7 +86,7 @@ public class User {
      * @param pwd, password of a user
      */
     public void setPwd(String pwd) {
-        if(pwd.isEmpty()) {
+        if(!pwd.isEmpty()) {
             this.pwd = MD5.encrypt(pwd);
         }
     }
@@ -136,6 +134,24 @@ public class User {
      */
     public void setPwdNoEncrypt(String pwd){
         this.pwd = pwd;
+    }
+
+    /**
+     *
+     * @return a string with rol into rolFxml version
+     */
+    public String rolFxml(){
+        String rolFxml = "";
+        if(rol.equals("Administrador")){
+            rolFxml = "administrator";
+        }
+        if(rol.equals("Gerente")){
+            rolFxml = "manager";
+        }
+        if(rol.equals("Operador")){
+            rolFxml = "operator";
+        }
+        return  rolFxml;
     }
 
 }

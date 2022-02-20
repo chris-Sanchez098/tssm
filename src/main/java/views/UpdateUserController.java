@@ -127,7 +127,6 @@ public class UpdateUserController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         newRolConfig();
-        currentUser();
         setOnlyNum(newCC);
     }
 
@@ -161,17 +160,6 @@ public class UpdateUserController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList("","Administrador", "Gerente", "Operador");
         newRol.setItems(list);
         newRol.getSelectionModel().selectFirst();
-    }
-
-    /**
-     * Set initial values to labels
-     */
-    private void currentUser(){
-        user = CRUD.selectUpdateUser("1193075514").get(0);
-        currentName.setText(user.getName());
-        currentUser.setText(user.getUser());
-        currentCC.setText(user.getCc());
-        currentRol.setText(user.getRol());
     }
 
     /**

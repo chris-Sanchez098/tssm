@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -20,6 +21,8 @@ import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
 
+    private int counter = 0;
+
     @FXML
     private VBox vBox;
 
@@ -29,26 +32,54 @@ public class LogInController implements Initializable {
     @FXML
     private PasswordField passwordField;
 
+    @FXML
+    private Label userMessage;
+
+    @FXML
+    private Label passMessage;
+
+    /**
+     * clean label userMessage
+     */
+    @FXML
+    private void messageEventU(){
+        userMessage.setText("");
+    }
+
+    /**
+     * clean label passMessage
+     */
+    @FXML
+    private void messageEventP(){
+        passMessage.setText("");
+    }
     /**
      * validate data then set a new stage
      * @param event get the event
      */
     @FXML
     private void logInEvent(ActionEvent event){
-        /**
         String login = userField.getText();
-        String passWord = MD5.encrypt(passwordField.getText());
+        String passWord = passwordField.getText();
+        String passWordEn = MD5.encrypt(passWord);
         User user = CRUD.selectLogin(login);
         String loginUser = user.getUser();
-        if(login.equals(loginUser) && passWord.equals(user.getPwd()) && !loginUser.isEmpty()){
-            Stage stage = (Stage) vBox.getScene().getWindow();
-            stage.close();
-            App.setStage("/views/administrator");
+        if(checkFields(loginUser.isEmpty(), passWord.isEmpty())){
+            if(user.getStatus()){
+                if(login.equals(loginUser) && passWordEn.equals(user.getPwd())){
+                    Stage stage = (Stage) vBox.getScene().getWindow();
+                    stage.close();
+                    App.setStage("/views/"+user.rolFxml());
+                }
+                else{
+                    passMessage.setText("Contraseña incorrecta");
+                    blockUser();
+                }
+            }
+            else{
+                userMessage.setText("Usuario actualmente inactivado");
+            }
         }
-        */
-        Stage stage = (Stage) vBox.getScene().getWindow();
-        stage.close();
-        App.setStage("/views/administrator");
     }
 
     @Override
@@ -57,7 +88,7 @@ public class LogInController implements Initializable {
     }
 
     /**
-     * remove focus for textfield
+     * remove focus from a textField
      * @param textField TextField to remove focus
      * @param aVBox vBox where it belongs textField
      */
@@ -69,5 +100,32 @@ public class LogInController implements Initializable {
                 firstTime.setValue(false); // Variable value changed for future references
             }
         });
+    }
+
+    /**
+     *
+     * @param fieldUser is userField empty?
+     * @param fieldPass is passField empty?
+     * @return true if both are not empty
+     */
+    private boolean checkFields(boolean fieldUser  ,boolean fieldPass){
+        if(fieldUser){
+            userMessage.setText("Usuario no registrado");
+        }
+        if(fieldPass){
+            passMessage.setText("Contraseña vacía");
+        }
+        return !fieldPass && !fieldUser;
+    }
+
+    /**
+     * block a user (status = false)
+     */
+    private void blockUser(){
+        counter += 1;
+        if(counter == 5){
+            counter = 0;
+            userMessage.setText("El usuario fue bloqueado por acceso irregular");
+        }
     }
 }

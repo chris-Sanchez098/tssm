@@ -9,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.CRUD;
@@ -40,7 +39,6 @@ public class AdministratorController implements Initializable {
     @FXML
     private Button bUpdateTb;
     @FXML
-    private Button bSearch;
     private ObservableList<User> items;
 
     @Override
@@ -59,19 +57,12 @@ public class AdministratorController implements Initializable {
         if(event.getSource() == bUpdateTb) {
             items = CRUD.getUsers("");
             this.tbUsers.setItems(items);
+            bUpdateTb.setText("Actualizar");
         } else {
             String cc = tfSearch.getText();
             ObservableList<User> items = CRUD.getUsers(cc);
             this.tbUsers.refresh();
             this.tbUsers.setItems(items);
-        }
-    }
-
-    @FXML
-    private void selectUser(MouseEvent event) {
-        User user = this.tbUsers.getSelectionModel().getSelectedItem();
-        if(user != null) {
-            System.out.println("Selection ok");
         }
     }
 
@@ -108,11 +99,6 @@ public class AdministratorController implements Initializable {
     @FXML
     private void launch(ActionEvent event) {
         App.openStage("/views/createUser","Creación usuarios");
-    }
-
-    @FXML
-    private void updateStage(ActionEvent event){
-        App.openStage("/views/updateUser","Modificación de usuarios");
     }
 
     /**

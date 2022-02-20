@@ -17,7 +17,7 @@ public class CRUD extends ConexionDB {
      * @param rol cargo
      * @param estado estado
      */
-    public static boolean insertUser(String cc, String name, String user,
+    public static void insertUser(String cc, String name, String user,
                                   String pwd, String rol, Boolean estado) {
         try {
             Connection connection = connect();
@@ -37,11 +37,10 @@ public class CRUD extends ConexionDB {
         } catch (Exception e) {
             alertDuplicate(cc, user, e);
         }
-        return false;
     }
 
     /**
-     * Actualiza un usuario de acuerdo
+     * Update a user
      * @param user User with date to update
      * @param cc Current user cc
      */
@@ -84,29 +83,6 @@ public class CRUD extends ConexionDB {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    public static ObservableList<User> selectUpdateUser(String cc) {
-        ObservableList<User> userObservableList = FXCollections.observableArrayList();
-        try {
-            Connection connection = connect();
-            Statement st = connection.createStatement();
-            String query = "SELECT u.nombre, u.usuario, u.rol, u.estado FROM usuarios u where cc ='" + cc + "';";
-            ResultSet result = st.executeQuery(query);
-            while (result.next()){
-                String name = result.getString("nombre");
-                String userName = result.getString("usuario");
-                String rol = result.getString("rol");
-                Boolean status = result.getBoolean("estado");
-                User user = new User( cc , name, userName, "", rol, status);
-                userObservableList.add(user);
-            }
-            st.close();
-            connection.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return userObservableList;
     }
 
     /**
@@ -161,7 +137,8 @@ public class CRUD extends ConexionDB {
     }
 
     /**
-     * Obtiene los usuarios de la base de datos
+     * Select users from db
+     * @param CC user to search
      * @return ObservableList<User>
      */
     public static ObservableList<User> getUsers(String CC) {
@@ -185,7 +162,8 @@ public class CRUD extends ConexionDB {
                 String rol = result.getString("rol");
                 Boolean status = result.getBoolean("estado");
                 String pwd = result.getString("clave");
-                User user = new User( cc , name, userName, "Sin pwd", rol, status);
+                User user = new User( cc , name, userName, "", rol, status);
+                user.setPwdNoEncrypt(pwd);
 
                 if(!userObservableList.contains(user)) {
                     userObservableList.add(user);

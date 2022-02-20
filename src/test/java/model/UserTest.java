@@ -6,14 +6,17 @@ import org.junit.jupiter.api.*;
 public class UserTest {
     User user;
     User user1;
+    User user2;
     @BeforeEach
     public void init(){
-        user = new User("1193075514", "Victor Sapuyes", "neveu", "Victor123@","gerente", true);
-        user1 = new User("1193075514", "Victor Sapuyes", "neveu", "Victor123@","gerente", true);
+        user = new User("1193075514", "Victor Sapuyes", "neveu", "Victor123@","Gerente", true);
+        user1 = new User("1193075514", "Victor Sapuyes", "neveu", "Victor123@","Administrador", true);
+        user2 = new User("1193075514", "Victor Sapuyes", "neveu", "Victor123@","Operador", true);
+
     }
 
     @Test
-    @DisplayName(value = "get tests")
+    @DisplayName(value = "Get tests")
 
     public void getTest(){
         assertAll("several gets",
@@ -21,20 +24,19 @@ public class UserTest {
                 () -> assertEquals("Victor Sapuyes", user.getName()),
                 () -> assertEquals("neveu", user.getUser()),
                 () -> assertEquals("722b70566647a753d42031ca15bfdd46", user.getPwd()),
-                () -> assertEquals("gerente", user.getRol()),
+                () -> assertEquals("Gerente", user.getRol()),
                 () -> assertEquals(true, user.getStatus())
         );
     }
 
     @Test
-    @DisplayName(value = "set tests")
-
+    @DisplayName(value = "Set tests")
     public void setTest(){
         user.setCc("1004675446");
         user.setName("Franklyn Narvaez");
         user.setUser("donal");
         user.setPwd("Fran1234@");
-        user.setRol("administrador");
+        user.setRol("Administrador");
         user.setStatus(false);
 
         user1.setName("");
@@ -42,28 +44,40 @@ public class UserTest {
         user1.setPwd("");
         user1.setRol("");
 
-        assertAll("several sets",
+        user2.setPwdNoEncrypt("123");
+
+        assertAll("Several sets",
                 () -> assertEquals("1004675446", user.getCc()),
                 () -> assertEquals("Franklyn Narvaez", user.getName()),
                 () -> assertEquals("donal", user.getUser()),
                 () -> assertEquals("8d47b2268251748326a921f1cb46a004", user.getPwd()),
-                () -> assertEquals("administrador", user.getRol()),
+                () -> assertEquals("Administrador", user.getRol()),
                 () -> assertEquals(false, user.getStatus()),
                 () -> assertEquals("Victor Sapuyes", user1.getName()),
                 () -> assertEquals("neveu", user1.getUser()),
                 () -> assertEquals("722b70566647a753d42031ca15bfdd46", user1.getPwd()),
-                () -> assertEquals("gerente", user1.getRol())
+                () -> assertEquals("Administrador", user1.getRol()),
+                () -> assertEquals("123", user2.getPwd())
         );
     }
 
     @Test
-    @DisplayName(value = "pwd tests")
-
+    @DisplayName(value = "Password check tests")
     public void pwdTests(){
-        assertAll("several pwd",
+        assertAll("Several password checks",
                 () -> assertFalse(User.checkPwd("neveu")),
                 () -> assertTrue(User.checkPwd("Victor123@*-as-")),
                 () -> assertTrue(User.checkPwd("ABC2021-A-*a"))
+        );
+    }
+
+    @Test
+    @DisplayName(value = "RolFxml tests")
+    public void rolFxmlTest(){
+        assertAll("Several rolFxml",
+                () -> assertEquals("administrator", user1.rolFxml()),
+                () -> assertEquals("manager", user.rolFxml()),
+                () -> assertEquals("operator", user2.rolFxml())
         );
     }
 }

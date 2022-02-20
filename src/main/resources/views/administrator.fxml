@@ -11,12 +11,12 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="1115.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.AdministratorController">
    <top>
-      <fx:include fx:id="logout" prefWidth="1115.0" source="logOut.fxml" />
+      <fx:include prefWidth="1115.0" source="logOut.fxml" />
    </top>
    <left>
       <VBox prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="bLaunchCreate" mnemonicParsing="false" onAction="#launch" prefHeight="30.0" prefWidth="140.0" text="Crear">
+            <Button mnemonicParsing="false" onAction="#launch" prefHeight="30.0" prefWidth="140.0" text="Crear">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
@@ -32,7 +32,7 @@
    <center>
       <AnchorPane prefHeight="582.0" prefWidth="917.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tbUsers" layoutX="3.0" layoutY="53.0" onMouseClicked="#selectUser" prefHeight="566.0" prefWidth="909.0">
+            <TableView fx:id="tbUsers" layoutX="3.0" layoutY="53.0" prefHeight="566.0" prefWidth="909.0">
               <columns>
                 <TableColumn fx:id="colCC" editable="false" prefWidth="127.0" resizable="false" text="Identificación" />
                 <TableColumn fx:id="colName" editable="false" prefWidth="257.0" resizable="false" text="Nombre" />
@@ -42,9 +42,9 @@
                   <TableColumn fx:id="colStatus" editable="false" prefWidth="57.0" resizable="false" text="Estado" />
               </columns>
             </TableView>
-            <Button fx:id="bSearch" layoutX="184.0" layoutY="19.0" mnemonicParsing="false" onAction="#listUsers" prefHeight="24.0" prefWidth="79.0" text="Buscar" />
+            <Button layoutX="184.0" layoutY="19.0" mnemonicParsing="false" onAction="#listUsers" prefHeight="24.0" prefWidth="79.0" text="Buscar" />
             <TextField fx:id="tfSearch" layoutX="3.0" layoutY="19.0" />
-            <Button fx:id="bUpdateTb" layoutX="757.0" layoutY="19.0" mnemonicParsing="false" onAction="#listUsers" prefHeight="22.0" prefWidth="155.0" text="Actualizar tabla" />
+            <Button fx:id="bUpdateTb" layoutX="757.0" layoutY="19.0" mnemonicParsing="false" onAction="#listUsers" prefHeight="22.0" prefWidth="155.0" text="Cargar usuarios" />
          </children>
       </AnchorPane>
    </center>

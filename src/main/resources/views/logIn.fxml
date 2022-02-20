@@ -15,19 +15,27 @@
                 <Font size="20.0" />
             </font>
         </Label>
-        <TextField fx:id="userField" alignment="CENTER" promptText="Usuario">
+        <TextField fx:id="userField" alignment="CENTER" onKeyTyped="#messageEventU" promptText="Usuario">
             <VBox.margin>
-                <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+                <Insets bottom="8.0" left="20.0" right="20.0" top="20.0" />
             </VBox.margin>
         </TextField>
-        <PasswordField fx:id="passwordField" alignment="CENTER" promptText="Clave">
+      <Label fx:id="userMessage" textFill="RED">
+         <font>
+            <Font size="12.0" />
+         </font></Label>
+        <PasswordField fx:id="passwordField" alignment="CENTER" onKeyTyped="#messageEventP" promptText="Contraseña">
             <VBox.margin>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+                <Insets bottom="8.0" left="20.0" right="20.0" top="8.0" />
             </VBox.margin>
         </PasswordField>
-        <Button fx:id="logInButton" defaultButton="true" mnemonicParsing="false" onAction="#logInEvent" text="Ingresar">
+      <Label fx:id="passMessage" textFill="RED">
+         <font>
+            <Font size="12.0" />
+         </font></Label>
+        <Button defaultButton="true" mnemonicParsing="false" onAction="#logInEvent" text="Ingresar">
             <VBox.margin>
-                <Insets />
+                <Insets top="10.0" />
             </VBox.margin>
         </Button>
     </children>
