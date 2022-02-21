@@ -142,7 +142,7 @@ public class CRUD extends ConexionDB {
      * @return ObservableList<User>
      */
     public static ObservableList<User> getUsers(String CC) {
-        ObservableList<User> userObservableList = FXCollections.observableArrayList();
+        ObservableList<User> userList = FXCollections.observableArrayList();
         String query;
         try {
             Connection connection = connect();
@@ -164,8 +164,8 @@ public class CRUD extends ConexionDB {
                 String pwd = result.getString("clave");
                 User user = new User( cc , name, userName, "", rol, status);
                 user.setPwdNoEncrypt(pwd);
-                if(!userObservableList.contains(user)) {
-                    userObservableList.add(user);
+                if(!userList.contains(user)) {
+                    userList.add(user);
                 }
             }
             st.close();
@@ -173,7 +173,47 @@ public class CRUD extends ConexionDB {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return userObservableList;
+        return userList;
+    }
+
+    /**
+     * Get the Customer from the database
+     * @param id user to search
+     * @return ObservableList<Customer>
+     */
+    public static ObservableList<Customer> getCustomer(String id) {
+        ObservableList<Customer> customerList = FXCollections.observableArrayList();
+        String query;
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            if(id.isEmpty()) {
+                query = "SELECT c.customer_id, cc, name, email, address_id, cust_type_id, phone_plan_id FROM customer c " +
+                        "limit 22;";
+            } else {
+                query = "SELECT c.customer_id, cc, name, email, address_id, cust_type_id, phone_plan_id FROM customer c " +
+                        "where cc like '" + id + '%'+ "';";
+            }
+            ResultSet result = st.executeQuery(query);
+            while (result.next()){
+                int customer_id = result.getInt("customer_id");
+                String cc = result.getString("cc");
+                String name = result.getString("name");
+                String email = result.getString("email");
+                int address_id = result.getInt("address_id");
+                int cust_type_id = result.getInt("cust_type_id");
+                int phone_plan_id = result.getInt("phone_plan_id");
+                Customer customer = new Customer(customer_id,cc,name,email,address_id,cust_type_id,phone_plan_id);
+                if(!customerList.contains(customer)) {
+                    customerList.add(customer);
+                }
+            }
+            st.close();
+            connection.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return customerList;
     }
 
     /**
