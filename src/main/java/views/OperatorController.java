@@ -4,8 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import tssm.App;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,10 +20,11 @@ public class OperatorController implements Initializable {
     public Button btnLogOut;
     @FXML
     public Button btnConsultClient;
+    @FXML
+    private BorderPane pCenter;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 
     @FXML
@@ -42,7 +43,10 @@ public class OperatorController implements Initializable {
     @FXML
     public void clickLogOut(ActionEvent actionEvent) {
     }
+
     @FXML
     public void clickConsultClient(ActionEvent actionEvent) {
+        tableController viewTb = new tableController();
+        pCenter.setCenter(viewTb);
     }
 }
