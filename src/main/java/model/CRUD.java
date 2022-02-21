@@ -194,20 +194,79 @@ public class CRUD extends ConexionDB {
     }
 
     /**
-     * Insert a user into database
+     * Insert a Customer into database
      * @param name to insert
      * @param cc to insert
      * @param email to insert
      * @param add to insert
+     * @param city to insert
+     * @param dpto to insert
      * @param typeCli to insert
      * @param plane to insert
      * @param date to insert
      * @param time to insert
      */
-    public static void insertClient(String name, String cc, String email, String add,
-                                    String typeCli, String plane, String date, String time, String serv) {
+    public static void insertCustomer(String name, String cc, String email, String add,
+                                    String city, String dpto, String typeCli, String plane,
+                                    String date, String time, String serv) {
 
-        //aqui instrucciones sql para insertar los clientes.
-        System.out.println("Cliente registrado!");
+        insertAddress(add, city, dpto);
+        insertTypeClient(typeCli);
+        //insertClient(name, email);
+        //insertPhoneLines();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Registro de cliente");
+        alert.setContentText("El cliente" + name + "fué registrado con exito");
+        alert.showAndWait();
+    }
+
+    /**
+     * insert a Address into database
+     * @param add to insert
+     * @param city to insert
+     * @param dpto to insert
+     */
+    public static void insertAddress(String add, String city, String dpto){
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            String query = "INSERT INTO street_address (st_address, city, departament) " +
+                    "VALUES('" +add+ "','" +city+ "', '" +dpto+"');";
+            st.execute(query);
+            st.close();
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println("Error: "+ e.getMessage());
+        }
+    }
+
+    /**
+     * Insert a type_cliente into database
+     * @param typeCli to insert
+     */
+    public static void insertTypeClient(String typeCli){
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            String query = "INSERT INTO customer_type (cust_type) " +
+                    "VALUES('" +typeCli+ "');";
+            st.execute(query);
+            st.close();
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println("Error: "+ e.getMessage());
+        }
+    }
+
+    public static void insertClient(String name, String email){
+
+    }
+
+    public static void insertPhoneLines(){
+
     }
 }

@@ -24,6 +24,10 @@ public class RegisterClientController implements Initializable {
     @FXML
     public TextField txtAddress;
     @FXML
+    public TextField txtCity;
+    @FXML
+    public TextField txtDepto;
+    @FXML
     public TextField txtDate;
     @FXML
     public TextField txtTime;
@@ -82,6 +86,8 @@ public class RegisterClientController implements Initializable {
         String cc = txtIdentity.getText().toLowerCase();
         String email = txtEmail.getText();
         String add = txtAddress.getText();
+        String city = txtCity.getText();
+        String dpto = txtDepto.getText();
         String typeCli = comboxSelectClient.getSelectionModel().getSelectedItem();
         String plane = comboxSelectPlan.getSelectionModel().getSelectedItem();
         String date = txtDate.getText();
@@ -89,10 +95,11 @@ public class RegisterClientController implements Initializable {
         String serv = txtService.getText();
 
         ObservableList<String> list =
-                FXCollections.observableArrayList(name, cc, email, add, typeCli, plane, date, time, serv);
+                FXCollections.observableArrayList(name, cc, email, add,
+                        city, dpto, typeCli, plane, date, time, serv);
 
-        if(checkEmptyField(list) && !(typeCli == null) && !(plane == null)) {
-            CRUD.insertClient(name, cc, email, add, typeCli, plane, date, time, serv);
+        if(checkEmptyField(list) && !(typeCli == "Seleccionar") && !(plane == "Seleccionar")) {
+            CRUD.insertCustomer(name, cc, email, add, city, dpto, typeCli, plane, date, time, serv);
             cleanGUI();
         }
         else {
@@ -118,7 +125,7 @@ public class RegisterClientController implements Initializable {
      */
     public void CBSelectClient() {
         ObservableList<String> option =
-                FXCollections.observableArrayList("", "Natural", "Corporativo");
+                FXCollections.observableArrayList("Seleccionar", "Natural", "Corporativo");
         comboxSelectClient.setItems(option);
         comboxSelectClient.getSelectionModel().selectFirst();
     }
@@ -128,7 +135,8 @@ public class RegisterClientController implements Initializable {
      */
     public void CBSelectPlan() {
         ObservableList<String> option =
-                FXCollections.observableArrayList("", "Plan 15 GB", "Plan 25 GB", "Plan 40 GB", "Plan ilimitado");
+                FXCollections.observableArrayList("Seleccionar", "Plan 15 GB",
+                        "Plan 25 GB", "Plan 40 GB", "Plan ilimitado");
         comboxSelectPlan.setItems(option);
         comboxSelectPlan.getSelectionModel().selectFirst();
     }
@@ -145,6 +153,8 @@ public class RegisterClientController implements Initializable {
         txtIdentity.setText("");
         txtEmail.setText("");
         txtAddress.setText("");
+        txtCity.setText("");
+        txtDepto.setText("");
         comboxSelectClient.getSelectionModel().selectFirst();
         comboxSelectPlan.getSelectionModel().selectFirst();
         txtDate.setText("");
@@ -183,6 +193,7 @@ public class RegisterClientController implements Initializable {
                 && !comboxSelectPlan.getSelectionModel().getSelectedItem().isEmpty()
                 && !txtName.getText().isEmpty() && !txtIdentity.getText().isEmpty()
                 && !txtEmail.getText().isEmpty() && !txtAddress.getText().isEmpty()
+                && !txtCity.getText().isEmpty() && !txtDepto.getText().isEmpty()
                 && !txtDate.getText().isEmpty() && !txtTime.getText().isEmpty()
                 && !txtService.getText().isEmpty();
     }
