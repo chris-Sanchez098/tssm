@@ -8,7 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import model.User;
+import model.Customer;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,19 +17,21 @@ public class tableController extends AnchorPane implements Initializable {
     @FXML
     private TextField tfSearch;
     @FXML
-    private TableView<User> tbUsers;
+    private TableView<Customer> tbCustomers;
     @FXML
-    private TableColumn<User, String> colCC;
+    private TableColumn<Customer, Integer> colId;
     @FXML
-    private TableColumn<User, String> colName;
+    private TableColumn<Customer, String> colCC;
     @FXML
-    private TableColumn<User, String> colUser;
+    private TableColumn<Customer, String> colName;
     @FXML
-    private TableColumn<User, String> colPwd;
+    private TableColumn<Customer, String> colEmail;
     @FXML
-    private TableColumn<User, String> colRol;
+    private TableColumn<Customer, Integer> colAddressId;
     @FXML
-    private TableColumn<User, Boolean> colStatus;
+    private TableColumn<Customer, Integer> colCustomerType;
+    @FXML
+    private TableColumn<Customer, Integer> colPhonePlan;
 
     public tableController() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/tableConsult.fxml"));
@@ -45,12 +47,13 @@ public class tableController extends AnchorPane implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setOnlyNum(tfSearch);
-        this.colCC.setCellValueFactory(new PropertyValueFactory<User, String>("cc"));
-        this.colName.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
-        this.colUser.setCellValueFactory(new PropertyValueFactory<User, String>("user"));
-        this.colPwd.setCellValueFactory(new PropertyValueFactory<User, String>("pwd"));
-        this.colRol.setCellValueFactory(new PropertyValueFactory<>("rol"));
-        this.colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        this.colId.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("customer_id"));
+        this.colCC.setCellValueFactory(new PropertyValueFactory<Customer, String>("cc"));
+        this.colName.setCellValueFactory(new PropertyValueFactory<Customer, String>("name"));
+        this.colEmail.setCellValueFactory(new PropertyValueFactory<Customer, String>("email"));
+        this.colAddressId.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("addressId"));
+        this.colCustomerType.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("customerTypeId"));
+        this.colPhonePlan.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("phonePlanId"));
     }
 
     /**
