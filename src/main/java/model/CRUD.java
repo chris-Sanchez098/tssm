@@ -192,4 +192,22 @@ public class CRUD extends ConexionDB {
             System.out.println(e.getMessage());
         }
     }
+
+    /**
+     * Insert a user into database
+     * @param name to insert
+     * @param cc to insert
+     * @param email to insert
+     * @param add to insert
+     * @param typeCli to insert
+     * @param plane to insert
+     * @param date to insert
+     * @param time to insert
+     */
+    public static void insertClient(String name, String cc, String email, String add,
+                                    String typeCli, String plane, String date, String time, String serv) {
+
+        //aqui instrucciones sql para insertar los clientes.
+        System.out.println("Cliente registrado!");
+    }
 }
