@@ -99,6 +99,20 @@ public class RegisterClientController implements Initializable {
                         city, dpto, typeCli, plane, date, time, serv);
 
         if(checkEmptyField(list) && !(typeCli == "Seleccionar") && !(plane == "Seleccionar")) {
+            switch (plane) {
+                case "Plan 15 GB":
+                    plane = "1";
+                    break;
+                case "Plan 25 GB":
+                    plane = "2";
+                    break;
+                case "Plan 40 GB":
+                    plane = "3";
+                    break;
+                case "Plan ilimitado":
+                    plane = "4";
+                    break;
+            }
             CRUD.insertCustomer(name, cc, email, add, city, dpto, typeCli, plane, date, time, serv);
             cleanGUI();
         }

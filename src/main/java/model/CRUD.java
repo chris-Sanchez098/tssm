@@ -202,23 +202,23 @@ public class CRUD extends ConexionDB {
      * @param city to insert
      * @param dpto to insert
      * @param typeCli to insert
-     * @param plane to insert
+     * @param fkPlane to insert
      * @param date to insert
      * @param time to insert
      */
     public static void insertCustomer(String name, String cc, String email, String add,
-                                    String city, String dpto, String typeCli, String plane,
+                                    String city, String dpto, String typeCli, String fkPlane,
                                     String date, String time, String serv) {
 
-        insertAddress(add, city, dpto);
-        insertTypeClient(typeCli);
-        //insertClient(name, email);
+        String fkAdd = insertAddress(add, city, dpto);
+        String fkTypeCli = insertTypeClient(typeCli);
+        insertClient(cc, name, email, fkAdd, fkTypeCli, fkPlane);
         //insertPhoneLines();
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setTitle("Registro de cliente");
-        alert.setContentText("El cliente" + name + "fué registrado con exito");
+        alert.setContentText("El cliente " + name + " fué registrado con exito");
         alert.showAndWait();
     }
 
@@ -228,42 +228,73 @@ public class CRUD extends ConexionDB {
      * @param city to insert
      * @param dpto to insert
      */
-    public static void insertAddress(String add, String city, String dpto){
+    public static String insertAddress(String add, String city, String dpto) {
+        String fkAdd = null;
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
-            String query = "INSERT INTO street_address (st_address, city, departament) " +
-                    "VALUES('" +add+ "','" +city+ "', '" +dpto+"');";
+            String query = "INSERT INTO address (st_address, city, departament) " +
+                    "VALUES('" +add+ "','" +city+ "', '" +dpto+ "');";
             st.execute(query);
+
+            query = "SELECT * FROM address ORDER BY address_id DESC LIMIT 1";
+            ResultSet result = st.executeQuery(query);
+            while (result.next()) {
+                fkAdd = result.getString("address_id");
+            }
             st.close();
             connection.close();
 
         } catch (Exception e) {
-            System.out.println("Error: "+ e.getMessage());
+            System.out.println("Error en insertAddress: " + e.getMessage());
         }
+        return fkAdd;
     }
 
     /**
      * Insert a type_cliente into database
      * @param typeCli to insert
      */
-    public static void insertTypeClient(String typeCli){
+    public static String insertTypeClient(String typeCli){
+        String fkTypeCli = null;
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
             String query = "INSERT INTO customer_type (cust_type) " +
                     "VALUES('" +typeCli+ "');";
             st.execute(query);
+
+            query = "SELECT * FROM customer_type ORDER BY cust_type_id DESC LIMIT 1";
+            ResultSet result = st.executeQuery(query);
+            while (result.next()) {
+                fkTypeCli = result.getString("cust_type_id");
+            }
+
             st.close();
             connection.close();
 
         } catch (Exception e) {
-            System.out.println("Error: "+ e.getMessage());
+            System.out.println("Error en insertTypeClient: "+ e.getMessage());
         }
+        return fkTypeCli;
     }
 
-    public static void insertClient(String name, String email){
+    public static void insertClient(String cc, String name, String email,
+                                    String fkadd, String fkTypeCli, String fkPlane){
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            String query = "INSERT INTO customer (cc, name, email, address_id, cust_type_id, phone_plan_id) " +
+                            "VALUES('" +cc+"', '" +name+ "','" +email+ "', '" +fkadd+ "', " +
+                            "'" +fkTypeCli+ "', '" +fkPlane+"')";
 
+            st.execute(query);
+            st.close();
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println("Error en insertClient: " + e.getMessage());
+        }
     }
 
     public static void insertPhoneLines(){
