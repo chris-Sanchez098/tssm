@@ -203,12 +203,12 @@ public class CRUD extends ConexionDB {
      * @param dpto to insert
      * @param typeCli to insert
      * @param fkPlane to insert
-     * @param date to insert
-     * @param time to insert
+     * @param dateTime to insert
+     *
      */
     public static void insertCustomer(String name, String cc, String email, String add,
                                     String city, String dpto, String typeCli, String fkPlane,
-                                    String date, String time, String serv) {
+                                    String dateTime, String serv) {
 
         String fkAdd = insertAddress(add, city, dpto);
         String fkTypeCli = insertTypeClient(typeCli);

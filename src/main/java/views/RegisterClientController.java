@@ -12,6 +12,8 @@ import model.MD5;
 import model.User;
 
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class RegisterClientController implements Initializable {
@@ -27,10 +29,6 @@ public class RegisterClientController implements Initializable {
     public TextField txtCity;
     @FXML
     public TextField txtDepto;
-    @FXML
-    public TextField txtDate;
-    @FXML
-    public TextField txtTime;
     @FXML
     public TextField txtService;
     @FXML
@@ -73,7 +71,6 @@ public class RegisterClientController implements Initializable {
 
     @FXML
     public void clickSelectClient(ActionEvent actionEvent) {
-
     }
 
     @FXML
@@ -90,13 +87,12 @@ public class RegisterClientController implements Initializable {
         String dpto = txtDepto.getText();
         String typeCli = comboxSelectClient.getSelectionModel().getSelectedItem();
         String plane = comboxSelectPlan.getSelectionModel().getSelectedItem();
-        String date = txtDate.getText();
-        String time = txtTime.getText();
+        String dateTime = dateTimeActual();
         String serv = txtService.getText();
 
         ObservableList<String> list =
                 FXCollections.observableArrayList(name, cc, email, add,
-                        city, dpto, typeCli, plane, date, time, serv);
+                        city, dpto, typeCli, plane, dateTime, serv);
 
         if(checkEmptyField(list) && !(typeCli == "Seleccionar") && !(plane == "Seleccionar")) {
             switch (plane) {
@@ -113,7 +109,7 @@ public class RegisterClientController implements Initializable {
                     plane = "4";
                     break;
             }
-            CRUD.insertCustomer(name, cc, email, add, city, dpto, typeCli, plane, date, time, serv);
+            CRUD.insertCustomer(name, cc, email, add, city, dpto, typeCli, plane, dateTime, serv);
             cleanGUI();
         }
         else {
@@ -171,8 +167,6 @@ public class RegisterClientController implements Initializable {
         txtDepto.setText("");
         comboxSelectClient.getSelectionModel().selectFirst();
         comboxSelectPlan.getSelectionModel().selectFirst();
-        txtDate.setText("");
-        txtTime.setText("");
         txtService.setText("");
         txtPhoneNumber.setText("");
         txtPayment.setText("");
@@ -208,7 +202,6 @@ public class RegisterClientController implements Initializable {
                 && !txtName.getText().isEmpty() && !txtIdentity.getText().isEmpty()
                 && !txtEmail.getText().isEmpty() && !txtAddress.getText().isEmpty()
                 && !txtCity.getText().isEmpty() && !txtDepto.getText().isEmpty()
-                && !txtDate.getText().isEmpty() && !txtTime.getText().isEmpty()
                 && !txtService.getText().isEmpty();
     }
 
@@ -223,5 +216,11 @@ public class RegisterClientController implements Initializable {
             }
         }
         return true;
+    }
+
+    public String dateTimeActual(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        String dateTime = dtf.format(LocalDateTime.now());
+        return dateTime;
     }
 }
