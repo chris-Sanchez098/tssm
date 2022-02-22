@@ -153,14 +153,14 @@
 
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tbCustomers" layoutX="3.0" layoutY="63.0" prefHeight="581.0" prefWidth="895.0">
+                        <TableView fx:id="tbCustomers" layoutX="3.0" layoutY="63.0" onMouseClicked="#showInfo" prefHeight="581.0" prefWidth="892.0">
                           <columns>
                              <TableColumn fx:id="colId" editable="false" prefWidth="54.0" resizable="false" text="ID" />
                              <TableColumn fx:id="colCC" editable="false" prefWidth="116.0" resizable="false" text="Identificación" />
-                             <TableColumn fx:id="colName" editable="false" minWidth="0.0" prefWidth="212.0" resizable="false" text="Nombre" />
-                             <TableColumn fx:id="colEmail" editable="false" minWidth="0.0" prefWidth="282.0" resizable="false" text="Email" />
-                             <TableColumn fx:id="colCustomerType" editable="false" prefWidth="151.0" resizable="false" text="Tipo de cliente" />
-                             <TableColumn fx:id="colPhonePlan" editable="false" prefWidth="92.0" resizable="false" text="Plan ID" />
+                             <TableColumn fx:id="colName" editable="false" minWidth="0.0" prefWidth="177.0" resizable="false" text="Nombre" />
+                             <TableColumn fx:id="colEmail" editable="false" minWidth="0.0" prefWidth="217.0" resizable="false" text="Email" />
+                             <TableColumn fx:id="colCustomerType" editable="false" prefWidth="219.0" resizable="false" text="Tipo de cliente" />
+                             <TableColumn fx:id="colPhonePlan" editable="false" prefWidth="108.0" resizable="false" text="Plan ID" />
                           </columns>
                         </TableView>
                         <Button fx:id="bSearch" layoutX="215.0" layoutY="19.0" mnemonicParsing="false" onAction="#updateTb" prefHeight="24.0" prefWidth="79.0" text="Buscar" />

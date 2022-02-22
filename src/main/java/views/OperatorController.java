@@ -8,6 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import model.CRUD;
 import model.Customer;
 import model.User;
@@ -28,8 +30,6 @@ public class OperatorController implements Initializable {
     private TableColumn<Customer, String> colName;
     @FXML
     private TableColumn<Customer, String> colEmail;
-    @FXML
-    private TableColumn<Customer, Integer> colAddressId;
     @FXML
     private TableColumn<Customer, Integer> colCustomerType;
     @FXML
@@ -99,7 +99,10 @@ public class OperatorController implements Initializable {
         });
     }
 
-    private void initTable() {
+    /**
+     * Initialize all columns of table
+     */
+    public void initTable() {
         setOnlyNum(tfSearch);
         this.colId.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("customer_id"));
         this.colCC.setCellValueFactory(new PropertyValueFactory<Customer, String>("cc"));
@@ -107,5 +110,21 @@ public class OperatorController implements Initializable {
         this.colEmail.setCellValueFactory(new PropertyValueFactory<Customer, String>("email"));
         this.colCustomerType.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("customerTypeId"));
         this.colPhonePlan.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("phonePlanId"));
+    }
+
+    @FXML
+    public void showInfo(MouseEvent mouseEvent) {
+        Customer customer = this.tbCustomers.getSelectionModel().getSelectedItem();
+        if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+            if( mouseEvent.getClickCount() == 2 && customer != null) {
+                App.openStage("/views/infoCustomer", "Información cliente");
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Se debe selecionar un cliente");
+            alert.showAndWait();
+        }
     }
 }
