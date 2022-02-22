@@ -252,13 +252,14 @@ public class CRUD extends ConexionDB {
 
         String fkAdd = insertAddress(add, city, dpto);
         String fkTypeCli = insertTypeClient(typeCli);
-        insertClient(cc, name, email, fkAdd, fkTypeCli, fkPlane);
-        //insertPhoneLines();
+        String fkClient = insertClient(cc, name, email, fkAdd, fkTypeCli, fkPlane);
+        String fkPhoneNum = insertPhoneNumber(fkClient);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setTitle("Registro de cliente");
-        alert.setContentText("El cliente " + name + " fué registrado con exito");
+        alert.setContentText("El cliente " + name + " fué registrado con exito y su nùmero " +
+                "de celular es " + fkPhoneNum);
         alert.showAndWait();
     }
 
@@ -319,25 +320,52 @@ public class CRUD extends ConexionDB {
         return fkTypeCli;
     }
 
-    public static void insertClient(String cc, String name, String email,
+    public static String insertClient(String cc, String name, String email,
                                     String fkadd, String fkTypeCli, String fkPlane){
+        String fkClient = null;
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
             String query = "INSERT INTO customer (cc, name, email, address_id, cust_type_id, phone_plan_id) " +
                             "VALUES('" +cc+"', '" +name+ "','" +email+ "', '" +fkadd+ "', " +
                             "'" +fkTypeCli+ "', '" +fkPlane+"')";
-
             st.execute(query);
+
+            query = "SELECT * FROM customer ORDER BY customer_id DESC LIMIT 1";
+            ResultSet result = st.executeQuery(query);
+            while (result.next()) {
+                fkClient = result.getString("customer_id");
+            }
             st.close();
             connection.close();
 
         } catch (Exception e) {
             System.out.println("Error en insertClient: " + e.getMessage());
         }
+
+        return fkClient;
     }
 
-    public static void insertPhoneLines(){
+    public static String insertPhoneNumber(String fkClient){
+        String fkPhoneNum = null;
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            String query = "INSERT INTO phone_number (customer_id) " +
+                    "VALUES('" +fkClient+"')";
+            st.execute(query);
 
+            query = "SELECT * FROM phone_number ORDER BY number_id DESC LIMIT 1";
+            ResultSet result = st.executeQuery(query);
+            while (result.next()) {
+                fkPhoneNum = result.getString("number_id");
+            }
+            st.close();
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println("Error en insertPhoneNumber: " + e.getMessage());
+        }
+        return fkPhoneNum;
     }
 }

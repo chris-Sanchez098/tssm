@@ -89,7 +89,7 @@ public class RegisterClientController implements Initializable {
         String plane = comboxSelectPlan.getSelectionModel().getSelectedItem();
         String dateTime = dateTimeActual();
         String serv = txtService.getText();
-
+        System.out.println(dateTime);
         ObservableList<String> list =
                 FXCollections.observableArrayList(name, cc, email, add,
                         city, dpto, typeCli, plane, dateTime, serv);
