@@ -21,7 +21,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         App.stage = stage;
-        scene = new Scene(loadFXML("/views/logIn"));
+        scene = new Scene(loadFXML("/views/charts"));
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);

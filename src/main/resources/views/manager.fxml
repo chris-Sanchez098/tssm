@@ -1,14 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="views.ManagerController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="1115.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ManagerController">
+    <top>
+        <fx:include prefWidth="1115.0" source="logOut.fxml" />
+    </top>
+    <center>
+       <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1115.0" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="90.0" tabMaxWidth="30.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+           <tabs>
+               <Tab>
+                   <graphic>
+                       <Group>
+                           <Label rotate="90" text="DashBoard" />
+                       </Group>
+                   </graphic>
+                   <content>
+                       <Label text="Label" />
+                   </content>
+                   <content>
+                       <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                               <Label text="label1" />
+                           </children>
+                       </VBox>
+                   </content>
+               </Tab>
+               <Tab>
+                   <graphic>
+                       <Group>
+                           <Label rotate="90" text="Select" />
+                       </Group>
+                   </graphic>
+                   <content>
+                       <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                               <Label text="label2" />
+                           </children>
+                       </VBox>
+                   </content>
+               </Tab>
+               <Tab>
+                   <graphic>
+                       <Group>
+                           <Label rotate="90" text="Select" />
+                       </Group>
+                   </graphic>
+                   <content>
+                       <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                               <Label text="Label3" />
+                           </children>
+                       </VBox>
+                   </content>
+               </Tab>
+               <Tab>
+                   <graphic>
+                       <Group>
+                           <Label rotate="90" text="Select" />
+                       </Group>
+                   </graphic>
+                   <content>
+                       <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                               <Label text="Label4" />
+                           </children>
+                       </VBox>
+                   </content>
+               </Tab>
+           </tabs>
+       </TabPane>
+   </center>
+</BorderPane>
