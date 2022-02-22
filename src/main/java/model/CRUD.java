@@ -3,6 +3,7 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -254,6 +255,8 @@ public class CRUD extends ConexionDB {
         String fkTypeCli = insertTypeClient(typeCli);
         String fkClient = insertClient(cc, name, email, fkAdd, fkTypeCli, fkPlane);
         String fkPhoneNum = insertPhoneNumber(fkClient);
+        String fkPeriod = insertPeriod(dateTime);
+        insertPayment(fkClient, fkPeriod);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
@@ -367,5 +370,65 @@ public class CRUD extends ConexionDB {
             System.out.println("Error en insertPhoneNumber: " + e.getMessage());
         }
         return fkPhoneNum;
+    }
+
+    public static String insertPeriod(String dateTimeInit){
+        String fkPeriod = null;
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            String query = "INSERT INTO period (start_p, end_p) " +
+                    "VALUES('"+dateTimeInit+"', '" +dateTimeInit+"')";
+            st.execute(query);
+
+            query = "SELECT * FROM period ORDER BY period_id DESC LIMIT 1";
+            ResultSet result = st.executeQuery(query);
+            while (result.next()) {
+                fkPeriod = result.getString("period_id");
+            }
+            st.close();
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println("Error en insertPeriod: " + e.getMessage());
+        }
+        return fkPeriod;
+    }
+
+    public static void insertPayment(String fkClient, String fkPeriod){
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+
+            String query = "SELECT * FROM customer cs JOIN " +
+                    "phone_plan pp ON cs.phone_plan_id = pp.phone_plan_id " +
+                    "ORDER BY customer_id DESC LIMIT 1";
+
+            String basicPay = null;
+            ResultSet result = st.executeQuery(query);
+            while (result.next()) {
+                basicPay = result.getString("price");
+            }
+
+            StringBuilder price = new StringBuilder(basicPay);
+            price = price.deleteCharAt(0);
+            price = price.deleteCharAt(2);
+
+            String pc = price.toString();
+            double dbl = Float.parseFloat(pc) * 0.19;
+            String tax = String.valueOf(dbl);
+            int extra = 0;
+            query = "INSERT INTO payment (basic_pay, extra_pay_min, extra_pay_data, taxes, " +
+                    "customer_id, period_id) " +
+                    "VALUES('" +price+ "', '" +extra+ "', '" +extra+ "', '"+tax+"', " +
+                    "'"+fkClient+"', '" +fkPeriod+"')";
+            st.execute(query);
+
+            st.close();
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println("Error en insertPayment: " + e.getMessage());
+        }
     }
 }
