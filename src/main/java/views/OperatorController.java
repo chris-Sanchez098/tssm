@@ -4,15 +4,18 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.CRUD;
 import model.Customer;
-import model.User;
 import tssm.App;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,8 +25,6 @@ public class OperatorController implements Initializable {
     private Button bUpdateTb;
     @FXML
     private TableView<Customer> tbCustomers;
-    @FXML
-    private TableColumn<Customer, Integer> colId;
     @FXML
     private TableColumn<Customer, String> colCC;
     @FXML
@@ -104,7 +105,6 @@ public class OperatorController implements Initializable {
      */
     public void initTable() {
         setOnlyNum(tfSearch);
-        this.colId.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("customer_id"));
         this.colCC.setCellValueFactory(new PropertyValueFactory<Customer, String>("cc"));
         this.colName.setCellValueFactory(new PropertyValueFactory<Customer, String>("name"));
         this.colEmail.setCellValueFactory(new PropertyValueFactory<Customer, String>("email"));
@@ -112,13 +112,34 @@ public class OperatorController implements Initializable {
         this.colPhonePlan.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("phonePlanId"));
     }
 
+    /**
+     * Load infoCustomer view
+     * @param customer to show information
+     */
+    public void loadInfoView(Customer customer) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/infoCustomer.fxml"));
+            Parent root = loader.load();
+            infoCustomerController ifoView = loader.getController();
+            ifoView.initAttributes(customers, customer);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Información detallada");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.showAndWait();
+            this.tbCustomers.refresh();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     @FXML
     public void showInfo(MouseEvent mouseEvent) {
         Customer customer = this.tbCustomers.getSelectionModel().getSelectedItem();
         if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-            if( mouseEvent.getClickCount() == 2 && customer != null) {
-                App.openStage("/views/infoCustomer", "Información cliente");
-            }
+            if (mouseEvent.getClickCount() == 2 && customer != null) { loadInfoView(customer); }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);

@@ -2,20 +2,21 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="358.0" prefWidth="369.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.infoCustomerController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.infoCustomerController">
    <children>
-      <VBox layoutX="14.0" layoutY="24.0" prefHeight="328.0" prefWidth="102.0">
+      <VBox layoutX="14.0" layoutY="24.0" prefHeight="287.0" prefWidth="123.0">
          <children>
             <Label text="Nombre:">
                <VBox.margin>
                   <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
                </VBox.margin>
             </Label>
-            <Label text="No Céd ula/NIT:">
+            <Label text="No Cédula/NIT:">
                <VBox.margin>
                   <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
                </VBox.margin>
@@ -50,61 +51,141 @@
                   <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
                </VBox.margin>
             </Label>
-            <Label text="Número móvil:">
+         </children>
+      </VBox>
+      <VBox layoutX="150.0" layoutY="19.0" prefHeight="287.0" prefWidth="208.0">
+         <children>
+            <TextField fx:id="tfName" editable="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="tfCc" editable="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="tfEmail" editable="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="tfAddress" editable="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="tfCity" editable="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="tfDepto" editable="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="tfCustomerType" editable="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="tfPlanId" editable="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+         </children>
+      </VBox>
+      <VBox layoutX="368.0" layoutY="19.0" prefHeight="297.0" prefWidth="160.0">
+         <children>
+            <Label prefHeight="16.0" prefWidth="101.0" text="Número móvil:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Precio:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="GB en la nube:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="GB para compartir">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Minutos ilimitados:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Mensages ilimitados:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Catidad minutos:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Netflix:">
                <VBox.margin>
                   <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
                </VBox.margin>
             </Label>
          </children>
       </VBox>
-      <VBox layoutX="129.0" layoutY="28.0" prefHeight="321.0" prefWidth="226.0">
+      <VBox fillWidth="false" layoutX="518.0" layoutY="19.0" prefHeight="277.0" prefWidth="137.0">
          <children>
-            <TextField fx:id="txtName" editable="false">
+            <TextField fx:id="tfPhoneNumber" editable="false">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="txtIdentity" editable="false">
+            <TextField fx:id="tfPrice" editable="false">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="txtEmail" editable="false">
+            <TextField fx:id="tfGbC" editable="false">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="txtAddress" editable="false">
+            <TextField fx:id="tfGbS" editable="false">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="txtCity" editable="false">
+            <TextField fx:id="tfMinutes" editable="false">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="txtDepto" editable="false">
+            <TextField fx:id="tfMessage" editable="false">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="txtService" editable="false">
+            <TextField fx:id="tfAmountMin" editable="false">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="txtPhoneNumber" editable="false">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="txtService1" editable="false" prefHeight="24.0" prefWidth="204.0">
+            <TextField fx:id="tfNetflix" editable="false">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
          </children>
       </VBox>
+      <Label layoutX="20.0" layoutY="316.0" prefHeight="16.0" prefWidth="121.0" text="Descripcion plan:" />
+      <TextArea fx:id="taDetails" editable="false" layoutX="155.0" layoutY="306.0" prefHeight="106.0" prefWidth="497.0" wrapText="true" />
    </children>
 </Pane>
