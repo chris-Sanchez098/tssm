@@ -73,7 +73,7 @@ public class AdministratorController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/updateUser.fxml"));
                 Parent root = loader.load();
                 UpdateUserController updateView = loader.getController();
-                updateView.initAttributes(items, user);
+                updateView.initAttributes(user);
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
                 stage.setTitle("Modificación usuario");

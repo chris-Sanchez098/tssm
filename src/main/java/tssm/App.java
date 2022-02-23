@@ -15,17 +15,14 @@ import java.io.IOException;
  * JavaFX App
  */
 public class App extends Application {
-    private static Stage stage;
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        App.stage = stage;
-        scene = new Scene(loadFXML("/views/charts"));
+        scene = new Scene(loadFXML("/views/logIn"));
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);
-
     }
 
     public static void setRoot(String fxml) throws IOException {
@@ -76,7 +73,6 @@ public class App extends Application {
     /**
      * close the window then open a new
      * @param addressFxml where it is fxml
-     * @throws IOException
      */
     public static void setStage(String addressFxml){
         try{
@@ -85,7 +81,7 @@ public class App extends Application {
             Stage newStage = new Stage();
             newStage.setScene(newScene);
             newStage.show();
-            if(!(addressFxml == "/views/logIn")){
+            if(!(addressFxml.equals("/views/logIn"))){
                 newStage.setOnCloseRequest(event -> {
                     event.consume();
                     exit(newStage);

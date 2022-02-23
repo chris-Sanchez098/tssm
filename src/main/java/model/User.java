@@ -175,4 +175,16 @@ public class User {
         }
     }
 
+    /**
+     * update a user
+     * @param updateUser user from comes the data
+     */
+    public void getUpdate(User updateUser) {
+        setStatus(updateUser.getStatus());
+        setUser(updateUser.getUser());
+        setPwdNoEncrypt(updateUser.pwd);
+        setRol(updateUser.getRol());
+        setName(updateUser.getName());
+        setCc(updateUser.getCc());
+    }
 }

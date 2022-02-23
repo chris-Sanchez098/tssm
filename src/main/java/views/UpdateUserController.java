@@ -57,17 +57,13 @@ public class UpdateUserController implements Initializable {
     @FXML
     private Button updateButton;
 
-    public void initAttributes(ObservableList<User> users, User user) {
+    public void initAttributes(User user) {
         this.user = user;
         this.currentName.setText(user.getName());
         this.currentCC.setText(user.getCc());
         this.currentUser.setText(user.getUser());
         this.currentRol.setText(user.getRol());
         this.currentStatus.setText(user.statusToString());
-    }
-
-    public User getUser() {
-        return user;
     }
 
     /**
@@ -108,6 +104,7 @@ public class UpdateUserController implements Initializable {
             }
             if(check){
                 if(CRUD.updateUser(updateUser, user.getCc())){
+                    user.getUpdate(updateUser);
                     ((Node)(event.getSource())).getScene().getWindow().hide();
                 }
             }

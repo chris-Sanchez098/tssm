@@ -29,7 +29,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <PieChart />
+            <PieChart fx:id="payChart" />
             <BarChart fx:id="userChart" GridPane.columnIndex="1">
               <xAxis>
                 <CategoryAxis autoRanging="false" endMargin="2.0" startMargin="2.0" fx:id="xAxisUser">
@@ -41,23 +41,26 @@
                 <NumberAxis fx:id="yAxisUser" side="LEFT" />
               </yAxis>
             </BarChart>
-            <LineChart prefHeight="279.0" prefWidth="526.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <LineChart fx:id="customerChart" prefHeight="279.0" prefWidth="526.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
               <yAxis>
-                <NumberAxis autoRanging="false" side="LEFT" />
+                <NumberAxis side="LEFT" />
               </yAxis>
             </LineChart>
             <BarChart fx:id="plansChart" GridPane.rowIndex="1">
-              <xAxis>
-                <CategoryAxis fx:id="xAxisPlan" side="LEFT" />
-              </xAxis>
               <yAxis>
-                <NumberAxis />
+                <CategoryAxis side="LEFT" />
               </yAxis>
+              <xAxis>
+                <NumberAxis />
+              </xAxis>
             </BarChart>
          </children>
+         <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" />
+         </VBox.margin>
       </GridPane>
    </children>
 </VBox>

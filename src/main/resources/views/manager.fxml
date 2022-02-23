@@ -12,12 +12,12 @@
         <fx:include prefWidth="1115.0" source="logOut.fxml" />
     </top>
     <center>
-       <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1115.0" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="90.0" tabMaxWidth="30.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+       <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1115.0" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="70.0" tabMaxWidth="30.0" tabMinHeight="70.0" tabMinWidth="138.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
            <tabs>
                <Tab>
                    <graphic>
                        <Group>
-                           <Label rotate="90" text="DashBoard" />
+                           <Label rotate="90" text="Principal" />
                        </Group>
                    </graphic>
                    <content>
@@ -26,7 +26,7 @@
                    <content>
                        <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                               <Label text="label1" />
+                               <fx:include source="charts.fxml" />
                            </children>
                        </VBox>
                    </content>
@@ -34,13 +34,13 @@
                <Tab>
                    <graphic>
                        <Group>
-                           <Label rotate="90" text="Select" />
+                           <Label rotate="90" text="Usuarios" />
                        </Group>
                    </graphic>
                    <content>
                        <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                               <Label text="label2" />
+                               <fx:include source="tableUser.fxml" />
                            </children>
                        </VBox>
                    </content>
@@ -48,7 +48,7 @@
                <Tab>
                    <graphic>
                        <Group>
-                           <Label rotate="90" text="Select" />
+                           <Label rotate="90" text="Clientes" />
                        </Group>
                    </graphic>
                    <content>
@@ -62,7 +62,7 @@
                <Tab>
                    <graphic>
                        <Group>
-                           <Label rotate="90" text="Select" />
+                           <Label rotate="90" text="Pagos" />
                        </Group>
                    </graphic>
                    <content>

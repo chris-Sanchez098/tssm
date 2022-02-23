@@ -18,7 +18,7 @@
          <children>
             <Button mnemonicParsing="false" onAction="#launch" prefHeight="30.0" prefWidth="140.0" text="Crear">
                <VBox.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="18.0" />
                </VBox.margin>
             </Button>
             <Button fx:id="bUpdateUser" mnemonicParsing="false" onAction="#selectModify" prefHeight="30.0" prefWidth="140.0" text="Modificar">

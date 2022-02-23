@@ -86,4 +86,16 @@ public class UserTest {
                 () -> assertEquals("operator", user2.rolFxml())
         );
     }
+
+    @Test
+    @DisplayName(value = "Update User tests")
+    public void getUpdateTest(){
+        user.getUpdate(user1);
+        user1.getUpdate(user2);
+        assertAll("Several update Test",
+                () -> assertEquals("Administrador", user.getRol()),
+                () -> assertEquals("Operador", user1.getRol())
+        );
+    }
+
 }
