@@ -81,7 +81,7 @@ public class App extends Application {
             Stage newStage = new Stage();
             newStage.setScene(newScene);
             newStage.show();
-            if(!(addressFxml.equals("/views/logIn"))){
+            if(!addressFxml.equals("/views/logIn")){
                 newStage.setOnCloseRequest(event -> {
                     event.consume();
                     exit(newStage);
