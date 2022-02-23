@@ -15,6 +15,8 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterClientController implements Initializable {
     @FXML
@@ -95,22 +97,31 @@ public class RegisterClientController implements Initializable {
                         city, dpto, typeCli, plane, dateTime, serv);
 
         if(checkEmptyField(list) && !(typeCli == "Seleccionar") && !(plane == "Seleccionar")) {
-            switch (plane) {
-                case "Plan 15 GB":
-                    plane = "1";
-                    break;
-                case "Plan 25 GB":
-                    plane = "2";
-                    break;
-                case "Plan 40 GB":
-                    plane = "3";
-                    break;
-                case "Plan ilimitado":
-                    plane = "4";
-                    break;
+            if(validateEmail(email)) {
+                switch (plane) {
+                    case "Plan 15 GB":
+                        plane = "1";
+                        break;
+                    case "Plan 25 GB":
+                        plane = "2";
+                        break;
+                    case "Plan 40 GB":
+                        plane = "3";
+                        break;
+                    case "Plan ilimitado":
+                        plane = "4";
+                        break;
+                }
+                CRUD.insertCustomer(name, cc, email, add, city, dpto, typeCli, plane, dateTime, serv);
+                cleanGUI();
             }
-            CRUD.insertCustomer(name, cc, email, add, city, dpto, typeCli, plane, dateTime, serv);
-            cleanGUI();
+            else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Correo electrónico!");
+                alert.setContentText("Por favor ingrese un correo válido!");
+                alert.showAndWait();
+            }
         }
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -222,5 +233,22 @@ public class RegisterClientController implements Initializable {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         String dateTime = dtf.format(LocalDateTime.now());
         return dateTime;
+    }
+
+    /**
+     * check that the email is valid
+     * @return boolean
+     */
+    public boolean validateEmail(String email){
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+        Matcher mather = pattern.matcher(email);
+        if (mather.find()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
