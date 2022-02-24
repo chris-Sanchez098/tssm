@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class CRUD extends ConexionDB {
     /**
@@ -260,28 +261,46 @@ public class CRUD extends ConexionDB {
      * @param add to insert
      * @param city to insert
      * @param dpto to insert
-     * @param typeCli to insert
-     * @param fkPlane to insert
+     * @param typeCust to insert
+     * @param fk_plane to insert
      * @param dateTime to insert
-     *
      */
     public static void insertCustomer(String name, String cc, String email, String add,
-                                    String city, String dpto, String typeCli, String fkPlane,
-                                    String dateTime, String serv) {
+                                    String city, String dpto, String typeCust, String fk_plane,
+                                    String dateTime, String serv, String phoneNum) {
 
-        String fkAdd = insertAddress(add, city, dpto);
-        String fkTypeCli = insertTypeClient(typeCli);
-        String fkClient = insertClient(cc, name, email, fkAdd, fkTypeCli, fkPlane);
-        String fkPhoneNum = insertPhoneNumber(fkClient);
-        String fkPeriod = insertPeriod(dateTime);
-        insertPayment(fkClient, fkPeriod);
+        String fk_add = insertAddress(add, city, dpto);
+        String fk_TypeCust = selectTypeCustomer(typeCust);
+        String fk_customer = insertClient(cc, name, email, fk_add, fk_TypeCust, fk_plane);
+        insertPhoneNumber(phoneNum, cc);
+        String fk_Period = insertPeriod(dateTime);
+        insertPayment(fk_customer, fk_Period);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setTitle("Registro de cliente");
         alert.setContentText("El cliente " + name + " fué registrado con exito y su nùmero " +
-                "de celular es " + fkPhoneNum);
+                "de celular es " + "fkPhoneNum");
         alert.showAndWait();
+    }
+
+    /**
+     * Insert a Customer into database
+     * @param phoneNum to insert
+     * @param cc to insert
+     */
+    public static void insertPhoneNumber(String phoneNum, String cc){
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            String query = "INSERT INTO phone_number (number_id, customer_id) " +
+                    "VALUES('" +phoneNum+"', '" +cc+ "')";
+            st.execute(query);
+            st.close();
+            connection.close();
+        } catch (Exception e) {
+            System.out.println("Error en insertPhoneNumber: " + e.getMessage());
+        }
     }
 
     /**
@@ -289,9 +308,10 @@ public class CRUD extends ConexionDB {
      * @param add to insert
      * @param city to insert
      * @param dpto to insert
+     * @return fk_add
      */
     public static String insertAddress(String add, String city, String dpto) {
-        String fkAdd = null;
+        String fk_add = null;
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
@@ -302,7 +322,7 @@ public class CRUD extends ConexionDB {
             query = "SELECT * FROM address ORDER BY address_id DESC LIMIT 1";
             ResultSet result = st.executeQuery(query);
             while (result.next()) {
-                fkAdd = result.getString("address_id");
+                fk_add = result.getString("address_id");
             }
             st.close();
             connection.close();
@@ -310,88 +330,69 @@ public class CRUD extends ConexionDB {
         } catch (Exception e) {
             System.out.println("Error en insertAddress: " + e.getMessage());
         }
-        return fkAdd;
+        return fk_add;
     }
 
     /**
-     * Insert a type_cliente into database
-     * @param typeCli to insert
+     * Select a type_cliente from database
+     * @param custType to select
+     * @return fk_CustType
      */
-    public static String insertTypeClient(String typeCli){
-        String fkTypeCli = null;
+    public static String selectTypeCustomer(String custType){
+        String fk_CustType = null;
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
-            String query = "INSERT INTO customer_type (cust_type) " +
-                    "VALUES('" +typeCli+ "');";
-            st.execute(query);
-
-            query = "SELECT * FROM customer_type ORDER BY cust_type_id DESC LIMIT 1";
+            String query = "SELECT * FROM customer_type WHERE cust_type = '"+custType+"' ";
             ResultSet result = st.executeQuery(query);
             while (result.next()) {
-                fkTypeCli = result.getString("cust_type_id");
+                fk_CustType = result.getString("cust_type_id");
             }
-
             st.close();
             connection.close();
-
         } catch (Exception e) {
-            System.out.println("Error en insertTypeClient: "+ e.getMessage());
+            System.out.println("Error en selectTypeClient: "+ e.getMessage());
         }
-        return fkTypeCli;
+        return fk_CustType;
     }
 
+    /**
+     * Insert a Customer into database
+     * @param cc to insert
+     * @param name to insert
+     * @param email to insert
+     * @param fk_add to insert
+     * @param fk_custType to insert
+     * @param fk_plane to insert
+     * @return fk_cc
+     */
     public static String insertClient(String cc, String name, String email,
-                                    String fkadd, String fkTypeCli, String fkPlane){
-        String fkClient = null;
+                                    String fk_add, String fk_custType, String fk_plane){
+        String fk_cc = null;
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
             String query = "INSERT INTO customer (cc, name, email, address_id, cust_type_id, phone_plan_id) " +
-                            "VALUES('" +cc+"', '" +name+ "','" +email+ "', '" +fkadd+ "', " +
-                            "'" +fkTypeCli+ "', '" +fkPlane+"')";
+                            "VALUES('" +cc+"', '" +name+ "','" +email+ "', '" +fk_add+ "', " +
+                            "'" +fk_custType+ "', '" +fk_plane+"')";
             st.execute(query);
-
-            query = "SELECT * FROM customer ORDER BY cc DESC LIMIT 1";
-            ResultSet result = st.executeQuery(query);
-            while (result.next()) {
-                fkClient = result.getString("customer_id");
-            }
             st.close();
             connection.close();
+            fk_cc = cc;
 
         } catch (Exception e) {
             System.out.println("Error en insertClient: " + e.getMessage());
         }
-
-        return fkClient;
+        return fk_cc;
     }
 
-    public static String insertPhoneNumber(String fkClient){
-        String fkPhoneNum = null;
-        try {
-            Connection connection = connect();
-            Statement st = connection.createStatement();
-            String query = "INSERT INTO phone_number (customer_id) " +
-                    "VALUES('" +fkClient+"')";
-            st.execute(query);
-
-            query = "SELECT * FROM phone_number ORDER BY number_id DESC LIMIT 1";
-            ResultSet result = st.executeQuery(query);
-            while (result.next()) {
-                fkPhoneNum = result.getString("number_id");
-            }
-            st.close();
-            connection.close();
-
-        } catch (Exception e) {
-            System.out.println("Error en insertPhoneNumber: " + e.getMessage());
-        }
-        return fkPhoneNum;
-    }
-
+    /**
+     * Insert a Customer into database
+     * @param dateTimeInit to insert
+     * @return fk_period
+     */
     public static String insertPeriod(String dateTimeInit){
-        String fkPeriod = null;
+        String fk_period = null;
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
@@ -402,7 +403,7 @@ public class CRUD extends ConexionDB {
             query = "SELECT * FROM period ORDER BY period_id DESC LIMIT 1";
             ResultSet result = st.executeQuery(query);
             while (result.next()) {
-                fkPeriod = result.getString("period_id");
+                fk_period = result.getString("period_id");
             }
             st.close();
             connection.close();
@@ -410,10 +411,15 @@ public class CRUD extends ConexionDB {
         } catch (Exception e) {
             System.out.println("Error en insertPeriod: " + e.getMessage());
         }
-        return fkPeriod;
+        return fk_period;
     }
 
-    public static void insertPayment(String fkClient, String fkPeriod){
+    /**
+     * Insert a Customer into database
+     * @param fk_cust to insert
+     * @param fk_period to insert
+     */
+    public static void insertPayment(String fk_cust, String fk_period){
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
@@ -427,20 +433,59 @@ public class CRUD extends ConexionDB {
             while (result.next()) {
                 basicPay = result.getDouble("price");
             }
-
             double tax = basicPay * 0.19;
             int extra = 0;
             query = "INSERT INTO payment (basic_pay, extra_pay_min, extra_pay_data, taxes, " +
                     "customer_id, period_id) " +
                     "VALUES('" +basicPay+ "', '" +extra+ "', '" +extra+ "', '"+tax+"', " +
-                    "'"+fkClient+"', '" +fkPeriod+"')";
+                    "'"+fk_cust+"', '" +fk_period+"')";
             st.execute(query);
-
             st.close();
             connection.close();
 
         } catch (Exception e) {
             System.out.println("Error en insertPayment: " + e.getMessage());
         }
+    }
+
+    public static ObservableList<String> getPhonePlan( int planType) {
+        String price = null;
+        String gb_data = null;
+        String gb_cloud= null;
+        String gb_share = null;
+        String unlim_min = null;
+        String unlim_sms = null;
+        String minutes = null;
+        String netflix = null;
+        String descrip = null;
+        ObservableList<String> phonePlanlist =
+                FXCollections.observableArrayList(price, gb_data, gb_cloud, gb_share,
+                        unlim_min, unlim_sms, minutes, netflix, descrip);
+
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            String query = "SELECT * FROM phone_plan WHERE phone_plan_id = '"+planType+"' ";
+            ResultSet result = st.executeQuery(query);
+
+            while (result.next()) {
+                price = String.valueOf(result.getDouble("price"));
+                gb_data = result.getString("gb_data");
+                gb_cloud = result.getString("gb_cloud");
+                gb_share = result.getString("gb_share");
+                unlim_min = result.getString("unlimited_min");
+                unlim_sms = result.getString("unlimited_sms");
+                minutes = result.getString("minutes");
+                netflix = result.getString("netflix");
+                descrip = result.getString("description");
+            }
+            phonePlanlist = FXCollections.observableArrayList(price, gb_data, gb_cloud,
+                    gb_share, unlim_min, unlim_sms, minutes, netflix, descrip);
+            st.close();
+            connection.close();
+        } catch (Exception e) {
+            System.out.println("Error en insertPayment: " + e.getMessage());
+        }
+        return phonePlanlist;
     }
 }

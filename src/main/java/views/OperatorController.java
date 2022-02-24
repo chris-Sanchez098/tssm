@@ -62,7 +62,7 @@ public class OperatorController implements Initializable {
 
     @FXML
     public void clickRegisClient(ActionEvent actionEvent) {
-        App.openStage("/views/registerClient", "Registrar cliente");
+        App.openStage("/views/registerCustomer", "Registrar cliente");
     }
 
     @FXML

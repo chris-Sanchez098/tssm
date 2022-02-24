@@ -8,8 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import model.CRUD;
-import model.MD5;
-import model.User;
 
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -18,7 +16,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegisterClientController implements Initializable {
+public class RegisterCustomerController implements Initializable {
     @FXML
     public TextField txtName;
     @FXML
@@ -42,7 +40,7 @@ public class RegisterClientController implements Initializable {
     @FXML
     public TextField txtMinutesUnlimited;
     @FXML
-    public TextField txtData;
+    public TextField txtGbData;
     @FXML
     public TextField txtGbCloud;
     @FXML
@@ -58,7 +56,7 @@ public class RegisterClientController implements Initializable {
     @FXML
     public Button btnCancelRegister;
     @FXML
-    public ComboBox<String> comboxSelectClient;
+    public ComboBox<String> comboxSelectCustomer;
     @FXML
     public ComboBox<String> comboxSelectPlan;
     @FXML
@@ -66,53 +64,91 @@ public class RegisterClientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        CBSelectClient();
+        CBSelectCustomer();
         CBSelectPlan();
         setOnlyNum(txtIdentity);
     }
 
     @FXML
-    public void clickSelectClient(ActionEvent actionEvent) {
+    public void clickSelectCustomer(ActionEvent actionEvent) {
     }
 
     @FXML
     public void clickSelectPlan(ActionEvent actionEvent) {
+        String phonePlan = comboxSelectPlan.getSelectionModel().getSelectedItem();
+        ObservableList<String> phonePlanList = null;
+        switch (phonePlan){
+            case "Plan 15 GB":
+                phonePlanList = CRUD.getPhonePlan(2);
+                break;
+            case "Plan 25 GB":
+                phonePlanList = CRUD.getPhonePlan(3);
+                break;
+            case "Plan 40 GB":
+                phonePlanList = CRUD.getPhonePlan(4);
+                break;
+            case "Plan ilimitado":
+                phonePlanList = CRUD.getPhonePlan(5);
+                break;
+            default: cleanGUI();
+        }
+        if(!phonePlan.isEmpty()){
+            //viewPhonePlans(phonePlanList);
+        }
+    }
+
+    public void viewPhonePlans(ObservableList<String> list){
+        if(list.isEmpty()){
+            cleanGUI();
+        }
+        else {
+            txtPayment.setText(list.get(0));
+            txtGbData.setText(list.get(1));
+            txtGbCloud.setText(list.get(2));
+            txtGbShare.setText(list.get(3));
+            txtMinutesUnlimited.setText(list.get(4));
+            txtMsmUnlimited.setText(list.get(5));
+            txtMinutes.setText(list.get(6));
+            txtNetflix.setText(list.get(7));
+            txtAreaMoreInfo.setText(list.get(8));
+        }
     }
 
     @FXML
-    public void clickRegisterClient(ActionEvent actionEvent) {
+    public void clickRegisterCustomer(ActionEvent actionEvent) {
         String name = txtName.getText();
         String cc = txtIdentity.getText().toLowerCase();
         String email = txtEmail.getText();
         String add = txtAddress.getText();
         String city = txtCity.getText();
         String dpto = txtDepto.getText();
-        String typeCli = comboxSelectClient.getSelectionModel().getSelectedItem();
+        String typeCli = comboxSelectCustomer.getSelectionModel().getSelectedItem();
         String plane = comboxSelectPlan.getSelectionModel().getSelectedItem();
         String dateTime = dateTimeActual();
         String serv = txtService.getText();
+        String phoneNum = txtPhoneNumber.getText();
         System.out.println(dateTime);
         ObservableList<String> list =
                 FXCollections.observableArrayList(name, cc, email, add,
-                        city, dpto, typeCli, plane, dateTime, serv);
+                        city, dpto, typeCli, plane, dateTime, serv, phoneNum);
 
         if(checkEmptyField(list) && !(typeCli == "Seleccionar") && !(plane == "Seleccionar")) {
             if(validateEmail(email)) {
                 switch (plane) {
                     case "Plan 15 GB":
-                        plane = "1";
-                        break;
-                    case "Plan 25 GB":
                         plane = "2";
                         break;
-                    case "Plan 40 GB":
+                    case "Plan 25 GB":
                         plane = "3";
                         break;
-                    case "Plan ilimitado":
+                    case "Plan 40 GB":
                         plane = "4";
                         break;
+                    case "Plan ilimitado":
+                        plane = "5";
+                        break;
                 }
-                CRUD.insertCustomer(name, cc, email, add, city, dpto, typeCli, plane, dateTime, serv);
+                CRUD.insertCustomer(name, cc, email, add, city, dpto, typeCli, plane, dateTime, serv, phoneNum);
                 cleanGUI();
             }
             else{
@@ -144,11 +180,11 @@ public class RegisterClientController implements Initializable {
     /**
      * initializes the values in the comboBox comboxSelectClient
      */
-    public void CBSelectClient() {
+    public void CBSelectCustomer() {
         ObservableList<String> option =
                 FXCollections.observableArrayList("Seleccionar", "Natural", "Corporativo");
-        comboxSelectClient.setItems(option);
-        comboxSelectClient.getSelectionModel().selectFirst();
+        comboxSelectCustomer.setItems(option);
+        comboxSelectCustomer.getSelectionModel().selectFirst();
     }
 
     /**
@@ -176,14 +212,14 @@ public class RegisterClientController implements Initializable {
         txtAddress.setText("");
         txtCity.setText("");
         txtDepto.setText("");
-        comboxSelectClient.getSelectionModel().selectFirst();
+        comboxSelectCustomer.getSelectionModel().selectFirst();
         comboxSelectPlan.getSelectionModel().selectFirst();
         txtService.setText("");
         txtPhoneNumber.setText("");
         txtPayment.setText("");
         txtMinutes.setText("");
         txtMinutesUnlimited.setText("");
-        txtData.setText("");
+        txtGbData.setText("");
         txtGbCloud.setText("");
         txtGbShare.setText("");
         txtMsmUnlimited.setText("");
@@ -208,12 +244,12 @@ public class RegisterClientController implements Initializable {
      * @return boolean
      */
     private boolean checkFill(){
-        return !comboxSelectClient.getSelectionModel().getSelectedItem().isEmpty()
+        return !comboxSelectCustomer.getSelectionModel().getSelectedItem().isEmpty()
                 && !comboxSelectPlan.getSelectionModel().getSelectedItem().isEmpty()
                 && !txtName.getText().isEmpty() && !txtIdentity.getText().isEmpty()
                 && !txtEmail.getText().isEmpty() && !txtAddress.getText().isEmpty()
                 && !txtCity.getText().isEmpty() && !txtDepto.getText().isEmpty()
-                && !txtService.getText().isEmpty();
+                && !txtService.getText().isEmpty() && txtPhoneNumber.getText().isEmpty();
     }
 
     /**

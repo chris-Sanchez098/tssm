@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="729.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.RegisterClientController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="729.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.RegisterCustomerController">
    <children>
       <VBox layoutX="9.0" layoutY="35.0" prefHeight="420.0" prefWidth="102.0">
          <children>
@@ -99,7 +99,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <ComboBox fx:id="comboxSelectClient" onAction="#clickSelectClient" prefHeight="25.0" prefWidth="196.0" promptText="Seleccionar ">
+            <ComboBox fx:id="comboxSelectCustomer" onAction="#clickSelectCustomer" prefHeight="25.0" prefWidth="196.0" promptText="Seleccionar ">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
@@ -114,7 +114,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="txtPhoneNumber" editable="false">
+            <TextField fx:id="txtPhoneNumber">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
@@ -123,7 +123,7 @@
       </VBox>
       <HBox layoutX="25.0" layoutY="478.0" prefHeight="35.0" prefWidth="381.0">
          <children>
-            <Button fx:id="btnRegisterClient" mnemonicParsing="false" onAction="#clickRegisterClient" text="Registrar cliente">
+            <Button fx:id="btnRegisterClient" mnemonicParsing="false" onAction="#clickRegisterCustomer" text="Registrar cliente">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="20.0" top="5.0" />
                </HBox.margin>
@@ -220,7 +220,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="txtData" editable="false">
+            <TextField fx:id="txtGbData" editable="false">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
