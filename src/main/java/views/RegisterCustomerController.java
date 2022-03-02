@@ -78,44 +78,43 @@ public class RegisterCustomerController implements Initializable {
         String phonePlan = comboxSelectPlan.getSelectionModel().getSelectedItem();
         ObservableList<String> phonePlanList = null;
         switch (phonePlan){
+            case "Seleccionar":
+                cleanGUI();
+                break;
             case "Plan 15 GB":
                 phonePlanList = CRUD.getPhonePlan(2);
+                viewPhonePlans(phonePlanList);
                 break;
             case "Plan 25 GB":
                 phonePlanList = CRUD.getPhonePlan(3);
+                viewPhonePlans(phonePlanList);
                 break;
             case "Plan 40 GB":
                 phonePlanList = CRUD.getPhonePlan(4);
+                viewPhonePlans(phonePlanList);
                 break;
             case "Plan ilimitado":
                 phonePlanList = CRUD.getPhonePlan(5);
+                viewPhonePlans(phonePlanList);
                 break;
-            default: cleanGUI();
-        }
-        if(!phonePlan.isEmpty()){
-            //viewPhonePlans(phonePlanList);
         }
     }
 
     public void viewPhonePlans(ObservableList<String> list){
-        if(list.isEmpty()){
-            cleanGUI();
-        }
-        else {
-            txtPayment.setText(list.get(0));
-            txtGbData.setText(list.get(1));
-            txtGbCloud.setText(list.get(2));
-            txtGbShare.setText(list.get(3));
-            txtMinutesUnlimited.setText(list.get(4));
-            txtMsmUnlimited.setText(list.get(5));
-            txtMinutes.setText(list.get(6));
-            txtNetflix.setText(list.get(7));
-            txtAreaMoreInfo.setText(list.get(8));
-        }
+        txtPayment.setText(list.get(0));
+        txtGbData.setText(list.get(1));
+        txtGbCloud.setText(list.get(2));
+        txtGbShare.setText(list.get(3));
+        txtMinutesUnlimited.setText(list.get(4));
+        txtMsmUnlimited.setText(list.get(5));
+        txtMinutes.setText(list.get(6));
+        txtNetflix.setText(list.get(7));
+        txtAreaMoreInfo.setText(list.get(8));
     }
 
     @FXML
     public void clickRegisterCustomer(ActionEvent actionEvent) {
+        boolean insertCustomer = false;
         String name = txtName.getText();
         String cc = txtIdentity.getText().toLowerCase();
         String email = txtEmail.getText();
@@ -148,7 +147,8 @@ public class RegisterCustomerController implements Initializable {
                         plane = "5";
                         break;
                 }
-                CRUD.insertCustomer(name, cc, email, add, city, dpto, typeCli, plane, dateTime, serv, phoneNum);
+                insertCustomer = CRUD.insertCustomer(name, cc, email, add, city,
+                        dpto, typeCli, plane, dateTime, serv, phoneNum);
                 cleanGUI();
             }
             else{
@@ -164,6 +164,14 @@ public class RegisterCustomerController implements Initializable {
             alert.setHeaderText(null);
             alert.setTitle("Registro de cliente!");
             alert.setContentText("Verifique que todos los campos esten llenos.");
+            alert.showAndWait();
+        }
+        if(insertCustomer == true){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Registro de cliente");
+            alert.setContentText("El cliente " + name + " fué registrado con éxito y su nùmero " +
+                    "de celular es: " + phoneNum);
             alert.showAndWait();
         }
     }

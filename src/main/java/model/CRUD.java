@@ -265,23 +265,21 @@ public class CRUD extends ConexionDB {
      * @param fk_plane to insert
      * @param dateTime to insert
      */
-    public static void insertCustomer(String name, String cc, String email, String add,
+    public static boolean insertCustomer(String name, String cc, String email, String add,
                                     String city, String dpto, String typeCust, String fk_plane,
                                     String dateTime, String serv, String phoneNum) {
-
-        String fk_add = insertAddress(add, city, dpto);
-        String fk_TypeCust = selectTypeCustomer(typeCust);
-        String fk_customer = insertClient(cc, name, email, fk_add, fk_TypeCust, fk_plane);
-        insertPhoneNumber(phoneNum, cc);
-        String fk_Period = insertPeriod(dateTime);
-        insertPayment(fk_customer, fk_Period);
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setTitle("Registro de cliente");
-        alert.setContentText("El cliente " + name + " fué registrado con exito y su nùmero " +
-                "de celular es " + "fkPhoneNum");
-        alert.showAndWait();
+        try {
+            String fk_add = insertAddress(add, city, dpto);
+            String fk_TypeCust = selectTypeCustomer(typeCust);
+            String fk_customer = insertClient(cc, name, email, fk_add, fk_TypeCust, fk_plane);
+            insertPhoneNumber(phoneNum, cc);
+            String fk_Period = insertPeriod(dateTime);
+            insertPayment(fk_customer, fk_Period);
+            return true;
+        }catch (Exception e){
+            System.out.println("Error en InsertCustomer: " + e);
+            return false;
+        }
     }
 
     /**
@@ -448,7 +446,7 @@ public class CRUD extends ConexionDB {
         }
     }
 
-    public static ObservableList<String> getPhonePlan( int planType) {
+    public static ObservableList<String> getPhonePlan(int planType) {
         String price = null;
         String gb_data = null;
         String gb_cloud= null;
