@@ -7,7 +7,6 @@ import javafx.scene.control.Alert;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 public class CRUD extends ConexionDB {
     /**
@@ -108,6 +107,7 @@ public class CRUD extends ConexionDB {
                 anUser.setPwdNoEncrypt(pwd);
                 userObservableList.add(anUser);
             }
+            result.close();
             st.close();
             connection.close();
         } catch (Exception e) {
@@ -170,6 +170,7 @@ public class CRUD extends ConexionDB {
                     userList.add(user);
                 }
             }
+            result.close();
             st.close();
             connection.close();
         } catch (Exception e) {
@@ -228,6 +229,7 @@ public class CRUD extends ConexionDB {
                     customerList.add(customer);
                 }
             }
+            result.close();
             st.close();
             connection.close();
         } catch (Exception e) {
@@ -322,6 +324,7 @@ public class CRUD extends ConexionDB {
             while (result.next()) {
                 fk_add = result.getString("address_id");
             }
+            result.close();
             st.close();
             connection.close();
 
@@ -346,6 +349,7 @@ public class CRUD extends ConexionDB {
             while (result.next()) {
                 fk_CustType = result.getString("cust_type_id");
             }
+            result.close();
             st.close();
             connection.close();
         } catch (Exception e) {
@@ -403,6 +407,7 @@ public class CRUD extends ConexionDB {
             while (result.next()) {
                 fk_period = result.getString("period_id");
             }
+            result.close();
             st.close();
             connection.close();
 
@@ -437,6 +442,7 @@ public class CRUD extends ConexionDB {
                     "customer_id, period_id) " +
                     "VALUES('" +basicPay+ "', '" +extra+ "', '" +extra+ "', '"+tax+"', " +
                     "'"+fk_cust+"', '" +fk_period+"')";
+            result.close();
             st.execute(query);
             st.close();
             connection.close();
@@ -479,6 +485,7 @@ public class CRUD extends ConexionDB {
             }
             phonePlanlist = FXCollections.observableArrayList(price, gb_data, gb_cloud,
                     gb_share, unlim_min, unlim_sms, minutes, netflix, descrip);
+            result.close();
             st.close();
             connection.close();
         } catch (Exception e) {

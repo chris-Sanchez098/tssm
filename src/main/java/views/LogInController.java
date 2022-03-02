@@ -127,7 +127,7 @@ public class LogInController implements Initializable {
         if(counter == 5){
             counter = 0;
             CRUD.setFalseStatus(user);
-            userMessage.setText("El usuario"+ user +"fue bloqueado por acceso irregular");
+            userMessage.setText(user +"fue bloqueado por acceso irregular");
         }
     }
 }
