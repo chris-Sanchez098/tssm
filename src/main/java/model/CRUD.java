@@ -482,8 +482,30 @@ public class CRUD extends ConexionDB {
             st.close();
             connection.close();
         } catch (Exception e) {
-            System.out.println("Error en insertPayment: " + e.getMessage());
+            System.out.println("Error en getPhonePlan: " + e.getMessage());
         }
         return phonePlanlist;
+    }
+
+    public static String[] getDescriptionPhonePlan() {
+        String descripPlans[] = new String[4];
+
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            String query = "SELECT description FROM phone_plan";
+            ResultSet result = st.executeQuery(query);
+
+            int i = 0;
+            while (result.next()) {
+                descripPlans[i] = result.getString("description");
+                i++;
+            }
+            st.close();
+            connection.close();
+        } catch (Exception e) {
+            System.out.println("Error en getDescriptionPhonePlan: " + e.getMessage());
+        }
+        return descripPlans;
     }
 }

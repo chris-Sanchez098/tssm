@@ -10,13 +10,14 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="685.0" prefWidth="1094.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.OperatorController">
+<AnchorPane prefHeight="739.0" prefWidth="1094.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.OperatorController">
    <children>
       <VBox layoutX="14.0" layoutY="14.0" prefHeight="656.0" prefWidth="163.0">
          <children>
@@ -35,7 +36,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnPhonePlans" mnemonicParsing="false" onAction="#clickPhonePlans" prefHeight="40.0" prefWidth="157.0" text="Planes móviles">
+            <Button fx:id="btnPhonePlans" mnemonicParsing="false" prefHeight="40.0" prefWidth="157.0" text="Planes móviles">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
@@ -56,7 +57,7 @@
       <Separator layoutX="476.0" layoutY="16.0" orientation="VERTICAL" prefHeight="509.0" prefWidth="25.0" visible="false" />
       <TabPane fx:id="tpMain" layoutX="178.0" layoutY="16.0" prefHeight="656.0" prefWidth="902.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Planes">
+          <Tab fx:id="tabPhonePlanes" text="Planes">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -72,15 +73,18 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextArea editable="false" prefHeight="150.0" prefWidth="200.0" text="Descripcion del plan...">
+                                    <TextArea fx:id="txtAreaPlan1" editable="false" prefHeight="150.0" prefWidth="200.0">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </TextArea>
-                                    <ImageView fitHeight="150.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="imagePlan1" fitHeight="150.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
+                                       <image>
+                                          <Image url="@../images/plan1.png" />
+                                       </image>
                                     </ImageView>
                                     <Label alignment="CENTER" prefHeight="27.0" prefWidth="389.0" text="Plan 25 GB">
                                        <VBox.margin>
@@ -90,15 +94,18 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextArea editable="false" prefHeight="150.0" prefWidth="383.0" text="Descripcion del plan...">
+                                    <TextArea fx:id="txtAreaPlan2" editable="false" prefHeight="150.0" prefWidth="383.0">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </TextArea>
-                                    <ImageView fitHeight="150.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="imagePlan2" fitHeight="150.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
+                                       <image>
+                                          <Image url="@../images/plan2.png" />
+                                       </image>
                                     </ImageView>
                                  </children>
                               </VBox>
@@ -112,15 +119,18 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextArea editable="false" prefHeight="150.0" prefWidth="197.0" text="Descripcion del plan...">
+                                    <TextArea fx:id="txtAreaPlan3" editable="false" prefHeight="150.0" prefWidth="197.0">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </TextArea>
-                                    <ImageView fitHeight="150.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="imagePlan3" fitHeight="150.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
+                                       <image>
+                                          <Image url="@../images/plan3.png" />
+                                       </image>
                                     </ImageView>
                                     <Label alignment="CENTER" prefHeight="27.0" prefWidth="389.0" text="Plan Ilimitado">
                                        <font>
@@ -130,15 +140,18 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextArea editable="false" prefHeight="150.0" prefWidth="405.0" text="Descripcion del plan...">
+                                    <TextArea fx:id="txtAreaPlan4" editable="false" prefHeight="150.0" prefWidth="405.0">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </TextArea>
-                                    <ImageView fitHeight="150.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="imagePlan4" fitHeight="150.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
+                                       <image>
+                                          <Image url="@../images/plan4.png" />
+                                       </image>
                                     </ImageView>
                                  </children>
                               </VBox>

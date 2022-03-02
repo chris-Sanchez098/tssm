@@ -22,6 +22,14 @@ import java.util.ResourceBundle;
 
 public class OperatorController implements Initializable {
     @FXML
+    public TextArea txtAreaPlan1;
+    @FXML
+    public TextArea txtAreaPlan2;
+    @FXML
+    public TextArea txtAreaPlan3;
+    @FXML
+    public TextArea txtAreaPlan4;
+    @FXML
     private Button bUpdateTb;
     @FXML
     private TableView<Customer> tbCustomers;
@@ -49,7 +57,13 @@ public class OperatorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        String descripPlans[] = new String[4];
+        descripPlans = CRUD.getDescriptionPhonePlan();
 
+        txtAreaPlan1.setText(descripPlans[0]);
+        txtAreaPlan2.setText(descripPlans[1]);
+        txtAreaPlan3.setText(descripPlans[2]);
+        txtAreaPlan4.setText(descripPlans[3]);
     }
 
     @FXML
