@@ -3,6 +3,7 @@ module tssm {
     requires javafx.fxml;
     requires java.sql;
     requires org.postgresql.jdbc;
+    requires com.opencsv;
 
     opens views to javafx.fxml;
     exports tssm;

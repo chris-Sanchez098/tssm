@@ -523,4 +523,32 @@ public class CRUD extends ConexionDB {
         }
         return descripPlans;
     }
+
+    /**
+     * Insert consume the database
+     * @param list String[]
+     */
+    public static void insertConsume(String[] list) {
+        String date_time = list[0];
+        int minutes = Integer.parseInt(list[1]);
+        int msg = Integer.parseInt(list[2]);
+        double gb_cloud = Double.parseDouble(list[3]);
+        double gb_Share = Double.parseDouble(list[4]);
+        double gb_data = Double.parseDouble(list[5]);
+        String phone_number_id = list[6];
+        int period_id = Integer.parseInt(list[7]);
+
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            String query = "INSERT INTO register_cust (date_time, minutes, msg, gb_cloud, gb_share, gb_data, phone_number_id, period_id)" +
+                    "VALUES ('"+date_time+"','"+minutes+"','"+msg+"','"+gb_cloud+"','"+gb_Share+"','"+gb_data+"','"+phone_number_id+"','"+period_id+"')";
+            st.execute(query);
+            st.close();
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

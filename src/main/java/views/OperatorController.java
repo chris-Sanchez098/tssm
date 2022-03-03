@@ -1,5 +1,6 @@
 package views;
 
+import com.opencsv.exceptions.CsvValidationException;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -12,13 +13,18 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.CRUD;
 import model.Customer;
 import tssm.App;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.opencsv.CSVReader;
 
 public class OperatorController implements Initializable {
     @FXML
@@ -53,7 +59,10 @@ public class OperatorController implements Initializable {
     public Button btnLogOut;
     @FXML
     private TextField tfSearch;
+    @FXML
+    private Button bUploadCSV;
     private ObservableList<Customer> customers;
+    private File file;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -102,6 +111,20 @@ public class OperatorController implements Initializable {
         }
     }
 
+    @FXML
+    public void clickUploadCSV(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Carga consumo");
+        if(event.getSource() == bUploadCSV) {
+            readCSV();
+            alert.setContentText("Los datos fueron cargados");
+        } else {
+            alert.setContentText("Los datos no fueron cargados");
+        }
+        alert.showAndWait();
+    }
+
     /**
      * Restrict a textField to only accept numbers
      * @param textField to restrict
@@ -146,6 +169,32 @@ public class OperatorController implements Initializable {
             this.tbCustomers.refresh();
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Open file chooser
+     */
+    public void selectFile() {
+        Stage stage = new Stage();
+        FileChooser fileChooser = new FileChooser();
+        stage.setTitle("Select csv file");
+        file = fileChooser.showOpenDialog(stage);
+    }
+
+    /**
+     * Read CSV file
+     */
+    public void readCSV() {
+        selectFile();
+        try {
+            CSVReader reader = new CSVReader(new FileReader(file));
+            String[] nextLine;
+            while ((nextLine = reader.readNext()) != null) {
+                CRUD.insertConsume(nextLine);
+            }
+        } catch (CsvValidationException | IOException e) {
+            e.printStackTrace();
         }
     }
 
