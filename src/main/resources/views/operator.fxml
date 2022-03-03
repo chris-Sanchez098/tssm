@@ -184,5 +184,6 @@
           </Tab>
         </tabs>
       </TabPane>
+      <Button fx:id="bUploadCSV" layoutX="929.0" layoutY="701.0" mnemonicParsing="false" onAction="#clickUploadCSV" text="Cargar datos" />
    </children>
 </AnchorPane>
