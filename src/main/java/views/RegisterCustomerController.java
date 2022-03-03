@@ -12,6 +12,7 @@ import model.CRUD;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -102,12 +103,22 @@ public class RegisterCustomerController implements Initializable {
 
     public void viewPhonePlans(ObservableList<String> list){
         txtPayment.setText(list.get(0));
-        txtGbData.setText(list.get(1));
+
+        if(Integer.parseInt(list.get(1)) > 40) txtGbData.setText("Ilimitados");
+        else txtGbData.setText(list.get(1));
+
         txtGbCloud.setText(list.get(2));
         txtGbShare.setText(list.get(3));
-        txtMinutesUnlimited.setText(list.get(4));
-        txtMsmUnlimited.setText(list.get(5));
-        txtMinutes.setText(list.get(6));
+
+        if(Objects.equals(list.get(4), "t")) txtMinutesUnlimited.setText("Si");
+        else txtMinutesUnlimited.setText("No");
+
+        if(Objects.equals(list.get(5), "t")) txtMsmUnlimited.setText("Si");
+        else txtMsmUnlimited.setText("No");
+
+        if(Integer.parseInt(list.get(6)) > 1000) txtMinutes.setText("Ilimitados");
+        else txtMinutes.setText(list.get(6));
+
         txtNetflix.setText(list.get(7));
         txtAreaMoreInfo.setText(list.get(8));
     }
@@ -273,6 +284,9 @@ public class RegisterCustomerController implements Initializable {
         return true;
     }
 
+    /**
+     * get system date and time
+     */
     public String dateTimeActual(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         String dateTime = dtf.format(LocalDateTime.now());

@@ -395,11 +395,12 @@ public class CRUD extends ConexionDB {
      */
     public static String insertPeriod(String dateTimeInit){
         String fk_period = null;
+        String dateTimeEnd = "Activo";
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
             String query = "INSERT INTO period (start_p, end_p) " +
-                    "VALUES('"+dateTimeInit+"', '" +dateTimeInit+"')";
+                    "VALUES('"+dateTimeInit+"', '" +dateTimeEnd+"')";
             st.execute(query);
 
             query = "SELECT * FROM period ORDER BY period_id DESC LIMIT 1";
@@ -452,6 +453,10 @@ public class CRUD extends ConexionDB {
         }
     }
 
+    /**
+     * get information about a phone plan
+     * @param planType to insert
+     */
     public static ObservableList<String> getPhonePlan(int planType) {
         String price = null;
         String gb_data = null;
@@ -494,6 +499,9 @@ public class CRUD extends ConexionDB {
         return phonePlanlist;
     }
 
+    /**
+     * get the description of a phone plan
+     */
     public static String[] getDescriptionPhonePlan() {
         String descripPlans[] = new String[4];
 

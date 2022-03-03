@@ -10,10 +10,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="729.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.RegisterCustomerController">
    <children>
-      <VBox layoutX="9.0" layoutY="35.0" prefHeight="420.0" prefWidth="102.0">
+      <VBox layoutX="9.0" layoutY="35.0" prefHeight="436.0" prefWidth="102.0">
          <children>
             <Label text="Nombre:">
                <VBox.margin>
@@ -61,6 +62,11 @@
                </VBox.margin>
             </Label>
             <Label text="Número móvil:">
+               <VBox.margin>
+                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+               </VBox.margin>
+            </Label>
+            <Label prefHeight="17.0" prefWidth="112.0" text="Más detalles:">
                <VBox.margin>
                   <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
                </VBox.margin>
@@ -121,7 +127,7 @@
             </TextField>
          </children>
       </VBox>
-      <HBox layoutX="25.0" layoutY="478.0" prefHeight="35.0" prefWidth="381.0">
+      <HBox layoutX="14.0" layoutY="494.0" prefHeight="35.0" prefWidth="381.0">
          <children>
             <Button fx:id="btnRegisterClient" mnemonicParsing="false" onAction="#clickRegisterCustomer" text="Registrar cliente">
                <HBox.margin>
@@ -140,18 +146,16 @@
             </Button>
          </children>
       </HBox>
-      <VBox layoutX="355.0" layoutY="35.0" prefHeight="315.0" prefWidth="134.0">
+      <VBox layoutX="343.0" layoutY="35.0" prefHeight="354.0" prefWidth="158.0">
          <children>
             <Label text="Información del plan:">
                <VBox.margin>
                   <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
                </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
             </Label>
-            <Separator orientation="VERTICAL" prefHeight="3.0" prefWidth="126.0" visible="false">
-               <VBox.margin>
-                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
-               </VBox.margin>
-            </Separator>
             <Label text="Valor mensual:">
                <VBox.margin>
                   <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
@@ -192,16 +196,11 @@
                   <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
                </VBox.margin>
             </Label>
-            <Label text="Más detalles:">
-               <VBox.margin>
-                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
-               </VBox.margin>
-            </Label>
          </children>
       </VBox>
-      <VBox layoutX="508.0" layoutY="35.0" prefHeight="443.0" prefWidth="194.0">
+      <VBox layoutX="508.0" layoutY="35.0" prefHeight="326.0" prefWidth="194.0">
          <children>
-            <Separator orientation="VERTICAL" prefHeight="63.0" prefWidth="174.0" visible="false">
+            <Separator orientation="VERTICAL" prefHeight="29.0" prefWidth="184.0" visible="false">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin></Separator>
@@ -245,12 +244,8 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextArea fx:id="txtAreaMoreInfo" editable="false" prefHeight="104.0" prefWidth="184.0">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </TextArea>
          </children>
       </VBox>
+      <TextArea fx:id="txtAreaMoreInfo" editable="false" layoutX="123.0" layoutY="399.0" prefHeight="84.0" prefWidth="577.0" />
    </children>
 </Pane>
