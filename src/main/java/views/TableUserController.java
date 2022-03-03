@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.CRUD;
 import model.User;
-import model.Validation;
+import reports.PrintReport;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -61,5 +61,14 @@ public class TableUserController implements Initializable {
             this.userTableView.refresh();
             this.userTableView.setItems(items);
         }
+    }
+
+    /**
+     * launch the window with report
+     * @param event
+     */
+    @FXML private void printEvent(ActionEvent event){
+        String query = "SELECT * FROM usuarios";
+        new PrintReport().showReport("prueba", query);
     }
 }

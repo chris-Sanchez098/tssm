@@ -4,6 +4,7 @@ module tssm {
     requires java.sql;
     requires org.postgresql.jdbc;
     requires com.opencsv;
+    requires jasperreports;
 
     opens views to javafx.fxml;
     exports tssm;

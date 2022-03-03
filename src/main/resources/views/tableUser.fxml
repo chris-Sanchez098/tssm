@@ -22,7 +22,12 @@
             </TextField>
             <Button mnemonicParsing="false" onAction="#updateEvent" text="Buscar">
                <HBox.margin>
-                  <Insets right="658.0" />
+                  <Insets right="560.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#printEvent" text="Imprimir">
+               <HBox.margin>
+                  <Insets right="20.0" />
                </HBox.margin>
             </Button>
               <Button fx:id="updateButton" onAction="#updateEvent" prefHeight="24.0" prefWidth="83.0" text="Actualizar">
