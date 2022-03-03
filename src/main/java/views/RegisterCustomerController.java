@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import model.CRUD;
+import model.Validation;
 
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -67,7 +68,7 @@ public class RegisterCustomerController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         CBSelectCustomer();
         CBSelectPlan();
-        setOnlyNum(txtIdentity);
+        Validation.setOnlyNum(txtIdentity);
     }
 
     @FXML
@@ -78,33 +79,31 @@ public class RegisterCustomerController implements Initializable {
     public void clickSelectPlan(ActionEvent actionEvent) {
         String phonePlan = comboxSelectPlan.getSelectionModel().getSelectedItem();
         ObservableList<String> phonePlanList = null;
-        switch (phonePlan){
-            case "Seleccionar":
-                cleanGUI();
-                break;
-            case "Plan 15 GB":
+        switch (phonePlan) {
+            case "Seleccionar" -> cleanGUI();
+            case "Plan 15 GB" -> {
                 phonePlanList = CRUD.getPhonePlan(2);
                 viewPhonePlans(phonePlanList);
-                break;
-            case "Plan 25 GB":
+            }
+            case "Plan 25 GB" -> {
                 phonePlanList = CRUD.getPhonePlan(3);
                 viewPhonePlans(phonePlanList);
-                break;
-            case "Plan 40 GB":
+            }
+            case "Plan 40 GB" -> {
                 phonePlanList = CRUD.getPhonePlan(4);
                 viewPhonePlans(phonePlanList);
-                break;
-            case "Plan ilimitado":
+            }
+            case "Plan ilimitado" -> {
                 phonePlanList = CRUD.getPhonePlan(5);
                 viewPhonePlans(phonePlanList);
-                break;
+            }
         }
     }
 
     public void viewPhonePlans(ObservableList<String> list){
         txtPayment.setText(list.get(0));
 
-        if(Integer.parseInt(list.get(1)) > 40) txtGbData.setText("Ilimitados");
+        if(Validation.parseInteger(list.get(1)) > 40) txtGbData.setText("Ilimitados");
         else txtGbData.setText(list.get(1));
 
         txtGbCloud.setText(list.get(2));
@@ -116,7 +115,7 @@ public class RegisterCustomerController implements Initializable {
         if(Objects.equals(list.get(5), "t")) txtMsmUnlimited.setText("Si");
         else txtMsmUnlimited.setText("No");
 
-        if(Integer.parseInt(list.get(6)) > 1000) txtMinutes.setText("Ilimitados");
+        if(Validation.parseInteger(list.get(6)) > 1000) txtMinutes.setText("Ilimitados");
         else txtMinutes.setText(list.get(6));
 
         txtNetflix.setText(list.get(7));
@@ -145,18 +144,10 @@ public class RegisterCustomerController implements Initializable {
         if(checkEmptyField(list) && !(typeCli == "Seleccionar") && !(plane == "Seleccionar")) {
             if(validateEmail(email)) {
                 switch (plane) {
-                    case "Plan 15 GB":
-                        plane = "2";
-                        break;
-                    case "Plan 25 GB":
-                        plane = "3";
-                        break;
-                    case "Plan 40 GB":
-                        plane = "4";
-                        break;
-                    case "Plan ilimitado":
-                        plane = "5";
-                        break;
+                    case "Plan 15 GB" -> plane = "2";
+                    case "Plan 25 GB" -> plane = "3";
+                    case "Plan 40 GB" -> plane = "4";
+                    case "Plan ilimitado" -> plane = "5";
                 }
                 insertCustomer = CRUD.insertCustomer(name, cc, email, add, city,
                         dpto, typeCli, plane, dateTime, serv, phoneNum);
@@ -177,7 +168,7 @@ public class RegisterCustomerController implements Initializable {
             alert.setContentText("Verifique que todos los campos esten llenos.");
             alert.showAndWait();
         }
-        if(insertCustomer == true){
+        if(insertCustomer){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setTitle("Registro de cliente");
@@ -247,18 +238,6 @@ public class RegisterCustomerController implements Initializable {
     }
 
     /**
-     * Restrict a textField to only accept numbers
-     * @param textField to restrict
-     */
-    private void setOnlyNum(TextField textField){
-        textField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                textField.setText(newValue.replaceAll("[^\\d]", ""));
-            }
-        });
-    }
-
-    /**
      * Check that all textFiel is not empty
      * @return boolean
      */
@@ -303,10 +282,6 @@ public class RegisterCustomerController implements Initializable {
                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 
         Matcher mather = pattern.matcher(email);
-        if (mather.find()) {
-            return true;
-        } else {
-            return false;
-        }
+        return mather.find();
     }
 }

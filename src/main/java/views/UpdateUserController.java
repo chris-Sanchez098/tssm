@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import model.CRUD;
 import model.User;
+import model.Validation;
 
 import java.net.URL;
 import java.util.Objects;
@@ -128,7 +129,7 @@ public class UpdateUserController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         newRolConfig();
-        setOnlyNum(newCC);
+        Validation.setOnlyNum(newCC);
     }
 
     /**
@@ -166,18 +167,6 @@ public class UpdateUserController implements Initializable {
         newStatus.setItems(list1);
         newStatus.getSelectionModel().selectFirst();
 
-    }
-
-    /**
-     * Set only numbers to input
-     * @param textField textField to set the property
-     */
-    private void setOnlyNum(TextField textField){
-        textField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                textField.setText(newValue.replaceAll("[^\\d]", ""));
-            }
-        });
     }
 
     /**

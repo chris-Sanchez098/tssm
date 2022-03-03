@@ -41,11 +41,8 @@ public class infoCustomerController {
     private TextField tfNetflix;
     @FXML
     private TextArea taDetails;
-    private Customer customer;
 
-    public void initAttributes(ObservableList<Customer> customers, Customer customer) {
-
-        this.customer = customer;
+    public void initAttributes(Customer customer) {
         this.tfCc.setText(customer.getCc());
         this.tfName.setText(customer.getName());
         this.tfEmail.setText(customer.getEmail());

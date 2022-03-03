@@ -503,7 +503,7 @@ public class CRUD extends ConexionDB {
      * get the description of a phone plan
      */
     public static String[] getDescriptionPhonePlan() {
-        String descripPlans[] = new String[4];
+        String[] descriptionPlans = new String[4];
 
         try {
             Connection connection = connect();
@@ -513,7 +513,7 @@ public class CRUD extends ConexionDB {
 
             int i = 0;
             while (result.next()) {
-                descripPlans[i] = result.getString("description");
+                descriptionPlans[i] = result.getString("description");
                 i++;
             }
             st.close();
@@ -521,7 +521,7 @@ public class CRUD extends ConexionDB {
         } catch (Exception e) {
             System.out.println("Error en getDescriptionPhonePlan: " + e.getMessage());
         }
-        return descripPlans;
+        return descriptionPlans;
     }
 
     /**
@@ -530,13 +530,13 @@ public class CRUD extends ConexionDB {
      */
     public static void insertConsume(String[] list) {
         String date_time = list[0];
-        int minutes = Integer.parseInt(list[1]);
-        int msg = Integer.parseInt(list[2]);
-        double gb_cloud = Double.parseDouble(list[3]);
-        double gb_Share = Double.parseDouble(list[4]);
-        double gb_data = Double.parseDouble(list[5]);
+        int minutes = Validation.parseInteger(list[1]);
+        int msg =  Validation.parseInteger(list[2]);
+        double gb_cloud = Validation.parseDouble(list[3]);
+        double gb_Share = Validation.parseDouble(list[4]);
+        double gb_data = Validation.parseDouble(list[5]);
         String phone_number_id = list[6];
-        int period_id = Integer.parseInt(list[7]);
+        int period_id =  Validation.parseInteger(list[7]);
 
         try {
             Connection connection = connect();

@@ -11,6 +11,8 @@ import javafx.scene.input.KeyEvent;
 import model.CRUD;
 import model.MD5;
 import model.User;
+import model.Validation;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -34,7 +36,7 @@ public class CreateUserController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initCB();
-        setOnlyNum(tfCC);
+        Validation.setOnlyNum(tfCC);
     }
 
     /**
@@ -170,17 +172,5 @@ public class CreateUserController implements Initializable {
                 && !tfName.getText().isEmpty() && !tfCC.getText().isEmpty()
                 && !tfUser.getText().isEmpty() && !pfPwd.getText().isEmpty()
                 && !pfPwdConfirm.getText().isEmpty();
-    }
-
-    /**
-     * Restrict a textField to only accept numbers
-     * @param textField to restrict
-     */
-    private void setOnlyNum(TextField textField){
-        textField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                textField.setText(newValue.replaceAll("[^\\d]", ""));
-            }
-        });
     }
 }

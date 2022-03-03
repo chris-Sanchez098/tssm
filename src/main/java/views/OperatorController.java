@@ -18,6 +18,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.CRUD;
 import model.Customer;
+import model.Validation;
 import tssm.App;
 import java.io.File;
 import java.io.FileReader;
@@ -61,18 +62,17 @@ public class OperatorController implements Initializable {
     private TextField tfSearch;
     @FXML
     private Button bUploadCSV;
-    private ObservableList<Customer> customers;
     private File file;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String descripPlans[] = new String[4];
-        descripPlans = CRUD.getDescriptionPhonePlan();
+        String[] descriptionPlans = new String[4];
+        descriptionPlans = CRUD.getDescriptionPhonePlan();
 
-        txtAreaPlan1.setText(descripPlans[0]);
-        txtAreaPlan2.setText(descripPlans[1]);
-        txtAreaPlan3.setText(descripPlans[2]);
-        txtAreaPlan4.setText(descripPlans[3]);
+        txtAreaPlan1.setText(descriptionPlans[0]);
+        txtAreaPlan2.setText(descriptionPlans[1]);
+        txtAreaPlan3.setText(descriptionPlans[2]);
+        txtAreaPlan4.setText(descriptionPlans[3]);
     }
 
     @FXML
@@ -99,6 +99,7 @@ public class OperatorController implements Initializable {
 
     @FXML
     public void updateTb(ActionEvent event) {
+        ObservableList<Customer> customers;
         if(event.getSource() == bUpdateTb) {
             customers = CRUD.getCustomer("");
             this.tbCustomers.setItems(customers);
@@ -126,22 +127,10 @@ public class OperatorController implements Initializable {
     }
 
     /**
-     * Restrict a textField to only accept numbers
-     * @param textField to restrict
-     */
-    private void setOnlyNum(TextField textField){
-        textField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                textField.setText(newValue.replaceAll("[^\\d]", ""));
-            }
-        });
-    }
-
-    /**
      * Initialize all columns of table
      */
     public void initTable() {
-        setOnlyNum(tfSearch);
+        Validation.setOnlyNum(tfSearch);
         this.colCC.setCellValueFactory(new PropertyValueFactory<Customer, String>("cc"));
         this.colName.setCellValueFactory(new PropertyValueFactory<Customer, String>("name"));
         this.colEmail.setCellValueFactory(new PropertyValueFactory<Customer, String>("email"));
@@ -158,7 +147,7 @@ public class OperatorController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/infoCustomer.fxml"));
             Parent root = loader.load();
             infoCustomerController ifoView = loader.getController();
-            ifoView.initAttributes(customers, customer);
+            ifoView.initAttributes(customer);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setTitle("Información detallada");

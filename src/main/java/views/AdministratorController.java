@@ -13,6 +13,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.CRUD;
 import model.User;
+import model.Validation;
 import tssm.App;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,11 +39,10 @@ public class AdministratorController implements Initializable {
     private Button bUpdateUser;
     @FXML
     private Button bUpdateTb;
-    private ObservableList<User> items;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setOnlyNum(tfSearch);
+        Validation.setOnlyNum(tfSearch);
         this.colCC.setCellValueFactory(new PropertyValueFactory<User, String>("cc"));
         this.colName.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
         this.colUser.setCellValueFactory(new PropertyValueFactory<User, String>("user"));
@@ -54,7 +54,7 @@ public class AdministratorController implements Initializable {
     @FXML
     private void listUsers(ActionEvent event) {
         if(event.getSource() == bUpdateTb) {
-            items = CRUD.getUsers("");
+            ObservableList<User> items = CRUD.getUsers("");
             this.tbUsers.setItems(items);
             bUpdateTb.setText("Actualizar");
         } else {
@@ -97,17 +97,5 @@ public class AdministratorController implements Initializable {
     @FXML
     private void launch(ActionEvent event) {
         App.openStage("/views/createUser","Creación usuarios");
-    }
-
-    /**
-     * Restrict a textField to only accept numbers
-     * @param textField to restrict
-     */
-    private void setOnlyNum(TextField textField){
-        textField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                textField.setText(newValue.replaceAll("[^\\d]", ""));
-            }
-        });
     }
 }

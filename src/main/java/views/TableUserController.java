@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.CRUD;
 import model.User;
+import model.Validation;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,7 +39,7 @@ public class TableUserController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setOnlyNum(searchTextF);
+        Validation.setOnlyNum(searchTextF);
         this.colCC.setCellValueFactory(new PropertyValueFactory<User, String>("cc"));
         this.colName.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
         this.colUser.setCellValueFactory(new PropertyValueFactory<User, String>("user"));
@@ -60,17 +61,5 @@ public class TableUserController implements Initializable {
             this.userTableView.refresh();
             this.userTableView.setItems(items);
         }
-    }
-
-    /**
-     * Restrict a textField to only accept numbers
-     * @param textField to restrict
-     */
-    private void setOnlyNum(TextField textField){
-        textField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                textField.setText(newValue.replaceAll("[^\\d]", ""));
-            }
-        });
     }
 }
