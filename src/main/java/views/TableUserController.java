@@ -68,7 +68,8 @@ public class TableUserController implements Initializable {
      * launch the window with report
      * @param event
      */
-    @FXML private void printEvent(ActionEvent event){
+    @FXML
+    private void printEvent(ActionEvent event){
         String query = "SELECT * FROM usuarios";
         new PrintReport().showReport("prueba", query);
     }

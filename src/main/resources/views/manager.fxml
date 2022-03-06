@@ -24,9 +24,9 @@
                        <Label text="Label" />
                    </content>
                    <content>
-                       <VBox prefHeight="200.0" prefWidth="100.0">
+                       <VBox>
                            <children>
-                               <fx:include source="charts.fxml" />
+                               <fx:include source="charts.fxml" prefWidth="1038.0"/>
                            </children>
                        </VBox>
                    </content>
@@ -38,9 +38,9 @@
                        </Group>
                    </graphic>
                    <content>
-                       <VBox prefHeight="200.0" prefWidth="100.0">
+                       <VBox>
                            <children>
-                               <fx:include source="tableUser.fxml" />
+                               <fx:include source="tableUser.fxml" prefWidth="1038.0"/>
                            </children>
                        </VBox>
                    </content>
@@ -52,9 +52,9 @@
                        </Group>
                    </graphic>
                    <content>
-                       <VBox prefHeight="200.0" prefWidth="100.0">
+                       <VBox>
                            <children>
-                               <Label text="Label3" />
+                               <fx:include source="tableCustomer.fxml" prefWidth="1038.0"/>
                            </children>
                        </VBox>
                    </content>
@@ -66,9 +66,9 @@
                        </Group>
                    </graphic>
                    <content>
-                       <VBox prefHeight="200.0" prefWidth="100.0">
+                       <VBox>
                            <children>
-                               <Label text="Label4" />
+                               <Label text="Label4" prefWidth="1045.0"/>
                            </children>
                        </VBox>
                    </content>

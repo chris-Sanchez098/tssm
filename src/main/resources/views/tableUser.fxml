@@ -10,14 +10,14 @@
 
 <VBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1036.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.TableUserController">
     <children>
-      <HBox alignment="CENTER" prefHeight="64.0" prefWidth="1036.0">
+      <HBox alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="1036.0">
          <VBox.margin>
             <Insets />
          </VBox.margin>
          <children>
             <TextField fx:id="searchTextF">
                <HBox.margin>
-                  <Insets left="20.0" right="20.0" />
+                  <Insets left="20.0" right="24.0" />
                </HBox.margin>
             </TextField>
             <Button mnemonicParsing="false" onAction="#updateEvent" text="Buscar">

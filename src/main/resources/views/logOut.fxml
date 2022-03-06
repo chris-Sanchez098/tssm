@@ -2,14 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 
-<BorderPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.LogOutController">
-   <right>
-      <Button fx:id="logOutButton" cancelButton="true" mnemonicParsing="false" onAction="#logOutEvent" style="-fx-background-color: lightsteelblue;" text="Cerrar Sesión" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets left="20.0" right="10.0" />
-         </BorderPane.margin>
+
+<HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.LogOutController">
+   <children>
+      <Button fx:id="logOutButton" cancelButton="true" mnemonicParsing="false" onAction="#logOutEvent" style="-fx-background-color: lightsteelblue;" text="Cerrar Sesión">
+         <HBox.margin>
+            <Insets right="20.0" />
+         </HBox.margin>
       </Button>
-   </right>
-</BorderPane>
+   </children>
+</HBox>
