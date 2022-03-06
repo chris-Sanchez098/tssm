@@ -1,6 +1,7 @@
 package views;
 
 import com.opencsv.exceptions.CsvValidationException;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -178,7 +179,7 @@ public class OperatorController implements Initializable {
      */
     public void readCSV() {
         selectFile();
-        ObservableList<String[]> info = null;
+        ObservableList<String[]> info = FXCollections.observableArrayList();
         try {
             CSVReader reader = new CSVReader(new FileReader(file));
             String[] nextLine;
