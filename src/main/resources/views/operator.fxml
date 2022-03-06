@@ -17,53 +17,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="739.0" prefWidth="1094.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.OperatorController">
+<AnchorPane prefHeight="695.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.OperatorController">
    <children>
-      <VBox layoutX="14.0" layoutY="14.0" prefHeight="656.0" prefWidth="163.0">
-         <children>
-            <ImageView fitHeight="96.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </ImageView>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="163.0" text="Operador">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </Label>
-            <Button fx:id="btnInit" mnemonicParsing="false" onAction="#clickInit" prefHeight="40.0" prefWidth="162.0" text="Inicio">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="btnPhonePlans" mnemonicParsing="false" prefHeight="40.0" prefWidth="157.0" text="Planes móviles">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="btnRegisClient" mnemonicParsing="false" onAction="#clickRegisClient" prefHeight="40.0" prefWidth="156.0" text="Registrar cliente">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#clickLogOut" prefHeight="40.0" prefWidth="157.0" text="Cerra sesión">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
       <Separator layoutX="177.0" layoutY="14.0" orientation="VERTICAL" prefHeight="509.0" prefWidth="25.0" visible="false" />
       <Separator layoutX="476.0" layoutY="16.0" orientation="VERTICAL" prefHeight="509.0" prefWidth="25.0" visible="false" />
-      <TabPane fx:id="tpMain" layoutX="178.0" layoutY="16.0" prefHeight="656.0" prefWidth="902.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tpMain" layoutX="25.0" layoutY="42.0" prefHeight="637.0" prefWidth="1001.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMinHeight="70.0" tabMinWidth="100.0">
         <tabs>
           <Tab fx:id="tabPhonePlanes" text="Planes">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Pane fx:id="pConsulta" layoutX="14.0" layoutY="14.0" prefHeight="553.0" prefWidth="871.0">
+                        <Pane fx:id="pConsulta" layoutX="14.0" layoutY="14.0" prefHeight="624.0" prefWidth="871.0">
                            <children>
-                              <VBox layoutX="3.0" layoutY="21.0" prefHeight="633.0" prefWidth="420.0">
+                              <VBox layoutX="3.0" layoutY="21.0" prefHeight="604.0" prefWidth="420.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="27.0" prefWidth="389.0" text="Plan 15 GB">
                                        <VBox.margin>
@@ -109,7 +75,7 @@
                                     </ImageView>
                                  </children>
                               </VBox>
-                              <VBox layoutX="456.0" layoutY="19.0" prefHeight="633.0" prefWidth="420.0">
+                              <VBox layoutX="456.0" layoutY="19.0" prefHeight="602.0" prefWidth="420.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="27.0" prefWidth="389.0" text="Plan 40 GB">
                                        <font>
@@ -182,8 +148,11 @@
                   </AnchorPane>
             </content>
           </Tab>
+         <Tab fx:id="tapRegister" text="Registrar cliente">
+            <fx:include source="registerCustomer.fxml" />
+         </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="bUploadCSV" layoutX="929.0" layoutY="701.0" mnemonicParsing="false" onAction="#clickUploadCSV" text="Cargar datos" />
+      <Button fx:id="bUploadCSV" layoutX="897.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickUploadCSV" text="Cargar datos" />
    </children>
 </AnchorPane>

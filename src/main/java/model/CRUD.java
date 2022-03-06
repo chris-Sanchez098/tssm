@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class CRUD extends ConexionDB {
@@ -525,30 +526,34 @@ public class CRUD extends ConexionDB {
     }
 
     /**
-     * Insert consume the database
-     * @param list String[]
+     * Insert consume into database
+     * @param info ObservableList<String []>
      */
-    public static void insertConsume(String[] list) {
-        String date_time = list[0];
-        int minutes = Validation.parseInteger(list[1]);
-        int msg =  Validation.parseInteger(list[2]);
-        double gb_cloud = Validation.parseDouble(list[3]);
-        double gb_Share = Validation.parseDouble(list[4]);
-        double gb_data = Validation.parseDouble(list[5]);
-        String phone_number_id = list[6];
-        int period_id =  Validation.parseInteger(list[7]);
-
+    public static void insertConsume(ObservableList<String[]> info)  {
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
-            String query = "INSERT INTO register_cust (date_time, minutes, msg, gb_cloud, gb_share, gb_data, phone_number_id, period_id)" +
-                    "VALUES ('"+date_time+"','"+minutes+"','"+msg+"','"+gb_cloud+"','"+gb_Share+"','"+gb_data+"','"+phone_number_id+"','"+period_id+"')";
-            st.execute(query);
-            st.close();
-            connection.close();
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            info.forEach( (list) -> {
+                String date_time = list[0];
+                int minutes = Validation.parseInteger(list[1]);
+                int msg =  Validation.parseInteger(list[2]);
+                double gb_cloud = Validation.parseDouble(list[3]);
+                double gb_Share = Validation.parseDouble(list[4]);
+                double gb_data = Validation.parseDouble(list[5]);
+                String phone_number_id = list[6];
+                int period_id =  Validation.parseInteger(list[7]);
+                String query = "INSERT INTO register_cust (date_time, minutes, msg, gb_cloud, gb_share, gb_data, phone_number_id, period_id)" +
+                        "VALUES ('"+date_time+"','"+minutes+"','"+msg+"','"+gb_cloud+"','"+gb_Share+"','"+gb_data+"','"+phone_number_id+"','"+period_id+"')";
+                try {
+                    st.execute(query);
+                    st.close();
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -62,6 +62,8 @@ public class OperatorController implements Initializable {
     private TextField tfSearch;
     @FXML
     private Button bUploadCSV;
+    @FXML
+    private Tab tapRegister;
     private File file;
 
     @Override
@@ -176,15 +178,16 @@ public class OperatorController implements Initializable {
      */
     public void readCSV() {
         selectFile();
+        ObservableList<String[]> info = null;
         try {
             CSVReader reader = new CSVReader(new FileReader(file));
             String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
-                CRUD.insertConsume(nextLine);
+                info.add(nextLine);
             }
         } catch (CsvValidationException | IOException e) {
             e.printStackTrace();
-        }
+        } CRUD.insertConsume(info);
     }
 
     @FXML

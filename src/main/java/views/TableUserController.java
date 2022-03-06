@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.CRUD;
 import model.User;
+import model.Validation;
 import reports.PrintReport;
 
 import java.net.URL;
