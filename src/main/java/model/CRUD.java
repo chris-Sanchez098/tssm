@@ -542,16 +542,17 @@ public class CRUD extends ConexionDB {
                 double gb_data = Validation.parseDouble(list[5]);
                 String phone_number_id = list[6];
                 int period_id =  Validation.parseInteger(list[7]);
-                String query = "INSERT INTO register_cust (date_time, minutes, msg, gb_cloud, gb_share, gb_data, phone_number_id, period_id)" +
-                        "VALUES ('"+date_time+"','"+minutes+"','"+msg+"','"+gb_cloud+"','"+gb_Share+"','"+gb_data+"','"+phone_number_id+"','"+period_id+"')";
+                String query = "INSERT INTO register_cust (date_time, minutes, msg, gb_cloud, gb_share, gb_data, " +
+                        "phone_number_id, period_id)" + "VALUES ('"+date_time+"','"+minutes+"','"+msg+"','"+gb_cloud+"'," +
+                        "'"+gb_Share+"','"+gb_data+"','"+phone_number_id+"','"+period_id+"')";
                 try {
                     st.execute(query);
-                    st.close();
-                    connection.close();
-                } catch (Exception e) {
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
             });
+            st.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
