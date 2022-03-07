@@ -22,7 +22,7 @@
    <children>
       <Separator layoutX="177.0" layoutY="14.0" orientation="VERTICAL" prefHeight="509.0" prefWidth="25.0" visible="false" />
       <Separator layoutX="476.0" layoutY="16.0" orientation="VERTICAL" prefHeight="509.0" prefWidth="25.0" visible="false" />
-      <TabPane fx:id="tpMain" layoutX="25.0" layoutY="42.0" prefHeight="637.0" prefWidth="1223.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMinHeight="70.0" tabMinWidth="100.0">
+      <TabPane fx:id="tpMain" layoutX="20.0" layoutY="42.0" prefHeight="679.0" prefWidth="1228.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMinHeight="70.0" tabMinWidth="100.0">
         <tabs>
           <Tab fx:id="tabPhonePlanes" text="Planes">
             <content>
@@ -309,6 +309,9 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
+            </Tab>
+            <Tab text="Modificar cliente">
+               <fx:include source="updateCustome.fxml" />
             </Tab>
         </tabs>
       </TabPane>
