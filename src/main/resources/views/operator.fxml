@@ -13,30 +13,31 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="695.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.OperatorController">
+<AnchorPane prefHeight="725.0" prefWidth="1270.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.OperatorController">
    <children>
       <Separator layoutX="177.0" layoutY="14.0" orientation="VERTICAL" prefHeight="509.0" prefWidth="25.0" visible="false" />
       <Separator layoutX="476.0" layoutY="16.0" orientation="VERTICAL" prefHeight="509.0" prefWidth="25.0" visible="false" />
-      <TabPane fx:id="tpMain" layoutX="25.0" layoutY="42.0" prefHeight="637.0" prefWidth="1001.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMinHeight="70.0" tabMinWidth="100.0">
+      <TabPane fx:id="tpMain" layoutX="25.0" layoutY="42.0" prefHeight="637.0" prefWidth="1223.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMinHeight="70.0" tabMinWidth="100.0">
         <tabs>
           <Tab fx:id="tabPhonePlanes" text="Planes">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="637.0" prefWidth="1130.0">
                      <children>
-                        <Pane fx:id="pConsulta" layoutX="14.0" layoutY="14.0" prefHeight="624.0" prefWidth="871.0">
+                        <Pane fx:id="pConsulta" layoutX="14.0" layoutY="14.0" prefHeight="624.0" prefWidth="1121.0">
                            <children>
-                              <VBox layoutX="3.0" layoutY="21.0" prefHeight="604.0" prefWidth="420.0">
+                              <VBox layoutX="96.0" layoutY="16.0" prefHeight="604.0" prefWidth="470.0">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="27.0" prefWidth="389.0" text="Plan 15 GB">
+                                    <Label alignment="CENTER" prefHeight="27.0" prefWidth="500.0" text="Plan 15 GB">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font size="24.0" />
                                        </font>
                                     </Label>
                                     <TextArea fx:id="txtAreaPlan1" editable="false" prefHeight="140.0" prefWidth="200.0">
@@ -44,81 +45,229 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </TextArea>
-                                    <ImageView fx:id="imagePlan1" fitHeight="150.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true">
+                                    <HBox prefHeight="100.0" prefWidth="410.0">
+                                       <children>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                             </HBox.margin>
+                                             <image>
+                                                <Image url="@../images/icons8-whatsapp.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                             </HBox.margin>
+                                             <image>
+                                                <Image url="@../images/icons8-facebook.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                             </HBox.margin>
+                                             <image>
+                                                <Image url="@../images/icons8-twitter.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                             </HBox.margin>
+                                             <image>
+                                                <Image url="@../images/icons8-waze.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
-                                       <image>
-                                          <Image url="@../images/plan1.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label alignment="CENTER" prefHeight="27.0" prefWidth="389.0" text="Plan 25 GB">
+                                    </HBox>
+                                    <Label alignment="CENTER" prefHeight="27.0" prefWidth="500.0" text="Plan 25 GB">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font size="24.0" />
                                        </font>
                                     </Label>
-                                    <TextArea fx:id="txtAreaPlan2" editable="false" prefHeight="150.0" prefWidth="383.0">
+                                    <TextArea fx:id="txtAreaPlan2" editable="false" prefHeight="140.0" prefWidth="200.0">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </TextArea>
-                                    <ImageView fx:id="imagePlan2" fitHeight="150.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true">
+                                    <HBox prefHeight="100.0" prefWidth="410.0">
+                                       <children>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                             <image>
+                                                <Image url="@../images/icons8-whatsapp.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                             <image>
+                                                <Image url="@../images/icons8-facebook.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                             <image>
+                                                <Image url="@../images/icons8-twitter.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                             <image>
+                                                <Image url="@../images/icons8-waze.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/icons8-instagram.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
-                                       <image>
-                                          <Image url="@../images/plan2.png" />
-                                       </image>
-                                    </ImageView>
+                                    </HBox>
                                  </children>
                               </VBox>
-                              <VBox layoutX="456.0" layoutY="19.0" prefHeight="602.0" prefWidth="420.0">
+                              <VBox layoutX="631.0" layoutY="16.0" prefHeight="604.0" prefWidth="470.0">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="27.0" prefWidth="389.0" text="Plan 40 GB">
+                                    <Label alignment="CENTER" prefHeight="27.0" prefWidth="500.0" text="Plan 40 GB">
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font size="24.0" />
                                        </font>
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextArea fx:id="txtAreaPlan3" editable="false" prefHeight="140.0" prefWidth="197.0">
+                                    <TextArea fx:id="txtAreaPlan3" editable="false" prefHeight="140.0" prefWidth="200.0">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </TextArea>
-                                    <ImageView fx:id="imagePlan3" fitHeight="150.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true">
+                                    <HBox prefHeight="100.0" prefWidth="410.0">
+                                       <children>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                             <image>
+                                                <Image url="@../images/icons8-whatsapp.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                             <image>
+                                                <Image url="@../images/icons8-facebook.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                             <image>
+                                                <Image url="@../images/icons8-twitter.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                             <image>
+                                                <Image url="@../images/icons8-waze.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/icons8-instagram.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
-                                       <image>
-                                          <Image url="@../images/plan3.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label alignment="CENTER" prefHeight="27.0" prefWidth="389.0" text="Plan Ilimitado">
+                                    </HBox>
+                                    <Label alignment="CENTER" prefHeight="27.0" prefWidth="500.0" text="Plan ilimitado">
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font size="24.0" />
                                        </font>
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextArea fx:id="txtAreaPlan4" editable="false" prefHeight="150.0" prefWidth="405.0">
+                                    <TextArea fx:id="txtAreaPlan4" editable="false" prefHeight="140.0" prefWidth="200.0">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </TextArea>
-                                    <ImageView fx:id="imagePlan4" fitHeight="150.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true">
+                                    <HBox prefHeight="100.0" prefWidth="410.0">
+                                       <children>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                             <image>
+                                                <Image url="@../images/icons8-playstore.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                             <image>
+                                                <Image url="@../images/icons8-app-store.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                             <image>
+                                                <Image url="@../images/icons8-netflix.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                             <image>
+                                                <Image url="@../images/icons8-whatsapp.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/icons8-facebook.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
-                                       <image>
-                                          <Image url="@../images/plan4.png" />
-                                       </image>
-                                    </ImageView>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
@@ -151,8 +300,19 @@
          <Tab fx:id="tapRegister" text="Registrar cliente">
             <fx:include source="registerCustomer.fxml" />
          </Tab>
+            <Tab text="Pago manual">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Pagos de bancos">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="bUploadCSV" layoutX="897.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickUploadCSV" text="Cargar datos" />
+      <Button fx:id="bUploadCSV" layoutX="1024.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickUploadCSV" text="Cargar datos" />
+      <Button fx:id="btnLogOut" layoutX="1148.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickLogOut" text="Cerrar sesión" />
    </children>
 </AnchorPane>

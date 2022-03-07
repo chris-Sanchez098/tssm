@@ -401,7 +401,7 @@ public class CRUD extends ConexionDB {
             Connection connection = connect();
             Statement st = connection.createStatement();
             String query = "INSERT INTO period (start_p, end_p) " +
-                    "VALUES('"+dateTimeInit+"', '" +dateTimeEnd+"')";
+                    "VALUES('"+dateTimeInit+"', '" +dateTimeInit+"')";
             st.execute(query);
 
             query = "SELECT * FROM period ORDER BY period_id DESC LIMIT 1";
