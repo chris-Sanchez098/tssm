@@ -605,4 +605,45 @@ public class CRUD extends ConexionDB {
             return false;
         }
     }
+
+    public static ObservableList<Sales> getSales(String id){
+        ObservableList<Sales> salesList = FXCollections.observableArrayList();
+        String query;
+        try {
+            if (id.isEmpty()) {
+                query = "SELECT name, cc, phone_plan_id, date_create, cust_type, COUNT(number_id) AS \"lines\"\n" +
+                        "FROM customer cst NATURAL JOIN customer_type cst_ty NATURAL JOIN address ads\n" +
+                        "NATURAL JOIN phone_plan pp NATURAL JOIN phone_number pn NATURAL JOIn date_customer\n" +
+                        "group by cc, date_create, cust_type\n" +
+                        "limit 20;";
+            }
+            else{
+                query = "SELECT name, cc, phone_plan_id, date_create, cust_type, COUNT(number_id) AS \"lines\"\n" +
+                        "FROM customer cst NATURAL JOIN customer_type cst_ty NATURAL JOIN address ads\n" +
+                        "NATURAL JOIN phone_plan pp NATURAL JOIN phone_number pn NATURAL JOIn date_customer\n" +
+                        "WHERE cc = '" + id  +"';\n" +
+                        "GROUP by cc, date_create, cust_type";
+            }
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            ResultSet result = st.executeQuery(query);
+            while (result.next()) {
+                String name = result.getString(1);
+                String cc = result.getString(2);
+                String date = result.getString(4);
+                String customerType = result.getString(5);
+                int phonePlan = result.getInt(3);
+                int lines = result.getInt(6);
+                Sales sales = new Sales(date, cc, name, customerType, phonePlan, lines);
+                salesList.add(sales);
+            }
+            result.close();
+            st.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return salesList;
+    }
+
 }

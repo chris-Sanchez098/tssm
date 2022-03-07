@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import tssm.App;
 
@@ -13,7 +14,7 @@ public class LogOutController {
     Stage stage;
 
     @FXML
-    private BorderPane scenePane;
+    private HBox scenePane;
     /**
      * Log out
      * @param event get the event

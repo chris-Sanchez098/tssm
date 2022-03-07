@@ -32,19 +32,19 @@
    <center>
       <AnchorPane prefHeight="582.0" prefWidth="917.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tbUsers" layoutX="3.0" layoutY="53.0" prefHeight="566.0" prefWidth="909.0">
+            <TableView fx:id="tbUsers" layoutX="3.0" layoutY="53.0" prefHeight="555.0" prefWidth="892.0">
               <columns>
                 <TableColumn fx:id="colCC" editable="false" prefWidth="127.0" resizable="false" text="Identificación" />
-                <TableColumn fx:id="colName" editable="false" prefWidth="259.0" resizable="false" text="Nombre" />
-                  <TableColumn fx:id="colUser" editable="false" minWidth="0.0" prefWidth="99.0" resizable="false" text="Usuario" />
-                  <TableColumn fx:id="colPwd" editable="false" minWidth="0.0" prefWidth="255.0" resizable="false" text="Contraseña" />
-                  <TableColumn fx:id="colRol" editable="false" prefWidth="110.0" resizable="false" text="Cargo" />
-                  <TableColumn fx:id="colStatus" editable="false" prefWidth="57.0" resizable="false" text="Estado" />
+                <TableColumn fx:id="colName" editable="false" prefWidth="237.6666259765625" resizable="false" text="Nombre" />
+                  <TableColumn fx:id="colUser" editable="false" minWidth="0.0" prefWidth="116.33331298828125" resizable="false" text="Usuario" />
+                  <TableColumn fx:id="colPwd" editable="false" minWidth="0.0" prefWidth="197.66668701171875" resizable="false" text="Contraseña" />
+                  <TableColumn fx:id="colRol" editable="false" prefWidth="121.3333740234375" resizable="false" text="Cargo" />
+                  <TableColumn fx:id="colStatus" editable="false" prefWidth="90.6666259765625" resizable="false" text="Habilitado" />
               </columns>
             </TableView>
             <Button layoutX="184.0" layoutY="19.0" mnemonicParsing="false" onAction="#listUsers" prefHeight="24.0" prefWidth="79.0" text="Buscar" />
             <TextField fx:id="tfSearch" layoutX="3.0" layoutY="19.0" />
-            <Button fx:id="bUpdateTb" layoutX="757.0" layoutY="19.0" mnemonicParsing="false" onAction="#listUsers" prefHeight="22.0" prefWidth="155.0" text="Cargar usuarios" />
+            <Button fx:id="bUpdateTb" layoutX="757.0" layoutY="19.0" mnemonicParsing="false" onAction="#listUsers" prefHeight="24.0" prefWidth="139.0" text="Cargar usuarios" />
          </children>
       </AnchorPane>
    </center>

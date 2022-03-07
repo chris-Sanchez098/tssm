@@ -62,13 +62,13 @@
                <Tab>
                    <graphic>
                        <Group>
-                           <Label rotate="90" text="Pagos" />
+                           <Label rotate="90" text="Ventas" />
                        </Group>
                    </graphic>
                    <content>
                        <VBox>
                            <children>
-                               <Label text="Label4" prefWidth="1045.0"/>
+                               <fx:include source="tableSales.fxml" prefWidth="1038.0"/>
                            </children>
                        </VBox>
                    </content>
