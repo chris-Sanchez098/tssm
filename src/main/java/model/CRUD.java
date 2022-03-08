@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 
 public class CRUD extends ConexionDB {
     /**
@@ -555,6 +556,53 @@ public class CRUD extends ConexionDB {
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static Vector<Payment> viewPayment(String userId) {
+        Vector<Payment> dataPaymentList = new Vector<>();
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            String query = "SELECT name, customer_id, basic_pay, extra_pay_min, extra_pay_data, taxes  " +
+                    "FROM payment py JOIN customer cs " +
+                    "ON py.customer_id = cs.cc WHERE cs.cc = '"+userId+"'";
+
+            ResultSet result = st.executeQuery(query);
+
+            while (result.next()) {
+                String name = result.getString("name");
+                String customerId = result.getString("customer_id");
+                String basicPay = result.getString("basic_pay");
+                String extraPayMin = result.getString("extra_pay_min");
+                String extraPayData = result.getString("extra_pay_data");
+                String taxes = result.getString("taxes");
+                Payment dataPayment = new Payment(name, customerId, basicPay, extraPayMin, extraPayData, taxes);
+                dataPaymentList.add(dataPayment);
+            }
+            st.close();
+            connection.close();
+        } catch (Exception e) {
+            System.out.println("Error en registerPayment: " + e.getMessage());
+        }
+        return dataPaymentList;
+    }
+
+    public static boolean registerPayment(String userId){
+        /*no es userId, es payment_id*/
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            String query = "INSERT INTO pay (payment_processed, payment_id)" +
+                    "VALUES ('"+true+"', '"+userId+"')";
+
+            ResultSet result = st.executeQuery(query);
+            st.close();
+            connection.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error en registerPayment: " + e.getMessage());
+            return false;
         }
     }
 }

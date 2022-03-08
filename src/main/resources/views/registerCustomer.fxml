@@ -127,7 +127,7 @@
             </TextField>
          </children>
       </VBox>
-      <HBox layoutX="74.0" layoutY="535.0" prefHeight="35.0" prefWidth="381.0">
+      <HBox layoutX="545.0" layoutY="536.0" prefHeight="35.0" prefWidth="246.0">
          <children>
             <Button fx:id="btnRegisterClient" mnemonicParsing="false" onAction="#clickRegisterCustomer" text="Registrar cliente">
                <HBox.margin>
@@ -135,11 +135,6 @@
                </HBox.margin>
             </Button>
             <Button fx:id="btnCleanFields" mnemonicParsing="false" onAction="#clickCleanFields" text="Borrar campos">
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="20.0" top="5.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="btnCancelRegister" mnemonicParsing="false" onAction="#clickCancelRegister" text="Cancelar registro">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="20.0" top="5.0" />
                </HBox.margin>

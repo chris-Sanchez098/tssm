@@ -19,6 +19,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.CRUD;
 import model.Customer;
+import model.Payment;
 import model.Validation;
 import tssm.App;
 import java.io.File;
@@ -26,6 +27,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Vector;
+
 import com.opencsv.CSVReader;
 
 public class OperatorController implements Initializable {
@@ -37,6 +40,18 @@ public class OperatorController implements Initializable {
     public TextArea txtAreaPlan3;
     @FXML
     public TextArea txtAreaPlan4;
+    @FXML
+    public Button btnSearchUser;
+    @FXML
+    public TextField txtUserId;
+    @FXML
+    public TextField txtUserName;
+    @FXML
+    public TextField txtPaymentValue;
+    @FXML
+    public Button btnRegisterPayment;
+    @FXML
+    public TextField txtPaymentDate;
     @FXML
     private Button bUpdateTb;
     @FXML
@@ -76,6 +91,7 @@ public class OperatorController implements Initializable {
         txtAreaPlan2.setText(descriptionPlans[1]);
         txtAreaPlan3.setText(descriptionPlans[2]);
         txtAreaPlan4.setText(descriptionPlans[3]);
+        Validation.setOnlyNum(txtUserId);
     }
 
     @FXML
@@ -203,5 +219,59 @@ public class OperatorController implements Initializable {
             alert.setContentText("Se debe selecionar un cliente");
             alert.showAndWait();
         }
+    }
+
+    public void clickSearchUser(ActionEvent actionEvent) {
+        cleanGUIPayment();
+        double total = 0;
+        String userId = txtUserId.getText().toLowerCase();
+        Vector<Payment> dataPaymentList;
+
+        if(!(txtUserId.getText().isEmpty())){
+            dataPaymentList = CRUD.viewPayment(userId);
+            if(!dataPaymentList.isEmpty()) {
+                total = calculatePayment(dataPaymentList);
+                txtUserName.setText(dataPaymentList.get(0).getName());
+                txtPaymentValue.setText(String.valueOf(total));
+            }
+            else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Usuario no encontrado");
+                alert.setContentText("!El usuario ingresado no existe, intente de nuevo!");
+                alert.showAndWait();
+            }
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Campo vacío!");
+            alert.setContentText("Por favor ingrese el número de identificación del usuario");
+            alert.showAndWait();
+        }
+    }
+
+    public void cleanGUIPayment(){
+        txtUserName.setText("");
+        txtPaymentValue.setText("");
+        txtPaymentDate.setText("");
+    }
+
+    public double calculatePayment(Vector<Payment> payment){
+        double total = 0;
+        for (Payment py: payment){
+            total = Double.parseDouble(py.getBasicPay()) +
+                    Double.parseDouble(py.getExtraPayMin()) +
+                    Double.parseDouble(py.getExtraPayData()) +
+                    Double.parseDouble(py.getTaxes());
+        }
+        return total;
+    }
+
+    public void clickRegisterPayment(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setContentText("Aún no está implementada ésta acción");
+        alert.showAndWait();
     }
 }
