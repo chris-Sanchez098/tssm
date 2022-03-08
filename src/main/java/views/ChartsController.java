@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
-import model.ChartsQuerys;
+import model.ChartsQuery;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,7 +23,7 @@ public class ChartsController implements Initializable {
     private PieChart payChart;
 
     @FXML
-    private LineChart customerChart;
+    private LineChart salesChart;
 
     @FXML
     private CategoryAxis xAxisUser;
@@ -33,7 +33,7 @@ public class ChartsController implements Initializable {
         buildBarChartUser();
         buildBarChartPlan();
         buildPieChartPay();
-        buildLineChartCustomer();
+        buildLineChartSales();
     }
 
 
@@ -56,8 +56,8 @@ public class ChartsController implements Initializable {
      * build BarChart from attribute rol in user
      */
     private void buildBarChartUser(){
-        XYChart.Series<String, Number> rolesOn = ChartsQuerys.getRoles(true);
-        XYChart.Series<String, Number> rolesOff = ChartsQuerys.getRoles(false);
+        XYChart.Series<String, Number> rolesOn = ChartsQuery.getRoles(true);
+        XYChart.Series<String, Number> rolesOff = ChartsQuery.getRoles(false);
         rolesOn.setName("Habilitados");
         rolesOff.setName("Inhabilitados");
         xAxisUser.setCategories(getYaxis(rolesOn.getData()));
@@ -67,7 +67,7 @@ public class ChartsController implements Initializable {
      * build BarChart from attribute plan in customer
      */
     private void buildBarChartPlan(){
-        XYChart.Series<Number, String> plans = ChartsQuerys.getPlans();
+        XYChart.Series<Number, String> plans = ChartsQuery.getPlans();
         plans.setName("Plan de telefonía movíl");
         plansChart.getData().add(plans);
     }
@@ -77,26 +77,17 @@ public class ChartsController implements Initializable {
      * build BarChart from attribute payAccepted in pay
      */
     private void buildPieChartPay(){
-        payChart.getData().addAll(
-          new PieChart.Data("Pagados", 54),
-          new PieChart.Data("Sin pagar", 46)
-        );
+        ObservableList<PieChart.Data> list = ChartsQuery.getPercent();
+        payChart.getData().addAll(list);
     }
 
     /**
      * build BarChart from attribute date in customerCreate
      */
-    private void buildLineChartCustomer(){
-        XYChart.Series<String, Number> customers = new XYChart.Series<>(
-                FXCollections.observableArrayList(
-                        new XYChart.Data<>("Enero", 49),
-                        new XYChart.Data<>("Febrero", 51),
-                        new XYChart.Data<>("Marzo", 63),
-                        new XYChart.Data<>("Abril", 54)
-                )
-        );
-        customers.setName("Ventas por mes");
-        customerChart.getData().add(customers);
+    private void buildLineChartSales(){
+        XYChart.Series<String, Number> sales = ChartsQuery.getSales();
+        sales.setName("Ventas últimos 12 meses");
+        salesChart.getData().add(sales);
     }
 
     /**
@@ -109,7 +100,7 @@ public class ChartsController implements Initializable {
         buildBarChartUser();
         buildBarChartPlan();
         buildPieChartPay();
-        buildLineChartCustomer();
+        buildLineChartSales();
     }
 
     /**
@@ -119,7 +110,7 @@ public class ChartsController implements Initializable {
         userChart.getData().remove(0,2);
         plansChart.getData().remove(0);
         payChart.getData().remove(0,2);
-        customerChart.getData().remove(0);
+        salesChart.getData().remove(0);
     }
 }
 

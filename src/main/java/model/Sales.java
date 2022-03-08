@@ -9,6 +9,15 @@ public class Sales {
     private int phonePlan;
     private int lines;
 
+    /**
+     * constructor
+     * @param date
+     * @param id
+     * @param name
+     * @param customerType
+     * @param phonePlan
+     * @param lines
+     */
     public Sales(String date, String id, String name, String customerType, int phonePlan, int lines) {
         this.date = date;
         this.id = id;
@@ -18,53 +27,52 @@ public class Sales {
         this.lines = lines;
     }
 
-
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
+    /**
+     *
+     * @return date of a sale
+     */
     public String getDate() {
         return date;
     }
 
+    /**
+     *
+     * @return id from a customer
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
+    /**
+     *
+     * @return name from a customer
+     */
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    /**
+     *
+     * @return type of customer
+     */
     public String getCustomerType() {
         return customerType;
     }
 
-    public void setCustomerType(String customerType) {
-        this.customerType = customerType;
-    }
-
+    /**
+     *
+     * @return phone plan of a sale
+     */
     public int getPhonePlan() {
         return phonePlan;
     }
 
-    public void setPhonePlan(int phonePlan) {
-        this.phonePlan = phonePlan;
-    }
-
+    /**
+     *
+     * @return lines linked of a sale
+     */
     public int getLines() {
         return lines;
     }
 
-    public void setLines(int lines) {
-        this.lines = lines;
-    }
 }

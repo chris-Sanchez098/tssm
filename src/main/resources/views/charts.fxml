@@ -15,7 +15,7 @@
 
 <VBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1036.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ChartsController">
    <children>
-      <Button fx:id="updateButton" onAction="#updateEvent" text="Actualizar">
+      <Button onAction="#updateEvent" text="Actualizar">
          <VBox.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </VBox.margin></Button>
@@ -38,12 +38,12 @@
                      </tickLabelFont></CategoryAxis>
               </xAxis>
               <yAxis>
-                <NumberAxis fx:id="yAxisUser" side="LEFT" />
+                <NumberAxis side="LEFT" />
               </yAxis>
             </BarChart>
-            <LineChart fx:id="customerChart" prefHeight="279.0" prefWidth="526.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <LineChart fx:id="salesChart" prefHeight="279.0" prefWidth="526.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
               <xAxis>
-                <CategoryAxis side="BOTTOM" />
+                <CategoryAxis side="BOTTOM"/>
               </xAxis>
               <yAxis>
                 <NumberAxis side="LEFT" />
