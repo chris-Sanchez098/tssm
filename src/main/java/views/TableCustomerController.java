@@ -27,7 +27,7 @@ public class TableCustomerController implements Initializable {
     @FXML
     private TableColumn<Customer, String> colEmail;
     @FXML
-    private TableColumn<Customer, Integer> colCustomerType;
+    private TableColumn<Customer, String> colCustomerType;
     @FXML
     private TableColumn<Customer, Integer> colPhonePlan;
     @FXML
@@ -59,7 +59,7 @@ public class TableCustomerController implements Initializable {
         this.colCC.setCellValueFactory(new PropertyValueFactory<Customer, String>("cc"));
         this.colName.setCellValueFactory(new PropertyValueFactory<Customer, String>("name"));
         this.colEmail.setCellValueFactory(new PropertyValueFactory<Customer, String>("email"));
-        this.colCustomerType.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("customerTypeId"));
+        this.colCustomerType.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerType"));
         this.colPhonePlan.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("phonePlanId"));
     }
 
@@ -73,7 +73,8 @@ public class TableCustomerController implements Initializable {
 
     @FXML
     private void printEvent(ActionEvent event){
-        String query = "SELECT * FROM usuarios";
-        new PrintReport().showReport("prueba", query);
+        String query = "SELECT name, cc, email, phone_plan_id, cust_type \n" +
+                "FROM customer NATURAL JOIN customer_type";
+        new PrintReport().showReport("customerReport", query);
     }
 }

@@ -76,7 +76,10 @@ public class TableSalesController implements Initializable {
 
     @FXML
     private void printEvent(ActionEvent event){
-        String query = "SELECT * FROM usuarios";
-        new PrintReport().showReport("prueba", query);
+        String query = "SELECT name, cc, phone_plan_id, date_create, cust_type, COUNT(number_id) AS \"lines\"\n" +
+                "FROM customer NATURAL JOIN customer_type\n" +
+                "NATURAL JOIN phone_number NATURAL JOIN date_customer\n" +
+                "group by cc, date_create, cust_type;";
+        new PrintReport().showReport("saleReport", query);
     }
 }

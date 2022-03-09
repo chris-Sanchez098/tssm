@@ -612,15 +612,15 @@ public class CRUD extends ConexionDB {
         try {
             if (id.isEmpty()) {
                 query = "SELECT name, cc, phone_plan_id, date_create, cust_type, COUNT(number_id) AS \"lines\"\n" +
-                        "FROM customer cst NATURAL JOIN customer_type cst_ty NATURAL JOIN address ads\n" +
-                        "NATURAL JOIN phone_plan pp NATURAL JOIN phone_number pn NATURAL JOIn date_customer\n" +
+                        "FROM customer NATURAL JOIN customer_type \n" +
+                        "NATURAL JOIN phone_number NATURAL JOIn date_customer\n" +
                         "group by cc, date_create, cust_type\n" +
                         "limit 20;";
             }
             else{
                 query = "SELECT name, cc, phone_plan_id, date_create, cust_type, COUNT(number_id) AS \"lines\"\n" +
-                        "FROM customer cst NATURAL JOIN customer_type cst_ty NATURAL JOIN address ads\n" +
-                        "NATURAL JOIN phone_plan pp NATURAL JOIN phone_number pn NATURAL JOIn date_customer\n" +
+                        "FROM customer NATURAL JOIN customer_type \n" +
+                        "NATURAL JOIN phone_number NATURAL JOIN date_customer\n" +
                         "WHERE cc = '" + id  +"';\n" +
                         "GROUP by cc, date_create, cust_type";
             }
