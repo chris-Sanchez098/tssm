@@ -41,7 +41,7 @@ public class OperatorController implements Initializable {
     @FXML
     public TextArea txtAreaPlan4;
     @FXML
-    public Button btnSearchUser;
+    public Button btnSearchCustomer;
     @FXML
     public TextField txtUserId;
     @FXML
@@ -221,7 +221,7 @@ public class OperatorController implements Initializable {
         }
     }
 
-    public void clickSearchUser(ActionEvent actionEvent) {
+    public void clickSearchCustomer(ActionEvent actionEvent) {
         cleanGUIPayment();
         double total = 0;
         String userId = txtUserId.getText().toLowerCase();
@@ -269,9 +269,24 @@ public class OperatorController implements Initializable {
     }
 
     public void clickRegisterPayment(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText(null);
-        alert.setContentText("Aún no está implementada ésta acción");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText("¿está seguro de registrar el pago?");
         alert.showAndWait();
+        if((alert.getResult().getButtonData().isDefaultButton())){
+            String paymentId = txtUserId.getText();
+            CRUD.registerPayment(paymentId);
+            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+            alert1.setHeaderText(null);
+            alert1.setContentText("El pago fue registrado con exito.");
+            alert1.showAndWait();
+            cleanGUIPayment();
+        }
+        else{
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+            alert2.setHeaderText(null);
+            alert2.setContentText("El pago fue cancelado.");
+            alert2.showAndWait();
+            cleanGUIPayment();
+        }
     }
 }

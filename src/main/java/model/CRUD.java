@@ -429,7 +429,6 @@ public class CRUD extends ConexionDB {
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
-
             String query = "SELECT * FROM customer cs JOIN " +
                     "phone_plan pp ON cs.phone_plan_id = pp.phone_plan_id " +
                     "ORDER BY cc DESC LIMIT 1";
@@ -559,6 +558,10 @@ public class CRUD extends ConexionDB {
         }
     }
 
+    /**
+     * view a customer's balance
+     * @param userId String
+     */
     public static Vector<Payment> viewPayment(String userId) {
         Vector<Payment> dataPaymentList = new Vector<>();
         try {
@@ -583,26 +586,32 @@ public class CRUD extends ConexionDB {
             st.close();
             connection.close();
         } catch (Exception e) {
-            System.out.println("Error en registerPayment: " + e.getMessage());
+            System.out.println("Error en viewPayment: " + e.getMessage());
         }
         return dataPaymentList;
     }
 
-    public static boolean registerPayment(String userId){
-        /*no es userId, es payment_id*/
+    /**
+     * record a customer payment
+     * @param userId String
+     */
+    public static void registerPayment(String userId){
+        int paymentId = 0;
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
-            String query = "INSERT INTO pay (payment_processed, payment_id)" +
-                    "VALUES ('"+true+"', '"+userId+"')";
-
+            String query = "SELECT * FROM payment WHERE customer_id = '"+userId+"'";
             ResultSet result = st.executeQuery(query);
+            while (result.next()) {
+                paymentId = result.getInt("payment_id");
+                System.out.println("id de pago: " + paymentId);
+            }
+            String query1 = "INSERT INTO pay (payment_processed, payment_id) VALUES ('"+true+"', '"+paymentId+"')";
+            st.executeQuery(query1);
             st.close();
             connection.close();
-            return true;
         } catch (Exception e) {
-            System.out.println("Error en registerPayment: " + e.getMessage());
-            return false;
+            System.out.println("Error en registerPayment!!: " + e.getMessage());
         }
     }
 
