@@ -21,11 +21,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="725.0" prefWidth="1270.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.OperatorController">
+<AnchorPane prefHeight="725.0" prefWidth="1170.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.OperatorController">
    <children>
       <Separator layoutX="177.0" layoutY="14.0" orientation="VERTICAL" prefHeight="509.0" prefWidth="25.0" visible="false" />
       <Separator layoutX="476.0" layoutY="16.0" orientation="VERTICAL" prefHeight="509.0" prefWidth="25.0" visible="false" />
-      <TabPane fx:id="tpMain" layoutX="25.0" layoutY="62.0" prefHeight="617.0" prefWidth="1223.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMinHeight="70.0" tabMinWidth="100.0">
+      <TabPane fx:id="tpMain" layoutX="25.0" layoutY="62.0" prefHeight="617.0" prefWidth="1136.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMinHeight="70.0" tabMinWidth="100.0">
         <tabs>
           <Tab fx:id="tabPhonePlanes" text="Planes">
             <content>
@@ -33,7 +33,7 @@
                      <children>
                         <Pane fx:id="pConsulta" layoutX="14.0" layoutY="14.0" prefHeight="624.0" prefWidth="1121.0">
                            <children>
-                              <VBox layoutX="96.0" layoutY="16.0" prefHeight="604.0" prefWidth="470.0">
+                              <VBox layoutX="14.0" layoutY="10.0" prefHeight="604.0" prefWidth="470.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="27.0" prefWidth="500.0" text="Plan 15 GB">
                                        <VBox.margin>
@@ -149,7 +149,7 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox layoutX="631.0" layoutY="16.0" prefHeight="604.0" prefWidth="470.0">
+                              <VBox layoutX="531.0" layoutY="10.0" prefHeight="604.0" prefWidth="470.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="27.0" prefWidth="500.0" text="Plan 40 GB">
                                        <font>
@@ -307,7 +307,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="1146.0">
                      <children>
-                        <GridPane layoutX="124.0" layoutY="156.0" prefHeight="300.0" prefWidth="462.0">
+                        <GridPane layoutX="68.0" layoutY="138.0" prefHeight="300.0" prefWidth="462.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -368,16 +368,21 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
+                        <Button fx:id="bUploadBank" layoutX="67.0" layoutY="543.0" mnemonicParsing="false" onAction="#clickUploadCSV" prefHeight="38.0" prefWidth="122.0" text="Cargar pagos" />
+                        <Label layoutX="214.0" layoutY="552.0" text="Pagos provenientes de los bancos autorizados">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab text="Pagos de bancos" />
             <Tab text="Modificar cliente">
                <fx:include source="updateCustome.fxml" />
             </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="bUploadCSV" layoutX="1024.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickUploadCSV" text="Cargar datos" />
-      <Button fx:id="btnLogOut" layoutX="1148.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickLogOut" text="Cerrar sesión" />
+      <Button fx:id="bUploadCSV" layoutX="919.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickUploadCSV" text="Cargar datos" />
+      <Button fx:id="btnLogOut" layoutX="1047.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickLogOut" text="Cerrar sesión" />
    </children>
 </AnchorPane>

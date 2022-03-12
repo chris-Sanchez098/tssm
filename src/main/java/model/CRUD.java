@@ -559,6 +559,32 @@ public class CRUD extends ConexionDB {
     }
 
     /**
+     * Insert pay into database
+     * @param data ObservableList<String []>
+     */
+    public static void insertPayBank(ObservableList<String[]> data) {
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            data.forEach( (list) -> {
+                int paymentId = Validation.parseInteger(list[0]);
+                String source = list[1];
+                String query = "INSERT INTO pay (payment_processed, payment_id, source) VALUES ('"+true+"', '"+paymentId+"'," +
+                        "'"+source+"')";
+                try {
+                    st.execute(query);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+            st.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * view a customer's balance
      * @param userId String
      */
@@ -606,7 +632,8 @@ public class CRUD extends ConexionDB {
                 paymentId = result.getInt("payment_id");
                 System.out.println("id de pago: " + paymentId);
             }
-            String query1 = "INSERT INTO pay (payment_processed, payment_id) VALUES ('"+true+"', '"+paymentId+"')";
+            String query1 = "INSERT INTO pay (payment_processed, payment_id) VALUES('"+true+"', '"+paymentId+"'" +
+                    "'local')";
             st.executeQuery(query1);
             st.close();
             connection.close();

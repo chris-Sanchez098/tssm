@@ -80,6 +80,8 @@ public class OperatorController implements Initializable {
     private Button bUploadCSV;
     @FXML
     private Tab tapRegister;
+    @FXML
+    private Button bUploadBank;
     private File file;
 
     @Override
@@ -135,10 +137,15 @@ public class OperatorController implements Initializable {
     public void clickUploadCSV(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
-        alert.setTitle("Carga consumo");
+        alert.setTitle("Carga datos");
+        ObservableList<String[]> data = readCSV();
         if(event.getSource() == bUploadCSV) {
-            readCSV();
+            CRUD.insertConsume(data);
             alert.setContentText("Los datos fueron cargados");
+        } else if(event.getSource() == bUploadBank
+        ) {
+            CRUD.insertPayBank(data);
+            alert.setContentText("Los pagos fueron cargados!");
         } else {
             alert.setContentText("Los datos no fueron cargados");
         }
@@ -193,7 +200,7 @@ public class OperatorController implements Initializable {
     /**
      * Read CSV file
      */
-    public void readCSV() {
+    public ObservableList<String[]> readCSV() {
         selectFile();
         ObservableList<String[]> info = FXCollections.observableArrayList();
         try {
@@ -204,7 +211,7 @@ public class OperatorController implements Initializable {
             }
         } catch (CsvValidationException | IOException e) {
             e.printStackTrace();
-        } CRUD.insertConsume(info);
+        } return info;
     }
 
     @FXML
