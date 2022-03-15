@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -23,11 +23,9 @@
 
 <AnchorPane prefHeight="725.0" prefWidth="1170.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.OperatorController">
    <children>
-      <Separator layoutX="177.0" layoutY="14.0" orientation="VERTICAL" prefHeight="509.0" prefWidth="25.0" visible="false" />
-      <Separator layoutX="476.0" layoutY="16.0" orientation="VERTICAL" prefHeight="509.0" prefWidth="25.0" visible="false" />
-      <TabPane fx:id="tpMain" layoutX="25.0" layoutY="62.0" prefHeight="617.0" prefWidth="1136.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMinHeight="70.0" tabMinWidth="100.0">
+      <TabPane fx:id="tpMain" layoutX="25.0" layoutY="62.0" prefHeight="617.0" prefWidth="1136.0" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMinHeight="70.0" tabMinWidth="100.0">
         <tabs>
-          <Tab fx:id="tabPhonePlanes" text="Planes">
+          <Tab fx:id="tabPhonePlanes">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="637.0" prefWidth="1130.0">
                      <children>
@@ -278,6 +276,12 @@
                      </children>
                   </AnchorPane>
             </content>
+               <graphic>
+                  <Label rotate="90.0" text="Principal">
+                     <graphic>
+                        <Group />
+                     </graphic></Label>
+               </graphic>
           </Tab>
           <Tab fx:id="tabConsult" onSelectionChanged="#clickConsultClient" text="Consultar clientes">
             <content>
@@ -375,12 +379,12 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
+                        <Button fx:id="bUploadCSV" layoutX="951.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickUploadCSV" text="Cargar datos" />
                      </children></AnchorPane>
               </content>
             </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="bUploadCSV" layoutX="919.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickUploadCSV" text="Cargar datos" />
-      <Button fx:id="btnLogOut" layoutX="1047.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickLogOut" text="Cerrar sesión" />
+      <fx:include source="logOut.fxml" />
    </children>
 </AnchorPane>
