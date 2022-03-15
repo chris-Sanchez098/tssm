@@ -17,7 +17,6 @@ public class UserTest {
 
     @Test
     @DisplayName(value = "Get tests")
-
     public void getTest(){
         assertAll("several gets",
                 () -> assertEquals("1193075514", user.getCc()),

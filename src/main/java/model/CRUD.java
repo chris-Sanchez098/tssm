@@ -277,8 +277,7 @@ public class CRUD extends ConexionDB {
             String fk_TypeCust = selectTypeCustomer(typeCust);
             String fk_customer = insertClient(cc, name, email, fk_add, fk_TypeCust, fk_plane);
             insertPhoneNumber(phoneNum, cc);
-            String fk_Period = insertPeriod(dateTime);
-            insertPayment(fk_customer, fk_Period);
+            insertPayment(fk_customer);
             return true;
         }catch (Exception e){
             System.out.println("Error en InsertCustomer: " + e);
@@ -392,40 +391,9 @@ public class CRUD extends ConexionDB {
 
     /**
      * Insert a Customer into database
-     * @param dateTimeInit to insert
-     * @return fk_period
-     */
-    public static String insertPeriod(String dateTimeInit){
-        String fk_period = null;
-        String dateTimeEnd = "Activo";
-        try {
-            Connection connection = connect();
-            Statement st = connection.createStatement();
-            String query = "INSERT INTO period (start_p, end_p) " +
-                    "VALUES('"+dateTimeInit+"', '" +dateTimeInit+"')";
-            st.execute(query);
-
-            query = "SELECT * FROM period ORDER BY period_id DESC LIMIT 1";
-            ResultSet result = st.executeQuery(query);
-            while (result.next()) {
-                fk_period = result.getString("period_id");
-            }
-            result.close();
-            st.close();
-            connection.close();
-
-        } catch (Exception e) {
-            System.out.println("Error en insertPeriod: " + e.getMessage());
-        }
-        return fk_period;
-    }
-
-    /**
-     * Insert a Customer into database
      * @param fk_cust to insert
-     * @param fk_period to insert
      */
-    public static void insertPayment(String fk_cust, String fk_period){
+    public static void insertPayment(String fk_cust){
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
@@ -441,9 +409,9 @@ public class CRUD extends ConexionDB {
             double tax = basicPay * 0.19;
             int extra = 0;
             query = "INSERT INTO payment (basic_pay, extra_pay_min, extra_pay_data, taxes, " +
-                    "customer_id, period_id) " +
+                    "customer_id) " +
                     "VALUES('" +basicPay+ "', '" +extra+ "', '" +extra+ "', '"+tax+"', " +
-                    "'"+fk_cust+"', '" +fk_period+"')";
+                    "'"+fk_cust+"')";
             result.close();
             st.execute(query);
             st.close();
