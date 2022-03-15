@@ -206,6 +206,10 @@ public class Customer {
         return minutesUnLimited;
     }
 
+    /**
+     * Turn phonePlan to a short description
+     * @return String
+     */
     public String detailsMobilePlan(){
         switch (phonePlanId){
             case 1:

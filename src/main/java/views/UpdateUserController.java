@@ -58,6 +58,10 @@ public class UpdateUserController implements Initializable {
     @FXML
     private Button updateButton;
 
+    /**
+     * Init the attributes
+     * @param user user from DB
+     */
     public void initAttributes(User user) {
         this.user = user;
         this.currentName.setText(user.getName());

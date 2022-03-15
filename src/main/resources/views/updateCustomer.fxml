@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.UpdateCustomerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.UpdateCustomerController">
    <center>
       <HBox prefHeight="300.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="420.0" prefWidth="220.0">
+            <VBox prefHeight="285.0" prefWidth="170.0">
                <children>
                   <Label text="Nombre:">
                      <VBox.margin>
@@ -56,14 +56,9 @@
                         <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Número móvil:">
-                     <VBox.margin>
-                        <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
-                     </VBox.margin>
-                  </Label>
                </children>
             </VBox>
-            <VBox prefHeight="350.0" prefWidth="240.0">
+            <VBox prefHeight="285.0" prefWidth="251.0">
                <children>
                   <TextField fx:id="tfCurrentName" editable="false">
                      <VBox.margin>
@@ -105,11 +100,6 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="tfCurrentMobilNumber" editable="false">
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </VBox.margin>
-                  </TextField>
                </children>
             </VBox>
          </children>
@@ -120,7 +110,7 @@
          <children>
             <Button fx:id="updateClient" defaultButton="true" mnemonicParsing="false" onAction="#clickUpdateClient" style="-fx-background-color: silver;" text="Modificar cliente">
                <HBox.margin>
-                  <Insets left="20.0" right="10.0" />
+                  <Insets right="10.0" />
                </HBox.margin>
                <opaqueInsets>
                   <Insets />
@@ -128,39 +118,42 @@
             </Button>
             <Button fx:id="clearFields" cancelButton="true" mnemonicParsing="false" onAction="#clickClearFields" style="-fx-background-color: salmon;" text="Borrar campos">
                <HBox.margin>
-                  <Insets left="10.0" right="10.0" />
+                  <Insets right="10.0" />
                </HBox.margin>
             </Button>
             <Button fx:id="cancelUpdate" defaultButton="true" mnemonicParsing="false" onAction="#clickCancelUpdate" style="-fx-background-color: silver;" text="Cancelar modificación">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
             </Button>
          </children>
       </HBox>
    </bottom>
    <top>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" prefHeight="26.0" prefWidth="89.0" text="Atributos">
                <HBox.margin>
-                  <Insets left="20.0" right="110.0" />
+                  <Insets left="30.0" />
                </HBox.margin>
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label prefHeight="16.0" prefWidth="89.0" text="Actuales">
+            <Label prefHeight="19.0" prefWidth="57.0" text="Actuales">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
                <HBox.margin>
-                  <Insets left="70.0" right="20.0" />
+                  <Insets left="150.0" />
                </HBox.margin>
             </Label>
             <Label alignment="CENTER" prefHeight="16.0" prefWidth="74.0" text="Nuevos">
                <HBox.margin>
-                  <Insets left="110.0" right="60.0" />
+                  <Insets left="200.0" />
                </HBox.margin>
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -170,53 +163,48 @@
       </HBox>
    </top>
    <right>
-      <VBox prefHeight="350.0" prefWidth="220.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="285.0" prefWidth="271.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="tfName">
+            <TextField fx:id="tfName" onKeyTyped="#colorEvent">
                <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="tfCC">
+            <TextField fx:id="tfCC" onKeyTyped="#colorEvent">
                <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="tfEmail">
+            <TextField fx:id="tfEmail" onKeyTyped="#colorEvent">
                <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="tfAddress">
+            <TextField fx:id="tfAddress" onKeyTyped="#colorEvent">
                <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="tfCity">
+            <TextField fx:id="tfCity" onKeyTyped="#colorEvent">
                <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="tfDepartment">
+            <TextField fx:id="tfDepartment" onKeyTyped="#colorEvent" prefHeight="25.0" prefWidth="210.0">
                <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <ComboBox fx:id="comboBoxTypeClient" onAction="#clickSelectClient" prefHeight="25.0" prefWidth="196.0" promptText="Seleccionar ">
+            <ComboBox fx:id="comboBoxTypeClient" onAction="#clickSelectClient" prefHeight="25.0" prefWidth="255.0" promptText="Seleccionar ">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </ComboBox>
-            <ComboBox fx:id="comboBoxMobilPlan" onAction="#clickSelectPlan" prefHeight="25.0" prefWidth="201.0" promptText="Seleccionar">
+            <ComboBox fx:id="comboBoxMobilPlan" onAction="#clickSelectPlan" prefHeight="25.0" prefWidth="255.0" promptText="Seleccionar">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </ComboBox>
-            <TextField fx:id="tfMobileNumber">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </TextField>
          </children>
       </VBox>
    </right>

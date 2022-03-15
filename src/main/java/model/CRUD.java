@@ -71,6 +71,43 @@ public class CRUD extends ConexionDB {
     }
 
     /**
+     * Update a customer
+     * @param customer User with date to update
+     * @param cc Current user cc
+     */
+    public static boolean updateCustomer(Customer customer, String cc){
+        try{
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            String query = "UPDATE customer SET cc = '" + customer.getCc() + "',name = '" + customer.getName() + "',email = '" + customer.getEmail() +
+            "',cust_type_id = '" + customer.getCustomerTypeId() + "',phone_plan_id = '"+ customer.getPhonePlanId() +
+                    "' WHERE cc = '" + cc + "';";
+            st.executeUpdate(query);
+            query = "UPDATE address SET st_address= '" + customer.getAddress() + "',city = '" + customer.getCity() + "',departament = '" + customer.getDepartment() +
+                    "' WHERE address_id = '" + customer.getAddressId() + "';";
+            st.executeUpdate(query);
+            st.close();
+            connection.close();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Modificación de cliente");
+            alert.setContentText("El cliente con cédula "+ cc + " fue modificado");
+            alert.showAndWait();
+            return true;
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Modificación de cliente");
+            alert.setContentText("El cliente no fue modificado: identificacion duplicada");
+            alert.showAndWait();
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+    /**
      * Desactiva un usuario
      * @param cc cedula
      */

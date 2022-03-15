@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
+import model.CRUD;
 import model.Customer;
 
 import java.net.URL;
@@ -43,9 +45,6 @@ public class UpdateCustomerController implements Initializable{
     private TextField tfCurrentMobilePlan;
 
     @FXML
-    private TextField tfCurrentMobilNumber;
-
-    @FXML
     private TextField tfName;
 
     @FXML
@@ -70,17 +69,12 @@ public class UpdateCustomerController implements Initializable{
     private ComboBox<String> comboBoxMobilPlan;
 
     @FXML
-    private TextField tfMobileNumber;
-
-    @FXML
     private Button updateClient;
 
-    @FXML
-    private Button clearFields;
-
-    @FXML
-    private Button cancelUpdate;
-
+    /**
+     * Init the attributes
+     * @param customer customer from DB
+     */
     public void initAttributesCustomer(Customer customer) {
         this.customer = customer;
         this.tfCurrentName.setText(customer.getName());
@@ -91,26 +85,24 @@ public class UpdateCustomerController implements Initializable{
         this.tfCurrentDepartment.setText(customer.getDepartment());
         this.tfCurrentTypeClient.setText(customer.getCustomerType());
         this.tfCurrentMobilePlan.setText(customer.detailsMobilePlan());
-        this.tfCurrentMobilNumber.setText(customer.getPhoneNumber());
     }
 
-
-    @FXML
-    private  void updateEvent(ActionEvent event){
-
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        CbSelectClient();
+        CbSelectCustomer();
         CbSelectPlan();
         setOnlyNumber(tfCC);
     }
 
+    @FXML
     public void clickSelectClient(ActionEvent event) {
+        changeColorUpdateButton();
     }
 
+    @FXML
     public void clickSelectPlan(ActionEvent event) {
+        changeColorUpdateButton();
     }
 
     @FXML
@@ -118,13 +110,19 @@ public class UpdateCustomerController implements Initializable{
         ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
     }
 
-    public void CbSelectClient() {
+    /**
+     * Set the type of customer in comboBox
+     */
+    public void CbSelectCustomer() {
         ObservableList<String> option =
                 FXCollections.observableArrayList("", "Natural", "Corporativo");
         comboBoxTypeClient.setItems(option);
         comboBoxTypeClient.getSelectionModel().selectFirst();
     }
 
+    /**
+     * Set plan in comboBox
+     */
     public void CbSelectPlan() {
         ObservableList<String> option =
                 FXCollections.observableArrayList("", "Plan 15 GB",
@@ -133,6 +131,11 @@ public class UpdateCustomerController implements Initializable{
         comboBoxMobilPlan.getSelectionModel().selectFirst();
     }
 
+    /**
+     * Change the plan string to planId
+     * @param plan
+     * @return int
+     */
     public int changePlan(String plan){
         if(plan == "Plan 15 GB"){
             return 2;
@@ -146,14 +149,35 @@ public class UpdateCustomerController implements Initializable{
         return 5;
     }
 
-
+    /**
+     * Update the customer
+     * @param event get the event
+     */
+    @FXML
     public void clickUpdateClient(ActionEvent event) {
         if(lessCheckFillCustomer()){
             updateValues();
             if(updateEmail()){
-                System.out.println("Cliente actualizado");
+                if(CRUD.updateCustomer(customer,tfCurrentCC.getText())){
+                    ((Node)(event.getSource())).getScene().getWindow().hide();
+                }
             }
+        }
+    }
 
+    @FXML
+    private void colorEvent(KeyEvent event){
+        changeColorUpdateButton();
+    }
+
+    /**
+     * change bottom's color grey to do action, grey to not possible action
+     */
+    private void changeColorUpdateButton(){
+        if(lessCheckFillCustomer()){
+            updateClient.setStyle("-fx-background-color: lightgreen; ");
+        } else{
+            updateClient.setStyle("-fx-background-color: silver; ");
         }
     }
 
@@ -169,8 +193,9 @@ public class UpdateCustomerController implements Initializable{
         return !tfName.getText().isEmpty() || !tfCC.getText().isEmpty()
                 || !tfEmail.getText().isEmpty() || !tfAddress.getText().isEmpty()
                 || !tfCity.getText().isEmpty() || !tfDepartment.getText().isEmpty() || !comboBoxTypeClient.getSelectionModel().getSelectedItem().isEmpty()
-                || !comboBoxMobilPlan.getSelectionModel().getSelectedItem().isEmpty() || !tfMobileNumber.getText().isEmpty();
+                || !comboBoxMobilPlan.getSelectionModel().getSelectedItem().isEmpty();
     }
+
     /**
      * Reset GUI state
      */
@@ -183,7 +208,6 @@ public class UpdateCustomerController implements Initializable{
         tfDepartment.setText("");
         comboBoxTypeClient.getSelectionModel().selectFirst();
         comboBoxMobilPlan.getSelectionModel().selectFirst();
-        tfMobileNumber.setText("");
     }
 
     /**
@@ -198,6 +222,9 @@ public class UpdateCustomerController implements Initializable{
         });
     }
 
+    /**
+     * Update the values
+     */
     private void updateValues(){
         String name = tfName.getText();
         String cc = tfCC.getText();
@@ -205,7 +232,6 @@ public class UpdateCustomerController implements Initializable{
         String department = tfDepartment.getText();
         String typeClient = comboBoxTypeClient.getSelectionModel().getSelectedItem();
         String mobilePlan = comboBoxMobilPlan.getSelectionModel().getSelectedItem();
-        String mobileNumber = tfMobileNumber.getText();
 
         if(!name.equals("")){
             customer.setName(name);
@@ -225,11 +251,12 @@ public class UpdateCustomerController implements Initializable{
         if(!mobilePlan.equals("")){
             customer.setPhonePlanId(changePlan(mobilePlan));
         }
-        if(!mobileNumber.equals("")){
-            customer.setPhoneNumber(mobileNumber);
-        }
     }
 
+    /**
+     * Check the email and then update the email
+     * @return boolean
+     */
     public boolean updateEmail(){
         String email = tfEmail.getText();
         if(!email.equals("")){
@@ -251,6 +278,4 @@ public class UpdateCustomerController implements Initializable{
         }
         return true;
     }
-
-
 }

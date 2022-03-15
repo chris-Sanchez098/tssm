@@ -303,7 +303,7 @@ public class OperatorController implements Initializable {
         Customer customer = this.tbCustomers.getSelectionModel().getSelectedItem();
         if(event.getSource() == ButtonUpdateCustomer && customer != null) {
             try{
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/UpdateCustomer.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/updateCustomer.fxml"));
                 Parent root = loader.load();
                 UpdateCustomerController updateView = loader.getController();
                 updateView.initAttributesCustomer(customer);
