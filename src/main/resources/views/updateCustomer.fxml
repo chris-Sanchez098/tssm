@@ -116,12 +116,12 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="clearFields" cancelButton="true" mnemonicParsing="false" onAction="#clickClearFields" style="-fx-background-color: salmon;" text="Borrar campos">
+            <Button fx:id="clearFields" mnemonicParsing="false" onAction="#clickClearFields" style="-fx-background-color: salmon;" text="Borrar campos">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="cancelUpdate" defaultButton="true" mnemonicParsing="false" onAction="#clickCancelUpdate" style="-fx-background-color: silver;" text="Cancelar modificación">
+            <Button fx:id="cancelUpdate" cancelButton="true" defaultButton="true" mnemonicParsing="false" onAction="#clickCancelUpdate" style="-fx-background-color: silver;" text="Cancelar modificación">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

@@ -41,16 +41,6 @@ public class OperatorController implements Initializable {
     @FXML
     public TextArea txtAreaPlan4;
     @FXML
-    public Button btnSearchCustomer;
-    @FXML
-    public TextField txtUserId;
-    @FXML
-    public TextField txtUserName;
-    @FXML
-    public TextField txtPaymentValue;
-    @FXML
-    public Button btnRegisterPayment;
-    @FXML
     public TextField txtPaymentDate;
     @FXML
     private Button bUpdateTb;
@@ -82,8 +72,6 @@ public class OperatorController implements Initializable {
     private Button bUploadCSV;
     @FXML
     private Tab tapRegister;
-    @FXML
-    private Button bUploadBank;
     private File file;
 
     @Override
@@ -95,7 +83,6 @@ public class OperatorController implements Initializable {
         txtAreaPlan2.setText(descriptionPlans[1]);
         txtAreaPlan3.setText(descriptionPlans[2]);
         txtAreaPlan4.setText(descriptionPlans[3]);
-        Validation.setOnlyNum(txtUserId);
     }
 
     @FXML
@@ -144,10 +131,6 @@ public class OperatorController implements Initializable {
         if(event.getSource() == bUploadCSV) {
             CRUD.insertConsume(data);
             alert.setContentText("Los datos fueron cargados");
-        } else if(event.getSource() == bUploadBank
-        ) {
-            CRUD.insertPayBank(data);
-            alert.setContentText("Los pagos fueron cargados!");
         } else {
             alert.setContentText("Los datos no fueron cargados");
         }
@@ -174,7 +157,7 @@ public class OperatorController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/infoCustomer.fxml"));
             Parent root = loader.load();
-            infoCustomerController ifoView = loader.getController();
+            InfoCustomerController ifoView = loader.getController();
             ifoView.initAttributes(customer);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -230,74 +213,6 @@ public class OperatorController implements Initializable {
         }
     }
 
-    public void clickSearchCustomer(ActionEvent actionEvent) {
-        cleanGUIPayment();
-        double total = 0;
-        String userId = txtUserId.getText().toLowerCase();
-        Vector<Payment> dataPaymentList;
-
-        if(!(txtUserId.getText().isEmpty())){
-            dataPaymentList = CRUD.viewPayment(userId);
-            if(!dataPaymentList.isEmpty()) {
-                total = calculatePayment(dataPaymentList);
-                txtUserName.setText(dataPaymentList.get(0).getName());
-                txtPaymentValue.setText(String.valueOf(total));
-            }
-            else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setTitle("Usuario no encontrado");
-                alert.setContentText("!El usuario ingresado no existe, intente de nuevo!");
-                alert.showAndWait();
-            }
-        }
-        else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Campo vacío!");
-            alert.setContentText("Por favor ingrese el número de identificación del usuario");
-            alert.showAndWait();
-        }
-    }
-
-    public void cleanGUIPayment(){
-        txtUserName.setText("");
-        txtPaymentValue.setText("");
-        txtPaymentDate.setText("");
-    }
-
-    public double calculatePayment(Vector<Payment> payment){
-        double total = 0;
-        for (Payment py: payment){
-            total = Double.parseDouble(py.getBasicPay()) +
-                    Double.parseDouble(py.getExtraPayMin()) +
-                    Double.parseDouble(py.getExtraPayData()) +
-                    Double.parseDouble(py.getTaxes());
-        }
-        return total;
-    }
-
-    public void clickRegisterPayment(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText("¿está seguro de registrar el pago?");
-        alert.showAndWait();
-        if((alert.getResult().getButtonData().isDefaultButton())){
-            String paymentId = txtUserId.getText();
-            CRUD.registerPayment(paymentId);
-            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-            alert1.setHeaderText(null);
-            alert1.setContentText("El pago fue registrado con exito.");
-            alert1.showAndWait();
-            cleanGUIPayment();
-        }
-        else{
-            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-            alert2.setHeaderText(null);
-            alert2.setContentText("El pago fue cancelado.");
-            alert2.showAndWait();
-            cleanGUIPayment();
-        }
-    }
     @FXML
     public void clickUpdateCustomer(ActionEvent event) {
         Customer customer = this.tbCustomers.getSelectionModel().getSelectedItem();

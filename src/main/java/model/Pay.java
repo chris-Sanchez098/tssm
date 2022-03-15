@@ -16,10 +16,11 @@ public class Pay {
     private Double extraGb = 0.0;
     private Double taxes;
     private Double total;
+    private String name;
 
     public Pay(Integer minutes, Double gbCloud, Double gbShare, Double gbData,
                Boolean unlimited, Integer price, Double tCloud, Double tShare,
-               Double tData, Integer tMinutes, Integer tMsg) {
+               Double tData, Integer tMinutes, Integer tMsgn, String name) {
         this.minutes = minutes;
         this.gbCloud = gbCloud;
         this.gbShare = gbShare;
@@ -31,6 +32,7 @@ public class Pay {
         this.tData = tData;
         this.tMinutes = tMinutes;
         this.tMsg = tMsg;
+        this.name = name;
         if(!unlimited){
             if(tMinutes > minutes){
                 extraMin = (double) ((tMinutes - minutes) * price / minutes);
@@ -110,4 +112,7 @@ public class Pay {
         return Math.round(total * 100) / 100.00;
     }
 
+    public String getName() {
+        return name;
+    }
 }

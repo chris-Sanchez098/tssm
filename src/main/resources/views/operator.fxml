@@ -13,27 +13,25 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="725.0" prefWidth="1170.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.OperatorController">
+<VBox prefHeight="695.0" prefWidth="1044.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.OperatorController">
    <children>
-      <TabPane fx:id="tpMain" layoutX="25.0" layoutY="62.0" prefHeight="617.0" prefWidth="1136.0" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMinHeight="70.0" tabMinWidth="100.0">
-        <tabs>
-          <Tab fx:id="tabPhonePlanes">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="637.0" prefWidth="1130.0">
+      <fx:include prefWidth="1044" source="logOut.fxml" />
+      <TabPane fx:id="tpMain" prefHeight="667.0" prefWidth="1049.0" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMinHeight="70.0" tabMinWidth="136.0">
+         <tabs>
+            <Tab fx:id="tabPhonePlanes">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="667.0" prefWidth="1000.0">
                      <children>
-                        <Pane fx:id="pConsulta" layoutX="14.0" layoutY="14.0" prefHeight="624.0" prefWidth="1121.0">
+                        <Pane fx:id="pConsulta" layoutX="10.0" layoutY="7.0" prefHeight="624.0" prefWidth="936.0">
                            <children>
-                              <VBox layoutX="14.0" layoutY="10.0" prefHeight="604.0" prefWidth="470.0">
+                              <VBox layoutX="14.0" layoutY="10.0" prefHeight="604.0" prefWidth="400.0">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="27.0" prefWidth="500.0" text="Plan 15 GB">
+                                    <Label alignment="CENTER" prefHeight="27.0" prefWidth="400.0" text="Plan 15 GB">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
@@ -41,14 +39,14 @@
                                           <Font size="24.0" />
                                        </font>
                                     </Label>
-                                    <TextArea fx:id="txtAreaPlan1" editable="false" prefHeight="140.0" prefWidth="200.0">
+                                    <TextArea fx:id="txtAreaPlan1" editable="false" prefHeight="140.0" prefWidth="400.0">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </TextArea>
-                                    <HBox prefHeight="100.0" prefWidth="410.0">
+                                    <HBox prefHeight="100.0" prefWidth="400.0">
                                        <children>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
                                                 <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                                              </HBox.margin>
@@ -56,7 +54,7 @@
                                                 <Image url="@../images/icons8-whatsapp.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
                                                 <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                                              </HBox.margin>
@@ -64,7 +62,7 @@
                                                 <Image url="@../images/icons8-facebook.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
                                                 <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                                              </HBox.margin>
@@ -72,7 +70,7 @@
                                                 <Image url="@../images/icons8-twitter.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
                                                 <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                                              </HBox.margin>
@@ -85,7 +83,7 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <Label alignment="CENTER" prefHeight="27.0" prefWidth="500.0" text="Plan 25 GB">
+                                    <Label alignment="CENTER" prefHeight="27.0" prefWidth="400.0" text="Plan 25 GB">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
@@ -93,14 +91,14 @@
                                           <Font size="24.0" />
                                        </font>
                                     </Label>
-                                    <TextArea fx:id="txtAreaPlan2" editable="false" prefHeight="140.0" prefWidth="200.0">
+                                    <TextArea fx:id="txtAreaPlan2" editable="false" prefHeight="140.0" prefWidth="400.0">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </TextArea>
-                                    <HBox prefHeight="100.0" prefWidth="410.0">
+                                    <HBox prefHeight="100.0" prefWidth="400.0">
                                        <children>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </HBox.margin>
@@ -108,7 +106,7 @@
                                                 <Image url="@../images/icons8-whatsapp.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </HBox.margin>
@@ -116,7 +114,7 @@
                                                 <Image url="@../images/icons8-facebook.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </HBox.margin>
@@ -124,7 +122,7 @@
                                                 <Image url="@../images/icons8-twitter.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </HBox.margin>
@@ -132,7 +130,7 @@
                                                 <Image url="@../images/icons8-waze.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/icons8-instagram.png" />
                                              </image>
@@ -147,9 +145,9 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox layoutX="531.0" layoutY="10.0" prefHeight="604.0" prefWidth="470.0">
+                              <VBox layoutX="531.0" layoutY="10.0" prefHeight="604.0" prefWidth="400.0">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="27.0" prefWidth="500.0" text="Plan 40 GB">
+                                    <Label alignment="CENTER" prefHeight="27.0" prefWidth="400.0" text="Plan 40 GB">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -157,14 +155,14 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextArea fx:id="txtAreaPlan3" editable="false" prefHeight="140.0" prefWidth="200.0">
+                                    <TextArea fx:id="txtAreaPlan3" editable="false" prefHeight="140.0" prefWidth="400.0">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </TextArea>
-                                    <HBox prefHeight="100.0" prefWidth="410.0">
+                                    <HBox prefHeight="100.0" prefWidth="400.0">
                                        <children>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </HBox.margin>
@@ -172,7 +170,7 @@
                                                 <Image url="@../images/icons8-whatsapp.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </HBox.margin>
@@ -180,7 +178,7 @@
                                                 <Image url="@../images/icons8-facebook.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </HBox.margin>
@@ -188,7 +186,7 @@
                                                 <Image url="@../images/icons8-twitter.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </HBox.margin>
@@ -196,7 +194,7 @@
                                                 <Image url="@../images/icons8-waze.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/icons8-instagram.png" />
                                              </image>
@@ -209,7 +207,7 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <Label alignment="CENTER" prefHeight="27.0" prefWidth="500.0" text="Plan ilimitado">
+                                    <Label alignment="CENTER" prefHeight="27.0" prefWidth="400.0" text="Plan ilimitado">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -217,14 +215,14 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextArea fx:id="txtAreaPlan4" editable="false" prefHeight="140.0" prefWidth="200.0">
+                                    <TextArea fx:id="txtAreaPlan4" editable="false" prefHeight="140.0" prefWidth="400.0">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </VBox.margin>
                                     </TextArea>
-                                    <HBox prefHeight="100.0" prefWidth="410.0">
+                                    <HBox prefHeight="100.0" prefWidth="400.0">
                                        <children>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </HBox.margin>
@@ -232,7 +230,7 @@
                                                 <Image url="@../images/icons8-playstore.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </HBox.margin>
@@ -240,7 +238,7 @@
                                                 <Image url="@../images/icons8-app-store.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </HBox.margin>
@@ -248,7 +246,7 @@
                                                 <Image url="@../images/icons8-netflix.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </HBox.margin>
@@ -256,7 +254,7 @@
                                                 <Image url="@../images/icons8-whatsapp.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/icons8-facebook.png" />
                                              </image>
@@ -275,116 +273,47 @@
                         </Pane>
                      </children>
                   </AnchorPane>
-            </content>
+               </content>
                <graphic>
                   <Label rotate="90.0" text="Principal">
                      <graphic>
                         <Group />
-                     </graphic></Label>
+                     </graphic>
+                  </Label>
                </graphic>
-          </Tab>
-          <Tab fx:id="tabConsult" onSelectionChanged="#clickConsultClient" text="Consultar clientes">
-            <content>
-
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            </Tab>
+            <Tab fx:id="tabConsult" onSelectionChanged="#clickConsultClient" text="Consultar clientes">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tbCustomers" layoutX="3.0" layoutY="63.0" onMouseClicked="#showInfo" prefHeight="581.0" prefWidth="892.0">
-                          <columns>
-                             <TableColumn fx:id="colCC" editable="false" prefWidth="116.0" resizable="false" text="Identificación" />
-                             <TableColumn fx:id="colName" editable="false" minWidth="0.0" prefWidth="228.0" resizable="false" text="Nombre" />
-                             <TableColumn fx:id="colEmail" editable="false" minWidth="0.0" prefWidth="250.0" resizable="false" text="Email" />
-                             <TableColumn fx:id="colCustomerType" editable="false" prefWidth="191.0" resizable="false" text="Tipo de cliente" />
-                             <TableColumn fx:id="colPhonePlan" editable="false" prefWidth="106.0" resizable="false" text="Plan ID" />
-                          </columns>
+                        <TableView fx:id="tbCustomers" layoutX="-3.0" layoutY="57.0" onMouseClicked="#showInfo" prefHeight="558.0" prefWidth="942.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+                           <columns>
+                              <TableColumn fx:id="colCC" editable="false" prefWidth="116.0" resizable="false" text="Identificación" />
+                              <TableColumn fx:id="colName" editable="false" minWidth="0.0" prefWidth="228.0" resizable="false" text="Nombre" />
+                              <TableColumn fx:id="colEmail" editable="false" minWidth="0.0" prefWidth="250.0" resizable="false" text="Email" />
+                              <TableColumn fx:id="colCustomerType" editable="false" prefWidth="191.0" resizable="false" text="Tipo de cliente" />
+                              <TableColumn fx:id="colPhonePlan" editable="false" prefWidth="106.0" resizable="false" text="Plan ID" />
+                           </columns>
                         </TableView>
-                        <Button fx:id="bSearch" layoutX="215.0" layoutY="19.0" mnemonicParsing="false" onAction="#updateTb" prefHeight="24.0" prefWidth="79.0" text="Buscar" />
-                        <Button fx:id="bUpdateTb" layoutX="758.0" layoutY="19.0" mnemonicParsing="false" onAction="#updateTb" prefHeight="24.0" prefWidth="140.0" text="Cargar clientes" />
-                        <TextField fx:id="tfSearch" layoutX="9.0" layoutY="19.0" prefHeight="24.0" prefWidth="176.0" />
-                        <Button fx:id="ButtonUpdateCustomer" layoutX="311.0" layoutY="19.0" mnemonicParsing="false" onAction="#clickUpdateCustomer" text="Modificar Cliente" />
+                        <Button fx:id="bSearch" layoutX="215.0" layoutY="19.0" mnemonicParsing="false" onAction="#updateTb" prefHeight="25.0" prefWidth="80.0" text="Buscar" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="15.0" />
+                        <Button fx:id="bUpdateTb" layoutX="841.0" layoutY="20.0" mnemonicParsing="false" onAction="#updateTb" prefHeight="25.0" prefWidth="140.0" text="Cargar clientes" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0" />
+                        <TextField fx:id="tfSearch" layoutX="-8.0" layoutY="19.0" prefHeight="25.0" prefWidth="180.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="15.0" />
+                        <Button fx:id="ButtonUpdateCustomer" layoutX="311.0" layoutY="19.0" mnemonicParsing="false" onAction="#clickUpdateCustomer" prefHeight="25.0" text="Modificar Cliente" AnchorPane.leftAnchor="320.0" AnchorPane.topAnchor="15.0" />
                      </children>
                   </AnchorPane>
-            </content>
-          </Tab>
-         <Tab fx:id="tapRegister" text="Registrar cliente">
-            <fx:include source="registerCustomer.fxml" />
-         </Tab>
-            <Tab text="Pago manual">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="1146.0">
-                     <children>
-                        <GridPane layoutX="68.0" layoutY="138.0" prefHeight="300.0" prefWidth="462.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Label prefWidth="159.0" text="Nombre usuario:" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label prefWidth="159.0" text="Valor a pagar:" GridPane.rowIndex="2">
-                                 <GridPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Button fx:id="btnSearchCustomer" mnemonicParsing="false" onAction="#clickSearchCustomer" prefHeight="40.0" prefWidth="159.0" text="Buscar">
-                                 <GridPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </GridPane.margin>
-                              </Button>
-                              <TextField fx:id="txtUserId" prefHeight="40.0" promptText="Cédula o NIT" GridPane.columnIndex="1">
-                                 <GridPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField fx:id="txtUserName" editable="false" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField fx:id="txtPaymentValue" editable="false" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                 <GridPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField fx:id="txtPaymentDate" editable="false" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <Label prefWidth="159.0" text="Fecha de pago:" GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Button fx:id="btnRegisterPayment" mnemonicParsing="false" onAction="#clickRegisterPayment" prefHeight="40.0" prefWidth="159.0" text="Registrar pago" GridPane.rowIndex="4" />
-                           </children>
-                        </GridPane>
-                        <Label layoutX="128.0" layoutY="48.0" text="Registrar pago de un usuario.">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="bUploadBank" layoutX="67.0" layoutY="543.0" mnemonicParsing="false" onAction="#clickUploadCSV" prefHeight="38.0" prefWidth="122.0" text="Cargar pagos" />
-                        <Label layoutX="214.0" layoutY="552.0" text="Pagos provenientes de los bancos autorizados">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="bUploadCSV" layoutX="951.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickUploadCSV" text="Cargar datos" />
-                     </children></AnchorPane>
-              </content>
+               </content>
             </Tab>
-        </tabs>
+            <Tab fx:id="tapRegister" text="Registrar cliente">
+               <content>
+                  <fx:include source="registerCustomer.fxml" />
+               </content>
+            </Tab>
+            <Tab text="pagos">
+               <content>
+                  <fx:include source="payment.fxml" />
+               </content>
+            </Tab>
+         </tabs>
       </TabPane>
-      <fx:include source="logOut.fxml" />
    </children>
-</AnchorPane>
+</VBox>

@@ -687,18 +687,18 @@ public class CRUD extends ConexionDB {
         return salesList;
     }
 
-    public static Pay getPayment(String id, String date) {
+    public static ObservableList<Pay> getPayment(String id, String dateInit, String dateFinal) {
         ObservableList<Pay> pay = FXCollections.observableArrayList();
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
             String query = "SELECT price ,sum(rc.minutes) t_min, sum(msg) t_msg,\n" +
                     "       sum(rc.gb_cloud)  t_cloud, sum(rc.gb_share) as t_share, sum(rc.gb_data) t_data,\n" +
-                    "       pp.minutes, pp.unlimited_min, pp.gb_share, pp.gb_data, pp.gb_cloud, cc\n" +
+                    "       pp.minutes, pp.unlimited_min, pp.gb_share, pp.gb_data, pp.gb_cloud, cc, name\n" +
                     "FROM register_cust rc INNER JOIN phone_number pn on pn.number_id = rc.phone_number_id\n" +
                     "    INNER JOIN customer c on c.cc = pn.customer_id\n" +
                     "    INNER join phone_plan pp on pp.phone_plan_id = c.phone_plan_id\n" +
-                    "WHERE cc = '"+ id + "' and date_time >= '"+ date+ "-15' and date_time <= '2021-01-15'\n" +
+                    "WHERE cc = '"+ id + "' and date_time >= '" + dateInit +"-16' and date_time <= '" + dateFinal + "-15'\n" +
                     "group by date_time, pp.minutes, price, pp.unlimited_min, pp.gb_share, pp.gb_data, pp.gb_cloud, cc\n" +
                     "LIMIT 1;";
             ResultSet result = st.executeQuery(query);
@@ -708,14 +708,16 @@ public class CRUD extends ConexionDB {
                 int tMsg = result.getInt("t_msg");
                 Double tCloud = result.getDouble("t_cloud");
                 Double tShare = result.getDouble("t_share");
-                Double tData = result.getDouble("t_date");
+                Double tData = result.getDouble("t_data");
                 int minutes = result.getInt("minutes");
                 boolean unlimited = result.getBoolean("unlimited_min");
                 Double gbCloud = result.getDouble("gb_cloud");
                 Double gbShare = result.getDouble("gb_share");
-                Double gbData = result.getDouble("gb_date");
+                Double gbData = result.getDouble("gb_data");
+                String name = result.getString("name");
 
-                Pay newPay = new Pay(minutes,gbCloud, gbShare, gbData, unlimited, price, tCloud, tShare, tData, tMin, tMsg);
+                Pay newPay = new Pay(minutes,gbCloud, gbShare, gbData,
+                        unlimited, price, tCloud, tShare, tData, tMin, tMsg, name);
                 pay.add(newPay);
             }
             result.close();
@@ -724,7 +726,7 @@ public class CRUD extends ConexionDB {
         } catch (Exception e) {
             System.out.println("Error en registerPayment!!: " + e.getMessage());
         }
-        return pay.get(0);
+        return pay;
     }
 
 }
