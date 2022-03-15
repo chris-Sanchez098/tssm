@@ -296,6 +296,7 @@
                         <Button fx:id="bSearch" layoutX="215.0" layoutY="19.0" mnemonicParsing="false" onAction="#updateTb" prefHeight="24.0" prefWidth="79.0" text="Buscar" />
                         <Button fx:id="bUpdateTb" layoutX="758.0" layoutY="19.0" mnemonicParsing="false" onAction="#updateTb" prefHeight="24.0" prefWidth="140.0" text="Cargar clientes" />
                         <TextField fx:id="tfSearch" layoutX="9.0" layoutY="19.0" prefHeight="24.0" prefWidth="176.0" />
+                        <Button fx:id="ButtonUpdateCustomer" layoutX="311.0" layoutY="19.0" mnemonicParsing="false" onAction="#clickUpdateCustomer" text="Modificar Cliente" />
                      </children>
                   </AnchorPane>
             </content>
@@ -376,9 +377,6 @@
                         </Label>
                      </children></AnchorPane>
               </content>
-            </Tab>
-            <Tab text="Modificar cliente">
-               <fx:include source="updateCustome.fxml" />
             </Tab>
         </tabs>
       </TabPane>

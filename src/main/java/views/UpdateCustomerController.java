@@ -11,6 +11,8 @@ import model.Customer;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class UpdateCustomerController implements Initializable{
@@ -41,9 +43,6 @@ public class UpdateCustomerController implements Initializable{
     private TextField tfCurrentMobilePlan;
 
     @FXML
-    private TextField tfCurrentService;
-
-    @FXML
     private TextField tfCurrentMobilNumber;
 
     @FXML
@@ -71,9 +70,6 @@ public class UpdateCustomerController implements Initializable{
     private ComboBox<String> comboBoxMobilPlan;
 
     @FXML
-    private TextField tfService;
-
-    @FXML
     private TextField tfMobileNumber;
 
     @FXML
@@ -85,7 +81,7 @@ public class UpdateCustomerController implements Initializable{
     @FXML
     private Button cancelUpdate;
 
-    public void initAttributesClient(Customer customer) {
+    public void initAttributesCustomer(Customer customer) {
         this.customer = customer;
         this.tfCurrentName.setText(customer.getName());
         this.tfCurrentCC.setText(customer.getCc());
@@ -94,7 +90,7 @@ public class UpdateCustomerController implements Initializable{
         this.tfCurrentCity.setText(customer.getCity());
         this.tfCurrentDepartment.setText(customer.getDepartment());
         this.tfCurrentTypeClient.setText(customer.getCustomerType());
-    //    this.tfCurrentMobilePlan.setText(customer.detailsMobilePlan());
+        this.tfCurrentMobilePlan.setText(customer.detailsMobilePlan());
         this.tfCurrentMobilNumber.setText(customer.getPhoneNumber());
     }
 
@@ -124,29 +120,57 @@ public class UpdateCustomerController implements Initializable{
 
     public void CbSelectClient() {
         ObservableList<String> option =
-                FXCollections.observableArrayList("Seleccionar", "Natural", "Corporativo");
+                FXCollections.observableArrayList("", "Natural", "Corporativo");
         comboBoxTypeClient.setItems(option);
         comboBoxTypeClient.getSelectionModel().selectFirst();
     }
 
     public void CbSelectPlan() {
         ObservableList<String> option =
-                FXCollections.observableArrayList("Seleccionar", "Plan 15 GB",
+                FXCollections.observableArrayList("", "Plan 15 GB",
                         "Plan 25 GB", "Plan 40 GB", "Plan ilimitado");
         comboBoxMobilPlan.setItems(option);
         comboBoxMobilPlan.getSelectionModel().selectFirst();
     }
 
+    public int changePlan(String plan){
+        if(plan == "Plan 15 GB"){
+            return 2;
+        }
+        if(plan == "Plan 25 GB"){
+            return 3;
+        }
+        if(plan == "Plan 40 GB"){
+            return 4;
+        }
+        return 5;
+    }
+
 
     public void clickUpdateClient(ActionEvent event) {
+        if(lessCheckFillCustomer()){
+            updateValues();
+            if(updateEmail()){
+                System.out.println("Cliente actualizado");
+            }
 
+        }
     }
 
     public void clickClearFields(ActionEvent actionEvent) {
         cleanGUI();
     }
 
-
+    /**
+     * checks if at less there is a change
+     * @return check
+     */
+    private boolean lessCheckFillCustomer(){
+        return !tfName.getText().isEmpty() || !tfCC.getText().isEmpty()
+                || !tfEmail.getText().isEmpty() || !tfAddress.getText().isEmpty()
+                || !tfCity.getText().isEmpty() || !tfDepartment.getText().isEmpty() || !comboBoxTypeClient.getSelectionModel().getSelectedItem().isEmpty()
+                || !comboBoxMobilPlan.getSelectionModel().getSelectedItem().isEmpty() || !tfMobileNumber.getText().isEmpty();
+    }
     /**
      * Reset GUI state
      */
@@ -159,7 +183,6 @@ public class UpdateCustomerController implements Initializable{
         tfDepartment.setText("");
         comboBoxTypeClient.getSelectionModel().selectFirst();
         comboBoxMobilPlan.getSelectionModel().selectFirst();
-        tfService.setText("");
         tfMobileNumber.setText("");
     }
 
@@ -175,6 +198,59 @@ public class UpdateCustomerController implements Initializable{
         });
     }
 
+    private void updateValues(){
+        String name = tfName.getText();
+        String cc = tfCC.getText();
+        String city = tfCity.getText();
+        String department = tfDepartment.getText();
+        String typeClient = comboBoxTypeClient.getSelectionModel().getSelectedItem();
+        String mobilePlan = comboBoxMobilPlan.getSelectionModel().getSelectedItem();
+        String mobileNumber = tfMobileNumber.getText();
+
+        if(!name.equals("")){
+            customer.setName(name);
+        }
+        if(!cc.equals("")){
+            customer.setCc(cc);
+        }
+        if(!city.equals("")){
+            customer.setCity(city);
+        }
+        if(!department.equals("")){
+            customer.setDepartment(department);
+        }
+        if(!typeClient.equals("")){
+            customer.setCustomerType(typeClient);
+        }
+        if(!mobilePlan.equals("")){
+            customer.setPhonePlanId(changePlan(mobilePlan));
+        }
+        if(!mobileNumber.equals("")){
+            customer.setPhoneNumber(mobileNumber);
+        }
+    }
+
+    public boolean updateEmail(){
+        String email = tfEmail.getText();
+        if(!email.equals("")){
+            Pattern pattern = Pattern
+                    .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+            Matcher mather = pattern.matcher(email);
+            if(mather.find()){
+                customer.setEmail(tfEmail.getText());
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Error al actualizar cliente");
+                alert.setContentText("El correo ingresado no es valido");
+                alert.showAndWait();
+                return false;
+            }
+        }
+        return true;
+    }
 
 
 }

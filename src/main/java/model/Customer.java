@@ -205,4 +205,17 @@ public class Customer {
     public boolean getMinutesUnLimited(){
         return minutesUnLimited;
     }
+
+    public String detailsMobilePlan(){
+        switch (phonePlanId){
+            case 1:
+                return "Plan 15 GB";
+            case 2:
+                return "Plan 25 GB";
+            case 3:
+                return "Plan 40 GB";
+            default:
+                return "Ilimitado";
+        }
+    }
 }

@@ -55,6 +55,8 @@ public class OperatorController implements Initializable {
     @FXML
     private Button bUpdateTb;
     @FXML
+    private Button ButtonUpdateCustomer;
+    @FXML
     private TableView<Customer> tbCustomers;
     @FXML
     private TableColumn<Customer, String> colCC;
@@ -294,6 +296,34 @@ public class OperatorController implements Initializable {
             alert2.setContentText("El pago fue cancelado.");
             alert2.showAndWait();
             cleanGUIPayment();
+        }
+    }
+    @FXML
+    public void clickUpdateCustomer(ActionEvent event) {
+        Customer customer = this.tbCustomers.getSelectionModel().getSelectedItem();
+        if(event.getSource() == ButtonUpdateCustomer && customer != null) {
+            try{
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/UpdateCustomer.fxml"));
+                Parent root = loader.load();
+                UpdateCustomerController updateView = loader.getController();
+                updateView.initAttributesCustomer(customer);
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setTitle("Modificación cliente");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.showAndWait();
+                this.tbCustomers.refresh();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Debes seleccionar un cliente");
+            alert.showAndWait();
         }
     }
 }

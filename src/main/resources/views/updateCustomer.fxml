@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.UpdateCustomerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.UpdateCustomerController">
    <center>
       <HBox prefHeight="300.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -52,11 +52,6 @@
                      </VBox.margin>
                   </Label>
                   <Label text="Plan móvil:">
-                     <VBox.margin>
-                        <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Servicio:">
                      <VBox.margin>
                         <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
                      </VBox.margin>
@@ -110,11 +105,6 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="tfName11" editable="false">
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </VBox.margin>
-                  </TextField>
                   <TextField fx:id="tfCurrentMobilNumber" editable="false">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -126,7 +116,7 @@
       </HBox>
    </center>
    <bottom>
-      <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="updateClient" defaultButton="true" mnemonicParsing="false" onAction="#clickUpdateClient" style="-fx-background-color: silver;" text="Modificar cliente">
                <HBox.margin>
@@ -222,11 +212,6 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </ComboBox>
-            <TextField fx:id="tfService">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </TextField>
             <TextField fx:id="tfMobileNumber">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
