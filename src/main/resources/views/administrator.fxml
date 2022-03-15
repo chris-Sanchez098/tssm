@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="1115.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.AdministratorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="1095.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.AdministratorController">
    <top>
       <fx:include prefWidth="1115.0" source="logOut.fxml" />
    </top>
    <center>
       <AnchorPane prefHeight="580.0" prefWidth="1115.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tbUsers" layoutX="3.0" layoutY="53.0" prefHeight="545.0" prefWidth="1075.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+            <TableView fx:id="tbUsers" layoutX="3.0" layoutY="53.0" prefHeight="525.0" prefWidth="1055.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
               <columns>
                 <TableColumn fx:id="colCC" editable="false" prefWidth="127.0" resizable="false" text="Identificación" />
                 <TableColumn fx:id="colName" editable="false" prefWidth="237.6666259765625" resizable="false" text="Nombre" />
@@ -26,7 +26,7 @@
             </TableView>
             <Button layoutX="240.0" layoutY="19.0" mnemonicParsing="false" onAction="#listUsers" prefHeight="24.0" prefWidth="140.0" text="Buscar" />
             <TextField fx:id="tfSearch" layoutX="20.0" layoutY="19.0" prefHeight="24.0" prefWidth="200.0" />
-            <Button fx:id="bUpdateTb" layoutX="957.0" layoutY="19.0" mnemonicParsing="false" onAction="#listUsers" prefHeight="24.0" prefWidth="140.0" text="Cargar usuarios" />
+            <Button fx:id="bUpdateTb" layoutX="935.0" layoutY="19.0" mnemonicParsing="false" onAction="#listUsers" prefHeight="24.0" prefWidth="140.0" text="Cargar usuarios" />
             <Button layoutX="400.0" layoutY="19.0" mnemonicParsing="false" onAction="#launch" prefHeight="24.0" prefWidth="140.0" text="Crear" AnchorPane.leftAnchor="398.0" />
             <Button fx:id="bUpdateUser" layoutX="560.0" layoutY="19.0" mnemonicParsing="false" onAction="#selectModify" prefHeight="24.0" prefWidth="140.0" text="Modificar" />
          </children>

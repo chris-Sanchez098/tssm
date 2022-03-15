@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label text="Año:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <ComboBox prefWidth="150.0">
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin>
+            </ComboBox>
+            <Label text="Mes:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <ComboBox prefWidth="150.0">
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin>
+            </ComboBox>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="600.0">
+         <children>
+            <Label text="Identificación del cliente:">
+               <HBox.margin>
+                  <Insets right="13.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="txtUserId">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </TextField>
+            <Button fx:id="btnSearchCustomer" mnemonicParsing="false" onAction="#btnSearchCustomer" text="Buscar">
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox prefHeight="478.0" prefWidth="900.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="261.0" prefWidth="512.0">
+               <children>
+                  <Label prefHeight="24.0" text="Nombre de usuario">
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="24.0" text="Valor a pagar">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefHeight="24.0" text="Fecha de corte inicial">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefHeight="24.0" text="Fecha de corte">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefHeight="24.0" text="Pago en bancos autorizados">
+                     <VBox.margin>
+                        <Insets top="140.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="bUploadBank" mnemonicParsing="false" onAction="#clickUploadCSV" text="Cargos pagos">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="261.0" prefWidth="501.0">
+               <children>
+                  <TextField fx:id="txtUserName">
+                     <VBox.margin>
+                        <Insets right="20.0" top="40.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="txtPaymentValue">
+                     <VBox.margin>
+                        <Insets right="20.0" top="40.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField>
+                     <VBox.margin>
+                        <Insets right="20.0" top="40.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField>
+                     <VBox.margin>
+                        <Insets right="20.0" top="40.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label prefHeight="24.0" text="Pagar">
+                     <VBox.margin>
+                        <Insets top="140.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnRegisterPayment" mnemonicParsing="false" onAction="#clickRegisterPayment" text="Realizar pago">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>
