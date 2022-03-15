@@ -15,19 +15,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.CRUD;
 import model.Pay;
-import model.Payment;
 import model.Validation;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.Month;
 import java.time.YearMonth;
-import java.util.Date;
 import java.util.ResourceBundle;
-import java.util.Vector;
 
 public class PaymentController implements Initializable {
     @FXML
@@ -107,7 +102,7 @@ public class PaymentController implements Initializable {
         if(!cc.isEmpty()){
             int year = getYear();
             int month = getMonth();
-            dateFinal = String.valueOf(year) + "-" + String.valueOf(month);
+            dateFinal = year + "-" + month;
             dateInit = pastDate(year, month);
             ObservableList<Pay> payList = CRUD.getPayment(cc,dateInit ,dateFinal);
             if(!payList.isEmpty()) {
@@ -168,49 +163,36 @@ public class PaymentController implements Initializable {
 
     private int getYear(){
         String year = yearCombo.getSelectionModel().getSelectedItem();
-        if(year == "Actual"){
+        if(year.equals("Actual")){
             year = Integer.toString(YearMonth.now().getYear());
         }
         return Integer.parseInt(year);
-    };
+    }
 
     private int getMonth(){
         String month = monthCombo.getSelectionModel().getSelectedItem();
-        switch (month) {
-            case "Enero":
-                return 1;
-            case "Febrero":
-                return 2;
-            case "Marzo":
-                return 3;
-            case "Abril":
-                return 4;
-            case "Mayo":
-                return 5;
-            case "Junio":
-                return 6;
-            case "Julio":
-                return 7;
-            case "Agosto":
-                return 8;
-            case "Septiembre":
-                return 9;
-            case "Octubre":
-                return 10;
-            case "Noviembre":
-                return 11;
-            case "Diciembre":
-                return 12;
-            default:
-                return YearMonth.now().getMonth().getValue();
-        }
-    };
+        return switch (month) {
+            case "Enero" -> 1;
+            case "Febrero" -> 2;
+            case "Marzo" -> 3;
+            case "Abril" -> 4;
+            case "Mayo" -> 5;
+            case "Junio" -> 6;
+            case "Julio" -> 7;
+            case "Agosto" -> 8;
+            case "Septiembre" -> 9;
+            case "Octubre" -> 10;
+            case "Noviembre" -> 11;
+            case "Diciembre" -> 12;
+            default -> YearMonth.now().getMonth().getValue();
+        };
+    }
 
     private String pastDate(int year, int month){
         if(month == 1){
-            return String.valueOf(year - 1) + "-12";
+            return (year - 1) + "-12";
         }
-            return String.valueOf(getYear()) + "-" + String.valueOf(getMonth() - 1);
+            return (getYear()) + "-" + (getMonth() - 1);
     }
 
     @Override

@@ -48,9 +48,9 @@ public class ChartsQuery extends ConexionDB{
             Statement st = connection.createStatement();
             ResultSet result = st.executeQuery(query);
             while (result.next()){
-                Integer columString = result.getInt(1);
-                Integer columInt = result.getInt(2);
-                data.add(new XYChart.Data<>(columInt, columString.toString()));
+                int columString = result.getInt(1);
+                int columInt = result.getInt(2);
+                data.add(new XYChart.Data<>(columInt, Integer.toString(columString)));
             }
             result.close();
             st.close();
@@ -118,7 +118,7 @@ public class ChartsQuery extends ConexionDB{
             ResultSet result = st.executeQuery(query);
             while (result.next()){
                 String columString = result.getString(1);
-                Integer columInt = result.getInt(2);
+                int columInt = result.getInt(2);
                 data.add(new PieChart.Data(columString, columInt));
             }
             result.close();

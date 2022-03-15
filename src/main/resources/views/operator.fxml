@@ -303,7 +303,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="tapRegister" text="Registrar cliente">
+            <Tab text="Registrar cliente">
                <content>
                   <fx:include source="registerCustomer.fxml" />
                </content>

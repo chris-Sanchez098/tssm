@@ -19,7 +19,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.CRUD;
 import model.Customer;
-import model.Payment;
 import model.Validation;
 import tssm.App;
 import java.io.File;
@@ -27,7 +26,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Vector;
 
 import com.opencsv.CSVReader;
 
@@ -40,8 +38,6 @@ public class OperatorController implements Initializable {
     public TextArea txtAreaPlan3;
     @FXML
     public TextArea txtAreaPlan4;
-    @FXML
-    public TextField txtPaymentDate;
     @FXML
     private Button bUpdateTb;
     @FXML
@@ -59,19 +55,10 @@ public class OperatorController implements Initializable {
     @FXML
     private TableColumn<Customer, Integer> colPhonePlan;
     @FXML
-    public Button btnInit;
-    @FXML
-    public Button btnPhonePlans;
-    @FXML
-    public Button btnRegisClient;
-    @FXML
-    public Button btnLogOut;
-    @FXML
     private TextField tfSearch;
     @FXML
     private Button bUploadCSV;
     @FXML
-    private Tab tapRegister;
     private File file;
 
     @Override
@@ -83,23 +70,6 @@ public class OperatorController implements Initializable {
         txtAreaPlan2.setText(descriptionPlans[1]);
         txtAreaPlan3.setText(descriptionPlans[2]);
         txtAreaPlan4.setText(descriptionPlans[3]);
-    }
-
-    @FXML
-    public void clickInit(ActionEvent actionEvent) {
-    }
-
-    @FXML
-    public void clickPhonePlans(ActionEvent actionEvent) {
-    }
-
-    @FXML
-    public void clickRegisClient(ActionEvent actionEvent) {
-        App.openStage("/views/registerCustomer", "Registrar cliente");
-    }
-
-    @FXML
-    public void clickLogOut(ActionEvent actionEvent) {
     }
 
     @FXML

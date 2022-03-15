@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Vector;
 
 public class CRUD extends ConexionDB {
     /**
@@ -105,26 +104,6 @@ public class CRUD extends ConexionDB {
         }
         return false;
     }
-
-
-    /**
-     * Desactiva un usuario
-     * @param cc cedula
-     */
-    public void disableUser(int cc) {
-        try {
-            Connection connection = connect();
-            Statement st = connection.createStatement();
-            String query = "DELETE FROM usuarios where cc='"+cc+"';";
-            st.executeUpdate(query);
-            st.close();
-            connection.close();
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
     /**
      * search a user then get status, rol and password
      * @param user login user to search
@@ -255,9 +234,9 @@ public class CRUD extends ConexionDB {
                 String phoneNumber = result.getString("number_id" +"");
                 double price = result.getDouble("price");
                 String gbCloud = result.getString("gb_cloud");
-                String gbShare = result.getString("gb_share");;
+                String gbShare = result.getString("gb_share");
                 boolean minutesUnLimited = result.getBoolean("unlimited_min");
-                boolean msgUnLimited = result.getBoolean("unlimited_sms");;
+                boolean msgUnLimited = result.getBoolean("unlimited_sms");
                 int minutes = result.getInt("minutes");
                 int netflix = result.getInt("netflix");
                 String details = result.getString("description");
@@ -304,17 +283,14 @@ public class CRUD extends ConexionDB {
      * @param dpto to insert
      * @param typeCust to insert
      * @param fk_plane to insert
-     * @param dateTime to insert
      */
     public static boolean insertCustomer(String name, String cc, String email, String add,
-                                    String city, String dpto, String typeCust, String fk_plane,
-                                    String dateTime, String serv, String phoneNum) {
+                                    String city, String dpto, String typeCust, String fk_plane, String phoneNum) {
         try {
             String fk_add = insertAddress(add, city, dpto);
             String fk_TypeCust = selectTypeCustomer(typeCust);
-            String fk_customer = insertClient(cc, name, email, fk_add, fk_TypeCust, fk_plane);
+            insertClient(cc, name, email, fk_add, fk_TypeCust, fk_plane);
             insertPhoneNumber(phoneNum, cc);
-            insertPayment(fk_customer);
             return true;
         }catch (Exception e){
             System.out.println("Error en InsertCustomer: " + e);
@@ -406,9 +382,8 @@ public class CRUD extends ConexionDB {
      * @param fk_plane to insert
      * @return fk_cc
      */
-    public static String insertClient(String cc, String name, String email,
+    public static void insertClient(String cc, String name, String email,
                                     String fk_add, String fk_custType, String fk_plane){
-        String fk_cc = null;
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
@@ -418,47 +393,10 @@ public class CRUD extends ConexionDB {
             st.execute(query);
             st.close();
             connection.close();
-            fk_cc = cc;
-
         } catch (Exception e) {
             System.out.println("Error en insertClient: " + e.getMessage());
         }
-        return fk_cc;
     }
-
-    /**
-     * Insert a Customer into database
-     * @param fk_cust to insert
-     */
-    public static void insertPayment(String fk_cust){
-        try {
-            Connection connection = connect();
-            Statement st = connection.createStatement();
-            String query = "SELECT * FROM customer cs JOIN " +
-                    "phone_plan pp ON cs.phone_plan_id = pp.phone_plan_id " +
-                    "ORDER BY cc DESC LIMIT 1";
-
-            double basicPay = 0.0;
-            ResultSet result = st.executeQuery(query);
-            while (result.next()) {
-                basicPay = result.getDouble("price");
-            }
-            double tax = basicPay * 0.19;
-            int extra = 0;
-            query = "INSERT INTO payment (basic_pay, extra_pay_min, extra_pay_data, taxes, " +
-                    "customer_id) " +
-                    "VALUES('" +basicPay+ "', '" +extra+ "', '" +extra+ "', '"+tax+"', " +
-                    "'"+fk_cust+"')";
-            result.close();
-            st.execute(query);
-            st.close();
-            connection.close();
-
-        } catch (Exception e) {
-            System.out.println("Error en insertPayment: " + e.getMessage());
-        }
-    }
-
     /**
      * get information about a phone plan
      * @param planType to insert
@@ -587,39 +525,6 @@ public class CRUD extends ConexionDB {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * view a customer's balance
-     * @param userId String
-     */
-    public static Vector<Payment> viewPayment(String userId) {
-        Vector<Payment> dataPaymentList = new Vector<>();
-        try {
-            Connection connection = connect();
-            Statement st = connection.createStatement();
-            String query = "SELECT name, customer_id, basic_pay, extra_pay_min, extra_pay_data, taxes  " +
-                    "FROM payment py JOIN customer cs " +
-                    "ON py.customer_id = cs.cc WHERE cs.cc = '"+userId+"'";
-
-            ResultSet result = st.executeQuery(query);
-
-            while (result.next()) {
-                String name = result.getString("name");
-                String customerId = result.getString("customer_id");
-                String basicPay = result.getString("basic_pay");
-                String extraPayMin = result.getString("extra_pay_min");
-                String extraPayData = result.getString("extra_pay_data");
-                String taxes = result.getString("taxes");
-                Payment dataPayment = new Payment(name, customerId, basicPay, extraPayMin, extraPayData, taxes);
-                dataPaymentList.add(dataPayment);
-            }
-            st.close();
-            connection.close();
-        } catch (Exception e) {
-            System.out.println("Error en viewPayment: " + e.getMessage());
-        }
-        return dataPaymentList;
     }
 
     /**

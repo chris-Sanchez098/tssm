@@ -133,17 +133,17 @@ public class UpdateCustomerController implements Initializable{
 
     /**
      * Change the plan string to planId
-     * @param plan
+     * @param plan a plan
      * @return int
      */
     public int changePlan(String plan){
-        if(plan == "Plan 15 GB"){
+        if(plan.equals("Plan 15 GB")){
             return 2;
         }
-        if(plan == "Plan 25 GB"){
+        if(plan.equals("Plan 25 GB")){
             return 3;
         }
-        if(plan == "Plan 40 GB"){
+        if(plan.equals("Plan 45 GB")){
             return 4;
         }
         return 5;
@@ -181,10 +181,6 @@ public class UpdateCustomerController implements Initializable{
         }
     }
 
-    public void clickClearFields(ActionEvent actionEvent) {
-        cleanGUI();
-    }
-
     /**
      * checks if at less there is a change
      * @return check
@@ -194,20 +190,6 @@ public class UpdateCustomerController implements Initializable{
                 || !tfEmail.getText().isEmpty() || !tfAddress.getText().isEmpty()
                 || !tfCity.getText().isEmpty() || !tfDepartment.getText().isEmpty() || !comboBoxTypeClient.getSelectionModel().getSelectedItem().isEmpty()
                 || !comboBoxMobilPlan.getSelectionModel().getSelectedItem().isEmpty();
-    }
-
-    /**
-     * Reset GUI state
-     */
-    public void cleanGUI() {
-        tfName.setText("");
-        tfCC.setText("");
-        tfEmail.setText("");
-        tfAddress.setText("");
-        tfCity.setText("");
-        tfDepartment.setText("");
-        comboBoxTypeClient.getSelectionModel().selectFirst();
-        comboBoxMobilPlan.getSelectionModel().selectFirst();
     }
 
     /**

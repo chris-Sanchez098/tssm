@@ -14,7 +14,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="867.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.RegisterCustomerController">
    <children>
-      <VBox layoutX="65.0" layoutY="35.0" prefHeight="436.0" prefWidth="102.0">
+      <VBox layoutX="34.0" layoutY="35.0" prefHeight="436.0" prefWidth="133.0">
          <children>
             <Label text="Nombre:">
                <VBox.margin>
@@ -56,17 +56,12 @@
                   <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
                </VBox.margin>
             </Label>
-            <Label text="Servicio:">
+            <Label prefHeight="16.0" prefWidth="122.0" text="Número Móvil:">
                <VBox.margin>
                   <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
                </VBox.margin>
             </Label>
-            <Label text="Número móvil:">
-               <VBox.margin>
-                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
-               </VBox.margin>
-            </Label>
-            <Label prefHeight="17.0" prefWidth="112.0" text="Más detalles:">
+            <Label prefHeight="28.0" prefWidth="123.0" text="Más detalles:">
                <VBox.margin>
                   <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
                </VBox.margin>
@@ -105,7 +100,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <ComboBox fx:id="comboxSelectCustomer" onAction="#clickSelectCustomer" prefHeight="25.0" prefWidth="196.0" promptText="Seleccionar ">
+            <ComboBox fx:id="comboxSelectCustomer" prefHeight="25.0" prefWidth="196.0" promptText="Seleccionar ">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
@@ -115,11 +110,6 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </ComboBox>
-            <TextField fx:id="txtService">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </TextField>
             <TextField fx:id="txtPhoneNumber">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -241,6 +231,6 @@
             </TextField>
          </children>
       </VBox>
-      <TextArea fx:id="txtAreaMoreInfo" editable="false" layoutX="184.0" layoutY="399.0" prefHeight="120.0" prefWidth="612.0" />
+      <TextArea fx:id="txtAreaMoreInfo" editable="false" layoutX="184.0" layoutY="360.0" prefHeight="159.0" prefWidth="612.0" />
    </children>
 </Pane>

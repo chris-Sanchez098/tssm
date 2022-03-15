@@ -66,7 +66,7 @@ public class TableUserController implements Initializable {
 
     /**
      * launch the window with report
-     * @param event
+     * @param event an event
      */
     @FXML
     private void printEvent(ActionEvent event){

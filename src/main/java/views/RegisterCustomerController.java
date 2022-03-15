@@ -11,8 +11,6 @@ import model.CRUD;
 import model.Validation;
 
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -56,8 +54,6 @@ public class RegisterCustomerController implements Initializable {
     @FXML
     public Button btnRegisterClient;
     @FXML
-    public Button btnCancelRegister;
-    @FXML
     public ComboBox<String> comboxSelectCustomer;
     @FXML
     public ComboBox<String> comboxSelectPlan;
@@ -72,13 +68,9 @@ public class RegisterCustomerController implements Initializable {
     }
 
     @FXML
-    public void clickSelectCustomer(ActionEvent actionEvent) {
-    }
-
-    @FXML
     public void clickSelectPlan(ActionEvent actionEvent) {
         String phonePlan = comboxSelectPlan.getSelectionModel().getSelectedItem();
-        ObservableList<String> phonePlanList = null;
+        ObservableList<String> phonePlanList;
         switch (phonePlan) {
             case "Seleccionar" -> cleanGUI();
             case "Plan 15 GB" -> {
@@ -133,15 +125,12 @@ public class RegisterCustomerController implements Initializable {
         String dpto = txtDepto.getText();
         String typeCli = comboxSelectCustomer.getSelectionModel().getSelectedItem();
         String plane = comboxSelectPlan.getSelectionModel().getSelectedItem();
-        String dateTime = dateTimeActual();
-        String serv = txtService.getText();
         String phoneNum = txtPhoneNumber.getText();
-        System.out.println(dateTime);
         ObservableList<String> list =
                 FXCollections.observableArrayList(name, cc, email, add,
-                        city, dpto, typeCli, plane, dateTime, serv, phoneNum);
+                        city, dpto, typeCli, plane, phoneNum);
 
-        if(checkEmptyField(list) && !(typeCli == "Seleccionar") && !(plane == "Seleccionar")) {
+        if(checkEmptyField(list) && !typeCli.equals("Seleccionar") && !plane.equals("Seleccionar")) {
             if(validateEmail(email)) {
                 switch (plane) {
                     case "Plan 15 GB" -> plane = "2";
@@ -150,7 +139,7 @@ public class RegisterCustomerController implements Initializable {
                     case "Plan ilimitado" -> plane = "5";
                 }
                 insertCustomer = CRUD.insertCustomer(name, cc, email, add, city,
-                        dpto, typeCli, plane, dateTime, serv, phoneNum);
+                        dpto, typeCli, plane, phoneNum);
                 cleanGUI();
             }
             else{
@@ -176,15 +165,6 @@ public class RegisterCustomerController implements Initializable {
                     "de celular es: " + phoneNum);
             alert.showAndWait();
         }
-    }
-
-    /**
-     * Close the stage
-     * @param actionEvent get the event
-     */
-    @FXML
-    public void clickCancelRegister(ActionEvent actionEvent) {
-        ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
     }
 
     /**
@@ -238,19 +218,6 @@ public class RegisterCustomerController implements Initializable {
     }
 
     /**
-     * Check that all textFiel is not empty
-     * @return boolean
-     */
-    private boolean checkFill(){
-        return !comboxSelectCustomer.getSelectionModel().getSelectedItem().isEmpty()
-                && !comboxSelectPlan.getSelectionModel().getSelectedItem().isEmpty()
-                && !txtName.getText().isEmpty() && !txtIdentity.getText().isEmpty()
-                && !txtEmail.getText().isEmpty() && !txtAddress.getText().isEmpty()
-                && !txtCity.getText().isEmpty() && !txtDepto.getText().isEmpty()
-                && !txtService.getText().isEmpty() && txtPhoneNumber.getText().isEmpty();
-    }
-
-    /**
      * Check that all field are complete
      * @return boolean
      */
@@ -261,15 +228,6 @@ public class RegisterCustomerController implements Initializable {
             }
         }
         return true;
-    }
-
-    /**
-     * get system date and time
-     */
-    public String dateTimeActual(){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        String dateTime = dtf.format(LocalDateTime.now());
-        return dateTime;
     }
 
     /**

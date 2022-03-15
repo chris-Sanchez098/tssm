@@ -31,7 +31,7 @@ public class Pay {
         this.tShare = tShare;
         this.tData = tData;
         this.tMinutes = tMinutes;
-        this.tMsg = tMsg;
+        this.tMsg = tMsgn;
         this.name = name;
         if(!unlimited){
             if(tMinutes > minutes){
