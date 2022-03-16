@@ -1,7 +1,5 @@
 package views;
 
-import com.opencsv.exceptions.CsvValidationException;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -14,20 +12,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.CRUD;
 import model.Customer;
 import model.Validation;
-import tssm.App;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import com.opencsv.CSVReader;
 
 public class OperatorController implements Initializable {
     @FXML
@@ -56,10 +47,6 @@ public class OperatorController implements Initializable {
     private TableColumn<Customer, Integer> colPhonePlan;
     @FXML
     private TextField tfSearch;
-    @FXML
-    private Button bUploadCSV;
-    @FXML
-    private File file;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -127,6 +114,9 @@ public class OperatorController implements Initializable {
         }
     }
 
+    /**
+     * Load consumption view
+     */
     public void loadViewConsume() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/consumption.fxml"));

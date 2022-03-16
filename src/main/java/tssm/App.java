@@ -80,6 +80,7 @@ public class App extends Application {
             newScene = new Scene(loadFXML(addressFxml));
             Stage newStage = new Stage();
             newStage.setScene(newScene);
+            newStage.setResizable(false);
             newStage.show();
             if(!addressFxml.equals("/views/logIn")){
                 newStage.setOnCloseRequest(event -> {
