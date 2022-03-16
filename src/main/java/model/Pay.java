@@ -20,6 +20,7 @@ public class Pay {
     public String dateInit;
     public String dateFinal;
     public String id;
+    public Double late;
 
     public Pay(Integer minutes, Double gbCloud, Double gbShare, Double gbData,
                Boolean unlimited, Double price, Double tCloud, Double tShare,
@@ -132,5 +133,15 @@ public class Pay {
 
     public String getId() {
         return id;
+    }
+
+    public Double getLate() {
+        return Math.round(late * 100) / 100.00;
+    }
+
+    public void setLate(Double late) {
+        taxes = 0.19 * (price + extraMin + extraGb + late);
+        this.late = late;
+        total = taxes + price + extraMin + extraGb + late;
     }
 }

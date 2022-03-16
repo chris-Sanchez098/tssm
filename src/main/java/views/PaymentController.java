@@ -24,6 +24,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.time.YearMonth;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class PaymentController implements Initializable {
@@ -119,11 +120,13 @@ public class PaymentController implements Initializable {
             if(!payList.isEmpty()) {
                 pay = payList.get(0);
                 txtUserName.setText(pay.getName());
+                checkPastPayment(year, month);
                 txtPaymentValue.setText(Double.toString(pay.getTotal()));
                 dateCutFinalField.setText(dateFinal + "-15");
                 dateCutInitField.setText(dateInit + "-16");
-                btnRegisterPayment.setStyle("-fx-background-color: lightgreen; ");
+                btnRegisterPayment.setStyle("-fx-background-color: lightgreen;");
                 btnSearchCustomer.setStyle("-fx-background-color: silver;");
+                billBut.setStyle("-fx-background-color: lightgreen;");
             }
             else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -164,6 +167,7 @@ public class PaymentController implements Initializable {
         }
         alert.showAndWait();
         btnRegisterPayment.setStyle("-fx-background-color: silver; ");
+        billBut.setStyle("-fx-background-color: silver;");
     }
 
     private void setComboBox(){
@@ -208,6 +212,40 @@ public class PaymentController implements Initializable {
             return (year - 1) + "-12";
         }
             return (getYear()) + "-" + (getMonth() - 1);
+    }
+
+    private void checkPastPayment(int year, int month){
+        Calendar date = Calendar.getInstance();
+        int currentYear = date.get(Calendar.YEAR);
+        int currentMonth = date.get(Calendar.MONTH) + 1;
+        int currentDay = date.get(Calendar.DAY_OF_MONTH);
+        Double lateMax = pay.getPrice() * 0.3;
+        if(year < currentYear){
+            if(month == 12 && currentMonth == 1){
+                if(currentDay > 30){
+                    pay.setLate(lateMax);
+                }
+                pay.setLate(pay.getPrice() * (currentDay / 10));
+            }
+            else{
+                pay.setLate(lateMax);
+            }
+        }
+        else{
+            if(month == currentMonth){
+                pay.setLate(0.0);
+            }
+            else if(month + 1 == currentMonth){
+                if(currentDay > 30){
+                    pay.setLate(lateMax);
+                }
+                pay.setLate(pay.getPrice() * (currentDay / 10));
+            }
+
+            else{
+                pay.setLate(lateMax);
+            }
+        }
     }
 
     @FXML

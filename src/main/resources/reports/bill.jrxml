@@ -5,6 +5,7 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
+	<field name="late" class="java.lang.Double"/>
 	<field name="name" class="java.lang.String"/>
 	<field name="tMinutes" class="java.lang.Integer"/>
 	<field name="id" class="java.lang.String"/>
@@ -178,9 +179,9 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="155">
+		<band height="181">
 			<staticText>
-				<reportElement x="385" y="15" width="74" height="20" uuid="6106aae2-d545-44ba-b8cc-ad42ba2e5454"/>
+				<reportElement x="370" y="15" width="83" height="20" uuid="6106aae2-d545-44ba-b8cc-ad42ba2e5454"/>
 				<text><![CDATA[Precio Base:]]></text>
 			</staticText>
 			<textField>
@@ -192,11 +193,11 @@
 				<textFieldExpression><![CDATA[$F{extraMin}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="385" y="45" width="90" height="20" uuid="6d7c3939-5486-4aad-bca0-858c7efdf4dd"/>
+				<reportElement x="370" y="45" width="99" height="20" uuid="6d7c3939-5486-4aad-bca0-858c7efdf4dd"/>
 				<text><![CDATA[Precio Extra Min:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="385" y="74" width="90" height="20" uuid="48f99716-ae79-44f2-a149-a9d8ddf7470e"/>
+				<reportElement x="370" y="74" width="99" height="20" uuid="48f99716-ae79-44f2-a149-a9d8ddf7470e"/>
 				<text><![CDATA[Precio Extra GB:]]></text>
 			</staticText>
 			<textField>
@@ -208,17 +209,25 @@
 				<textFieldExpression><![CDATA[$F{taxes}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="385" y="105" width="90" height="20" uuid="d1308058-74fe-4084-9e56-bd45186f752b"/>
+				<reportElement x="370" y="105" width="99" height="20" uuid="d1308058-74fe-4084-9e56-bd45186f752b"/>
 				<text><![CDATA[Impuestos:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="385" y="135" width="90" height="20" uuid="5a69b84d-d622-445c-ab08-f942e1217310"/>
+				<reportElement x="370" y="161" width="99" height="20" uuid="5a69b84d-d622-445c-ab08-f942e1217310"/>
 				<text><![CDATA[Total:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="481" y="134" width="76" height="21" uuid="222ba0fe-7c1d-4542-ad3d-46cd04e8b736"/>
+				<reportElement x="480" y="160" width="76" height="21" uuid="222ba0fe-7c1d-4542-ad3d-46cd04e8b736"/>
 				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="480" y="130" width="74" height="20" uuid="58199c78-e088-4abb-9bf8-2aa95c7dd0ef"/>
+				<textFieldExpression><![CDATA[$F{late}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="370" y="130" width="99" height="20" uuid="028f314e-d023-47e2-9202-9e2d4d195cbc"/>
+				<text><![CDATA[Intereses por mora:]]></text>
+			</staticText>
 		</band>
 	</columnFooter>
 </jasperReport>

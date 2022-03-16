@@ -138,15 +138,15 @@ public class UpdateCustomerController implements Initializable{
      */
     public int changePlan(String plan){
         if(plan.equals("Plan 15 GB")){
-            return 2;
+            return 1;
         }
         if(plan.equals("Plan 25 GB")){
-            return 3;
+            return 2;
         }
         if(plan.equals("Plan 45 GB")){
-            return 4;
+            return 3;
         }
-        return 5;
+        return 4;
     }
 
     /**
