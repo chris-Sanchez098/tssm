@@ -9,7 +9,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="1095.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.AdministratorController">
    <top>
-      <fx:include prefWidth="1115.0" source="logOut.fxml" />
+      <fx:include prefWidth="1095.0" source="logOut.fxml" />
    </top>
    <center>
       <AnchorPane prefHeight="580.0" prefWidth="1115.0" BorderPane.alignment="CENTER">

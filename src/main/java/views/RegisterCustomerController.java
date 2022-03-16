@@ -74,19 +74,19 @@ public class RegisterCustomerController implements Initializable {
         switch (phonePlan) {
             case "Seleccionar" -> cleanGUI();
             case "Plan 15 GB" -> {
-                phonePlanList = CRUD.getPhonePlan(2);
+                phonePlanList = CRUD.getPhonePlan(1);
                 viewPhonePlans(phonePlanList);
             }
             case "Plan 25 GB" -> {
-                phonePlanList = CRUD.getPhonePlan(3);
+                phonePlanList = CRUD.getPhonePlan(2);
                 viewPhonePlans(phonePlanList);
             }
             case "Plan 40 GB" -> {
-                phonePlanList = CRUD.getPhonePlan(4);
+                phonePlanList = CRUD.getPhonePlan(3);
                 viewPhonePlans(phonePlanList);
             }
             case "Plan ilimitado" -> {
-                phonePlanList = CRUD.getPhonePlan(5);
+                phonePlanList = CRUD.getPhonePlan(4);
                 viewPhonePlans(phonePlanList);
             }
         }
@@ -133,10 +133,10 @@ public class RegisterCustomerController implements Initializable {
         if(checkEmptyField(list) && !typeCli.equals("Seleccionar") && !plane.equals("Seleccionar")) {
             if(validateEmail(email)) {
                 switch (plane) {
-                    case "Plan 15 GB" -> plane = "2";
-                    case "Plan 25 GB" -> plane = "3";
-                    case "Plan 40 GB" -> plane = "4";
-                    case "Plan ilimitado" -> plane = "5";
+                    case "Plan 15 GB" -> plane = "1";
+                    case "Plan 25 GB" -> plane = "2";
+                    case "Plan 40 GB" -> plane = "3";
+                    case "Plan ilimitado" -> plane = "4";
                 }
                 insertCustomer = CRUD.insertCustomer(name, cc, email, add, city,
                         dpto, typeCli, plane, phoneNum);
