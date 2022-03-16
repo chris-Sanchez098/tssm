@@ -14,11 +14,16 @@
    <children>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <AnchorPane prefHeight="100.0" prefWidth="429.0">
+            <AnchorPane prefHeight="100.0" prefWidth="239.0">
                <children>
-                  <Button fx:id="bUploadConsume" layoutX="149.0" layoutY="38.0" mnemonicParsing="false" onAction="#clickUploadCSV" style="-fx-background-color: lightgreen;" text="Cargar consumos" />
+                  <Button fx:id="bUploadConsume" layoutX="33.0" layoutY="38.0" mnemonicParsing="false" onAction="#clickUploadCSV" style="-fx-background-color: lightgreen;" text="Cargar consumos" />
                </children>
             </AnchorPane>
+            <Button fx:id="billBut" mnemonicParsing="false" onAction="#billEvent" prefHeight="24.0" prefWidth="82.0" style="-fx-background-color: silver;" text="Factura">
+               <HBox.margin>
+                  <Insets right="80.0" />
+               </HBox.margin>
+            </Button>
             <Label text="Año:">
                <font>
                   <Font size="15.0" />
@@ -122,24 +127,24 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="261.0" prefWidth="501.0">
                <children>
-                  <TextField fx:id="txtUserName" alignment="CENTER">
+                  <TextField fx:id="txtUserName" alignment="CENTER" prefHeight="24.0" prefWidth="374.0">
                      <VBox.margin>
-                        <Insets right="20.0" top="40.0" />
+                        <Insets right="40.0" top="40.0" />
                      </VBox.margin>
                   </TextField>
                   <TextField fx:id="txtPaymentValue" alignment="CENTER">
                      <VBox.margin>
-                        <Insets right="20.0" top="40.0" />
+                        <Insets right="40.0" top="40.0" />
                      </VBox.margin>
                   </TextField>
                   <TextField fx:id="dateCutInitField" alignment="CENTER">
                      <VBox.margin>
-                        <Insets right="20.0" top="40.0" />
+                        <Insets right="40.0" top="40.0" />
                      </VBox.margin>
                   </TextField>
                   <TextField fx:id="dateCutFinalField" alignment="CENTER" prefHeight="24.0" prefWidth="415.0">
                      <VBox.margin>
-                        <Insets right="20.0" top="40.0" />
+                        <Insets right="40.0" top="40.0" />
                      </VBox.margin>
                   </TextField>
                   <Label prefHeight="24.0" text="Pagar">

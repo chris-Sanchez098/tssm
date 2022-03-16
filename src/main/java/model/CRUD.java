@@ -641,7 +641,7 @@ public class CRUD extends ConexionDB {
                     "LIMIT 1;";
             ResultSet result = st.executeQuery(query);
             while (result.next()) {
-                int price = result.getInt("price");
+                Double price = result.getDouble("price");
                 int tMin = result.getInt("t_min");
                 int tMsg = result.getInt("t_msg");
                 Double tCloud = result.getDouble("t_cloud");
@@ -655,7 +655,7 @@ public class CRUD extends ConexionDB {
                 String name = result.getString("name");
 
                 Pay newPay = new Pay(minutes,gbCloud, gbShare, gbData,
-                        unlimited, price, tCloud, tShare, tData, tMin, tMsg, name);
+                        unlimited, price, tCloud, tShare, tData, tMin, tMsg, name, dateInit+"-15", dateFinal+"-15", id);
                 pay.add(newPay);
             }
             result.close();

@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import model.CRUD;
 import model.Pay;
 import model.Validation;
+import reports.PrintReport;
 
 import java.io.File;
 import java.io.FileReader;
@@ -30,6 +31,8 @@ public class PaymentController implements Initializable {
     public Button btnSearchCustomer;
     @FXML
     private Button bUploadBank;
+    @FXML
+    private Button billBut;
     @FXML
     private TextField txtUserName;
     @FXML
@@ -216,11 +219,16 @@ public class PaymentController implements Initializable {
         }
     }
 
+    @FXML
+    private void billEvent(ActionEvent event){
+        if(!txtUserName.getText().isEmpty()){
+            new PrintReport().showBill(pay);
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setComboBox();
         Validation.setOnlyNum(txtCustomerId);
-        System.out.println(getYear());
-        System.out.println(getMonth());
     }
 }

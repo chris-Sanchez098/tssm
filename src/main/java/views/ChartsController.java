@@ -109,7 +109,7 @@ public class ChartsController implements Initializable {
     private void removeSeries(){
         userChart.getData().remove(0,2);
         plansChart.getData().remove(0);
-        payChart.getData().remove(0,2);
+        payChart.getData().remove(0,3);
         salesChart.getData().remove(0);
     }
 }

@@ -79,6 +79,7 @@ public class AdministratorController implements Initializable {
                 stage.setTitle("Modificación usuario");
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setScene(scene);
+                stage.setResizable(false);
                 stage.showAndWait();
                 this.tbUsers.refresh();
 

@@ -103,15 +103,15 @@ public class ChartsQuery extends ConexionDB{
     }
 
     /**
-     * getPercent of pays from db
+     * getPercent of source of pays from db
      * @return data to a pieChart
      */
     public static ObservableList<PieChart.Data> getPercent(){
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList();
-        String query = "SELECT rol, ROUND(count(*) * 100 / u.total::decimal) percent\n" +
-                "FROM usuarios\n" +
-                "CROSS JOIN (SELECT count(*) AS total FROM usuarios) AS u\n" +
-                "group by rol, u.total;";
+        String query = "SELECT source, ROUND(count(*) * 100 / u.total::decimal) percent\n" +
+                "FROM pay\n" +
+                "CROSS JOIN (SELECT count(*) AS total FROM pay) AS u\n" +
+                "group by source, u.total";
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();

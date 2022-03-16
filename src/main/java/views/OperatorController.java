@@ -165,6 +165,7 @@ public class OperatorController implements Initializable {
                 stage.setTitle("Modificación cliente");
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setScene(scene);
+                stage.setResizable(false);
                 stage.showAndWait();
                 this.tbCustomers.refresh();
 

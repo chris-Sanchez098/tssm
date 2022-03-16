@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.0.final using JasperReports Library version 6.19.0-646c68931cebf1a58bc65c4359d1f0ca223c5e94  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bill" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="50d71326-4ab3-456e-9f2c-248768491e77">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="name" class="java.lang.String"/>
+	<field name="tMinutes" class="java.lang.Integer"/>
+	<field name="id" class="java.lang.String"/>
+	<field name="tData" class="java.lang.Double"/>
+	<field name="tShare" class="java.lang.Double"/>
+	<field name="tCloud" class="java.lang.Double"/>
+	<field name="tMsg" class="java.lang.Integer"/>
+	<field name="taxes" class="java.lang.Double"/>
+	<field name="extraGb" class="java.lang.Double"/>
+	<field name="extraMin" class="java.lang.Double"/>
+	<field name="total" class="java.lang.Double"/>
+	<field name="dateFinal" class="java.lang.String"/>
+	<field name="dateInit" class="java.lang.String"/>
+	<field name="price" class="java.lang.Double"/>
+	<variable name="name1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{name}]]></variableExpression>
+	</variable>
+	<variable name="id1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{id}]]></variableExpression>
+	</variable>
+	<variable name="dateFinal1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{dateFinal}]]></variableExpression>
+	</variable>
+	<variable name="dateInit1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{dateInit}]]></variableExpression>
+	</variable>
+	<variable name="price1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{price}]]></variableExpression>
+	</variable>
+	<variable name="extraMin1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{extraMin}]]></variableExpression>
+	</variable>
+	<variable name="extraGb1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{extraGb}]]></variableExpression>
+	</variable>
+	<variable name="taxes1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{taxes}]]></variableExpression>
+	</variable>
+	<variable name="total1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<title>
+		<band height="162" splitType="Stretch">
+			<textField>
+				<reportElement x="40" y="100" width="140" height="20" uuid="14622e35-d456-43a9-b249-58112feb1132"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="70" height="30" uuid="0ea50d34-ed94-4af8-bce7-58186ad5562c"/>
+				<textElement>
+					<font size="25"/>
+				</textElement>
+				<text><![CDATA[TSSM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="0" width="140" height="50" uuid="bf8ce861-5406-4925-b98d-be8fd5ad75ae"/>
+				<textElement>
+					<font size="36"/>
+				</textElement>
+				<text><![CDATA[Factura]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="420" y="10" width="100" height="30" uuid="7fef0569-319f-41d7-b612-397fd632f982"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="520" y="10" width="100" height="30" uuid="5afa4a56-421c-4ca6-8b57-40437e966ac0"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="120" width="80" height="20" uuid="18c3fdf3-318e-4a89-ae27-d2e49c93c90b"/>
+				<text><![CDATA[Identificación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="100" width="40" height="20" uuid="4c11418d-6879-4a48-a88f-951fa53d646d"/>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="120" width="50" height="20" uuid="135c1eaa-d6b6-4c0b-9e1e-adb984122142"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="100" width="150" height="20" uuid="02c1fef3-b6fa-4e0e-bcff-4d2319f634df"/>
+				<text><![CDATA[Periodo de facturación desde:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="120" width="150" height="20" uuid="71102e44-92bb-4aa3-8031-6e75247eff92"/>
+				<text><![CDATA[Periodo de facturación hasta:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="441" y="119" width="100" height="20" uuid="e2ed4eb2-aa4c-47c4-9309-4f0d596b5f6c"/>
+				<textFieldExpression><![CDATA[$F{dateFinal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="441" y="100" width="100" height="18" uuid="7d2d53e7-d918-4410-ac7b-fd6452e4cc86"/>
+				<textFieldExpression><![CDATA[$F{dateInit}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="19" uuid="47e06ffe-2c0e-4ac9-9cfc-9531fb7456fb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="654c9e2e-5283-49c2-ae8c-f5672c663686"/>
+				</reportElement>
+				<text><![CDATA[Minutos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="102" y="0" width="100" height="19" uuid="18388b1e-20bf-4df2-b400-f725d5b6e1ba">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="db7094e7-a26d-4d68-911d-35ca071c71cc"/>
+				</reportElement>
+				<text><![CDATA[Mensajes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="0" width="100" height="19" uuid="2835a7cc-964e-44cb-bdc6-17582588e98e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5121ec23-1000-4caf-a0ac-e7dea446cf58"/>
+				</reportElement>
+				<text><![CDATA[Datos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="0" width="142" height="19" uuid="f54a70e0-7cd6-4f62-9e23-6da8aa86c6dd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="889a4795-8981-46d2-9d24-1a453a88a405"/>
+				</reportElement>
+				<text><![CDATA[Almacenamiento en la nube]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="302" y="0" width="100" height="19" uuid="8ae11e12-83da-4b7f-8da4-631aa67121e9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b96fecbe-54c2-4a09-a386-9248eab83f96"/>
+				</reportElement>
+				<text><![CDATA[Datos compartidos]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="19" uuid="8876b38a-64db-414a-af58-003def2b92da">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="654c9e2e-5283-49c2-ae8c-f5672c663686"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{tMinutes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="102" y="0" width="100" height="19" uuid="d7fbb915-dad1-41f5-b868-462bedc262b8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="db7094e7-a26d-4d68-911d-35ca071c71cc"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{tMsg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="0" width="100" height="19" uuid="b26a4b9e-8461-48d0-964c-1dbd2db38da3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5121ec23-1000-4caf-a0ac-e7dea446cf58"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{tData}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="0" width="142" height="19" uuid="201ef1f1-177f-4c97-95ea-16b00979dcc4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="889a4795-8981-46d2-9d24-1a453a88a405"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{tCloud}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="302" y="0" width="100" height="19" uuid="9f7b5818-3a05-4052-8a65-2641e87eb6a9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b96fecbe-54c2-4a09-a386-9248eab83f96"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{tShare}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="155">
+			<staticText>
+				<reportElement x="385" y="15" width="74" height="20" uuid="6106aae2-d545-44ba-b8cc-ad42ba2e5454"/>
+				<text><![CDATA[Precio Base:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="481" y="15" width="76" height="20" uuid="812476bf-109d-4e47-8e32-2aea2e005e3a"/>
+				<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="481" y="45" width="76" height="20" uuid="42617272-30e9-4832-aaf5-40f74e925a82"/>
+				<textFieldExpression><![CDATA[$F{extraMin}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="385" y="45" width="90" height="20" uuid="6d7c3939-5486-4aad-bca0-858c7efdf4dd"/>
+				<text><![CDATA[Precio Extra Min:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="74" width="90" height="20" uuid="48f99716-ae79-44f2-a149-a9d8ddf7470e"/>
+				<text><![CDATA[Precio Extra GB:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="481" y="75" width="76" height="20" uuid="a39d1ca2-ccf1-49e7-94a0-c4a6b2527f5c"/>
+				<textFieldExpression><![CDATA[$F{extraGb}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="481" y="105" width="76" height="20" uuid="4996b52f-0f63-4798-8322-6dd07bb312b8"/>
+				<textFieldExpression><![CDATA[$F{taxes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="385" y="105" width="90" height="20" uuid="d1308058-74fe-4084-9e56-bd45186f752b"/>
+				<text><![CDATA[Impuestos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="135" width="90" height="20" uuid="5a69b84d-d622-445c-ab08-f942e1217310"/>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="481" y="134" width="76" height="21" uuid="222ba0fe-7c1d-4542-ad3d-46cd04e8b736"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

@@ -1,26 +1,29 @@
 package model;
 
 public class Pay {
-    private Integer minutes;
-    private Double gbCloud;
-    private Double gbShare;
-    private Double gbData;
-    private Boolean unlimited;
-    private Integer price;
-    private Double tCloud;
-    private Double tShare;
-    private Double tData;
-    private Integer tMinutes;
-    private Integer tMsg;
-    private Double extraMin = 0.0;
-    private Double extraGb = 0.0;
-    private Double taxes;
-    private Double total;
-    private String name;
+    public Integer minutes;
+    public Double gbCloud;
+    public Double gbShare;
+    public Double gbData;
+    public Boolean unlimited;
+    public Double price;
+    public Double tCloud;
+    public Double tShare;
+    public Double tData;
+    public Integer tMinutes;
+    public Integer tMsg;
+    public Double extraMin = 0.0;
+    public Double extraGb = 0.0;
+    public Double taxes;
+    public Double total;
+    public String name;
+    public String dateInit;
+    public String dateFinal;
+    public String id;
 
     public Pay(Integer minutes, Double gbCloud, Double gbShare, Double gbData,
-               Boolean unlimited, Integer price, Double tCloud, Double tShare,
-               Double tData, Integer tMinutes, Integer tMsgn, String name) {
+               Boolean unlimited, Double price, Double tCloud, Double tShare,
+               Double tData, Integer tMinutes, Integer tMsgn, String name, String dateInit, String dateFinal, String id) {
         this.minutes = minutes;
         this.gbCloud = gbCloud;
         this.gbShare = gbShare;
@@ -33,6 +36,9 @@ public class Pay {
         this.tMinutes = tMinutes;
         this.tMsg = tMsgn;
         this.name = name;
+        this.dateInit = dateInit;
+        this.dateFinal = dateFinal;
+        this.id = id;
         if(!unlimited){
             if(tMinutes > minutes){
                 extraMin = (double) ((tMinutes - minutes) * price / minutes);
@@ -52,48 +58,8 @@ public class Pay {
     }
 
 
-    public Integer getMinutes() {
-        return minutes;
-    }
-
-    public Double getGbCloud() {
-        return gbCloud;
-    }
-
-    public Double getGbShare() {
-        return gbShare;
-    }
-
-    public Double getGbData() {
-        return gbData;
-    }
-
-    public Boolean isUnlimited() {
-        return unlimited;
-    }
-
     public Double getPrice() {
-        return Math.round(price * 100) / 100.00;
-    }
-
-    public Double getTCloud() {
-        return tCloud;
-    }
-
-    public Double getTShare() {
-        return tShare;
-    }
-
-    public Double getTData() {
-        return tData;
-    }
-
-    public Integer getTMinutes() {
-        return tMinutes;
-    }
-
-    public Integer getTMsg() {
-        return tMsg;
+        return price;
     }
 
     public Double getExtraMin() {
@@ -114,5 +80,57 @@ public class Pay {
 
     public String getName() {
         return name;
+    }
+
+    public String getDateInit() {
+        return dateInit;
+    }
+
+    public String getDateFinal() {
+        return dateFinal;
+    }
+
+    public Integer getMinutes() {
+        return minutes;
+    }
+
+    public Double getGbCloud() {
+        return gbCloud;
+    }
+
+    public Double getGbShare() {
+        return gbShare;
+    }
+
+    public Double getGbData() {
+        return gbData;
+    }
+
+    public Boolean getUnlimited() {
+        return unlimited;
+    }
+
+    public Double gettCloud() {
+        return tCloud;
+    }
+
+    public Double gettShare() {
+        return tShare;
+    }
+
+    public Double gettData() {
+        return tData;
+    }
+
+    public Integer gettMinutes() {
+        return tMinutes;
+    }
+
+    public Integer gettMsg() {
+        return tMsg;
+    }
+
+    public String getId() {
+        return id;
     }
 }
