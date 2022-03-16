@@ -470,34 +470,50 @@ public class CRUD extends ConexionDB {
 
     /**
      * Insert consume into database
-     * @param info ObservableList<String []>
+     * @param data ObservableList<String []>
      */
-    public static void insertConsume(ObservableList<String[]> info)  {
-        try {
-            Connection connection = connect();
-            Statement st = connection.createStatement();
-            info.forEach( (list) -> {
-                String date_time = list[0];
-                int minutes = Validation.parseInteger(list[1]);
-                int msg =  Validation.parseInteger(list[2]);
-                double gb_cloud = Validation.parseDouble(list[3]);
-                double gb_Share = Validation.parseDouble(list[4]);
-                double gb_data = Validation.parseDouble(list[5]);
-                String phone_number_id = list[6];
-                int period_id =  Validation.parseInteger(list[7]);
-                String query = "INSERT INTO register_cust (date_time, minutes, msg, gb_cloud, gb_share, gb_data, " +
-                        "phone_number_id, period_id)" + "VALUES ('"+date_time+"','"+minutes+"','"+msg+"','"+gb_cloud+"'," +
-                        "'"+gb_Share+"','"+gb_data+"','"+phone_number_id+"','"+period_id+"')";
-                try {
-                    st.execute(query);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            });
-            st.close();
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public static void insertConsume(ObservableList<String[]> data)  {
+        if (data.size() == 7) {
+            try {
+                Connection connection = connect();
+                Statement st = connection.createStatement();
+                data.forEach( (list) -> {
+                    String date_time = list[0];
+                    int minutes = Validation.parseInteger(list[1]);
+                    int msg =  Validation.parseInteger(list[2]);
+                    double gb_cloud = Validation.parseDouble(list[3]);
+                    double gb_Share = Validation.parseDouble(list[4]);
+                    double gb_data = Validation.parseDouble(list[5]);
+                    String phone_number_id = list[6];
+                    String query = "INSERT INTO register_cust (date_time, minutes, msg, gb_cloud, gb_share, gb_data, " +
+                            "phone_number_id)" + "VALUES ('"+date_time+"','"+minutes+"','"+msg+"','"+gb_cloud+"'," +
+                            "'"+gb_Share+"','"+gb_data+"','"+phone_number_id+"')";
+                    try{
+                        st.execute(query);
+                    } catch (SQLException e) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Carga datos");
+                        alert.setContentText("Error al cargar los datos!");
+                        alert.showAndWait();
+                    }
+                });
+                st.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Carga datos");
+            alert.setContentText("Los datos fueron cargados!");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Carga datos");
+            alert.setContentText("Error al cargar los datos!");
+            alert.showAndWait();
         }
     }
 
@@ -506,25 +522,45 @@ public class CRUD extends ConexionDB {
      * @param data ObservableList<String []>
      */
     public static void insertPayBank(ObservableList<String[]> data) {
-        try {
-            Connection connection = connect();
-            Statement st = connection.createStatement();
-            data.forEach( (list) -> {
-                int paymentId = Validation.parseInteger(list[0]);
-                String source = list[1];
-                String query = "INSERT INTO pay (payment_processed, payment_id, source) VALUES ('"+true+"', '"+paymentId+"'," +
-                        "'"+source+"')";
-                try {
-                    st.execute(query);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            });
-            st.close();
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if(data.size() == 3) {
+            try {
+                Connection connection = connect();
+                Statement st = connection.createStatement();
+                data.forEach( (list) -> {
+                    String paymentDate = list[0];
+                    String cc = list[1];
+                    String source = list[2];
+                    String query = "INSERT INTO pay (payment_date, cc, source) VALUES ('"+paymentDate+"', '"+cc+"'," +
+                            "'"+source+"')";
+                    try {
+                        st.execute(query);
+                    } catch (SQLException e) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Carga datos");
+                        alert.setContentText("Error al cargar los datos!");
+                        alert.showAndWait();
+                    }
+                });
+                st.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Carga datos");
+            alert.setContentText("Los datos fueron cargados!");
+            alert.showAndWait();
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Carga datos");
+            alert.setContentText("Error al cargar los datos!");
+            alert.showAndWait();
         }
+
     }
 
     /**

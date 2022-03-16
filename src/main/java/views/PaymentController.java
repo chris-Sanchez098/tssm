@@ -46,55 +46,62 @@ public class PaymentController implements Initializable {
     private TextField dateCutInitField;
     @FXML
     private TextField dateCutFinalField;
-    private File file;
+    @FXML
+    private Button bUploadConsume;
     private Pay pay;
     private String cc;
     private String dateFinal;
     private String dateInit;
 
-
-
     @FXML
     public void clickUploadCSV(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setTitle("Carga datos");
         ObservableList<String[]> data = readCSV();
-        if(event.getSource() == bUploadBank
-        ) {
+        if(event.getSource() == bUploadBank) {
             CRUD.insertPayBank(data);
-            alert.setContentText("Los pagos fueron cargados!");
-        } else {
-            alert.setContentText("Los datos no fueron cargados");
+        } else if (event.getSource() == bUploadConsume) {
+            CRUD.insertConsume(data);
         }
-        alert.showAndWait();
     }
 
     /**
      * Read CSV file
      */
     public ObservableList<String[]> readCSV() {
-        selectFile();
+        File file = selectFile();
         ObservableList<String[]> info = FXCollections.observableArrayList();
-        try {
-            CSVReader reader = new CSVReader(new FileReader(file));
-            String[] nextLine;
-            while ((nextLine = reader.readNext()) != null) {
-                info.add(nextLine);
-            }
-        } catch (CsvValidationException | IOException e) {
-            e.printStackTrace();
+        if (file != null) {
+            try {
+                CSVReader reader = new CSVReader(new FileReader(file));
+                String[] nextLine;
+                while ((nextLine = reader.readNext()) != null) {
+                    info.add(nextLine);
+                }
+            } catch (CsvValidationException | IOException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Error datos");
+                alert.setContentText("Error al leer el archivo de datos, debe ser formato CSV");
+                alert.showAndWait();
+            } return info;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Carga de datos");
+            alert.setContentText("Se debe seleccionar un archivo");
+            alert.showAndWait();
         } return info;
     }
 
     /**
      * Open file chooser
      */
-    public void selectFile() {
+    public File selectFile() {
+        File file;
         Stage stage = new Stage();
         FileChooser fileChooser = new FileChooser();
         stage.setTitle("Select csv file");
         file = fileChooser.showOpenDialog(stage);
+        return file;
     }
 
     public void clickSearchCustomer(ActionEvent actionEvent) {

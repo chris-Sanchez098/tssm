@@ -92,21 +92,6 @@ public class OperatorController implements Initializable {
         }
     }
 
-    @FXML
-    public void clickUploadCSV(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setTitle("Carga datos");
-        ObservableList<String[]> data = readCSV();
-        if(event.getSource() == bUploadCSV) {
-            CRUD.insertConsume(data);
-            alert.setContentText("Los datos fueron cargados");
-        } else {
-            alert.setContentText("Los datos no fueron cargados");
-        }
-        alert.showAndWait();
-    }
-
     /**
      * Initialize all columns of table
      */
@@ -150,23 +135,6 @@ public class OperatorController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         stage.setTitle("Select csv file");
         file = fileChooser.showOpenDialog(stage);
-    }
-
-    /**
-     * Read CSV file
-     */
-    public ObservableList<String[]> readCSV() {
-        selectFile();
-        ObservableList<String[]> info = FXCollections.observableArrayList();
-        try {
-            CSVReader reader = new CSVReader(new FileReader(file));
-            String[] nextLine;
-            while ((nextLine = reader.readNext()) != null) {
-                info.add(nextLine);
-            }
-        } catch (CsvValidationException | IOException e) {
-            e.printStackTrace();
-        } return info;
     }
 
     @FXML
