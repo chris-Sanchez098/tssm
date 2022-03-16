@@ -127,14 +127,20 @@ public class OperatorController implements Initializable {
         }
     }
 
-    /**
-     * Open file chooser
-     */
-    public void selectFile() {
-        Stage stage = new Stage();
-        FileChooser fileChooser = new FileChooser();
-        stage.setTitle("Select csv file");
-        file = fileChooser.showOpenDialog(stage);
+    public void loadViewConsume() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/consumption.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Consulta consumos");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.showAndWait();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML
