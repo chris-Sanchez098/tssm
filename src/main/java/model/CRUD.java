@@ -29,7 +29,6 @@ public class CRUD extends ConexionDB {
             st.execute(query);
             st.close();
             connection.close();
-
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setTitle("Creación usuario");
@@ -664,6 +663,65 @@ public class CRUD extends ConexionDB {
             System.out.println("Error en registerPayment!!: " + e.getMessage());
         }
         return pay;
+    }
+
+    /**
+     * Get data usage
+     * @param id String
+     * @param pNumber String
+     * @return Consumption
+     */
+    public static Consumption getData(String id, String pNumber) {
+        Consumption consup = null;
+        ObservableList<Consumption> consumptions = FXCollections.observableArrayList();
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            String query = "SELECT rc.date_time, rc.minutes, rc.msg, rc.gb_cloud, rc.gb_share, rc.gb_data, rc.phone_number_id\n" +
+                    "FROM register_cust rc INNER JOIN phone_number pn on pn.number_id = rc.phone_number_id\n" +
+                    "INNER JOIN customer c on pn.customer_id = c.cc\n" +
+                    "WHERE c.cc like '" + id + '%'+ "' and phone_number_id = '" +pNumber+"' ;";
+            ResultSet result = st.executeQuery(query);
+            while (result.next()) {
+                int minutes = result.getInt("minutes");
+                int msg = result.getInt("msg");
+                double gbCloud = result.getDouble("gb_cloud");
+                double gbShare = result.getDouble("gb_share");
+                double gbData = result.getDouble("gb_data");
+                String phoneNumber = result.getString("phone_number_id");
+                consup = new Consumption(minutes,msg,gbCloud,gbShare,gbData,phoneNumber);
+            }
+            result.close();
+            st.close();
+            connection.close();
+        } catch (Exception e) {
+            System.out.println("Error en al generar consumo!!: " + e.getMessage());
+        }
+        return consup;
+    }
+
+    /**
+     * Get phone numbers
+     * @param id String
+     * @return ObservableList<String>
+     */
+    public static ObservableList<String> getPhoneNumber(String id) {
+        ObservableList<String> data = FXCollections.observableArrayList();
+        String query;
+        try {
+            Connection connection = connect();
+            Statement st = connection.createStatement();
+            query = "SELECT number_id\n" +
+                    "FROM customer as ct INNER JOIN phone_number as pn on pn.customer_id = ct.cc \n" +
+                    "WHERE ct.cc like '" + id + '%' + "';";
+            ResultSet result = st.executeQuery(query);
+            while (result.next()) {
+                data.add(result.getString("number_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return data;
     }
 
 }

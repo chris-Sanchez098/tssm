@@ -299,6 +299,7 @@
                         <Button fx:id="bUpdateTb" layoutX="841.0" layoutY="20.0" mnemonicParsing="false" onAction="#updateTb" prefHeight="25.0" prefWidth="140.0" text="Cargar clientes" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0" />
                         <TextField fx:id="tfSearch" layoutX="-8.0" layoutY="19.0" prefHeight="25.0" prefWidth="180.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="15.0" />
                         <Button fx:id="ButtonUpdateCustomer" layoutX="311.0" layoutY="19.0" mnemonicParsing="false" onAction="#clickUpdateCustomer" prefHeight="25.0" text="Modificar Cliente" AnchorPane.leftAnchor="320.0" AnchorPane.topAnchor="15.0" />
+                        <Button fx:id="bCheckCon" layoutX="649.0" layoutY="16.0" mnemonicParsing="false" onAction="#loadViewConsume" prefHeight="24.0" prefWidth="148.0" text="Consultar consumo" />
                      </children>
                   </AnchorPane>
                </content>
