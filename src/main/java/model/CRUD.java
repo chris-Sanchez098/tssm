@@ -211,12 +211,12 @@ public class CRUD extends ConexionDB {
             if(CC.isEmpty()) {
                 query = "SELECT * " +
                         "FROM customer cst NATURAL JOIN customer_type cst_ty NATURAL JOIN address ads " +
-                        "NATURAL JOIN phone_plan pp NATURAL JOIN phone_number pn \n" +
-                        "limit 20";
+                        "NATURAL JOIN phone_plan ppn \n" +
+                        "limit 20;";
             } else {
                 query = "SELECT * " +
                         "FROM customer cst NATURAL JOIN customer_type cst_ty NATURAL JOIN address ads " +
-                        "NATURAL JOIN phone_plan pp NATURAL JOIN phone_number pn \n" +
+                        "NATURAL JOIN phone_plan pp\n" +
                         "where cc like '" + CC + '%' +"';";
             }
             ResultSet result = st.executeQuery(query);
@@ -231,7 +231,6 @@ public class CRUD extends ConexionDB {
                 int customerTypeId = result.getInt("cust_type_id");
                 String customerType = result.getString("cust_type");
                 int phone_plan_id = result.getInt("phone_plan_Id");
-                String phoneNumber = result.getString("number_id" +"");
                 double price = result.getDouble("price");
                 String gbCloud = result.getString("gb_cloud");
                 String gbShare = result.getString("gb_share");
@@ -241,7 +240,7 @@ public class CRUD extends ConexionDB {
                 int netflix = result.getInt("netflix");
                 String details = result.getString("description");
                 Customer customer = new Customer(cc,name,email,addressId,address,city,department,customerTypeId,
-                        customerType,phone_plan_id,phoneNumber,price,gbCloud,gbShare,minutesUnLimited,msgUnLimited,
+                        customerType,phone_plan_id, price,gbCloud,gbShare,minutesUnLimited,msgUnLimited,
                         minutes,netflix,details);
                 if(!customerList.contains(customer)) {
                     customerList.add(customer);

@@ -12,7 +12,7 @@ public class CustomerTest {
     @BeforeEach
     public void init(){
         customer = new Customer("1004675446","Franklyn","franklin123@gmail.com",1,"Carrea 96 #3b-45","Cali","valle del cauca",
-                1,"Natural", 2, "3184226211", 34000, "", "",true,true,10,1,
+                1,"Natural", 2, 34000, "", "",true,true,10,1,
                 "");
     }
 

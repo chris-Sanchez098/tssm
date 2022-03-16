@@ -50,7 +50,6 @@ public class InfoCustomerController {
         this.tfDepto.setText(customer.getDepartment());
         this.tfCustomerType.setText(customer.getCustomerType());
         this.tfPlanId.setText(customer.getPhonePlanId() + "");
-        this.tfPhoneNumber.setText(customer.getPhoneNumber());
         this.tfPrice.setText(customer.getPrice() + "");
         this.tfGbC.setText(customer.getGbCloud());
         this.tfGbS.setText(customer.getGbShare());

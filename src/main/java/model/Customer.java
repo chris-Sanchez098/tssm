@@ -11,7 +11,6 @@ public class Customer {
     private int customerTypeId;
     private String customerType;
     private int phonePlanId;
-    private String phoneNumber;
     private double price;
     private String gbCloud;
     private String gbShare;
@@ -22,7 +21,7 @@ public class Customer {
     private String details;
 
     public Customer(String cc, String name, String email, int addressId, String address, String city, String department,
-                    int customerTypeId, String customerType, int phonePlanId, String phoneNumber, double price,
+                    int customerTypeId, String customerType, int phonePlanId, double price,
                     String gbCloud, String gbShare, boolean minutesUnLimited, boolean msgUnLimited, int minutes,
                     int netflix, String details) {
         this.cc = cc;
@@ -35,7 +34,6 @@ public class Customer {
         this.customerTypeId = customerTypeId;
         this.customerType = customerType;
         this.phonePlanId = phonePlanId;
-        this.phoneNumber = phoneNumber;
         this.price = price;
         this.gbCloud = gbCloud;
         this.gbShare = gbShare;
@@ -124,14 +122,6 @@ public class Customer {
 
     public void setPhonePlanId(int phonePlanId) {
         this.phonePlanId = phonePlanId;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public double getPrice() {
