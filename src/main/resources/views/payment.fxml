@@ -51,12 +51,12 @@
                   <Insets right="13.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="txtCustomerId">
+            <TextField fx:id="txtCustomerId" onKeyTyped="#changeColorEvent">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="btnSearchCustomer" mnemonicParsing="false" onAction="#clickSearchCustomer" text="Buscar">
+            <Button fx:id="btnSearchCustomer" mnemonicParsing="false" onAction="#clickSearchCustomer" style="-fx-background-color: silver;" text="Buscar">
                <HBox.margin>
                   <Insets right="40.0" />
                </HBox.margin>
@@ -107,7 +107,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Button fx:id="bUploadBank" mnemonicParsing="false" onAction="#clickUploadCSV" text="Cargos pagos">
+                  <Button fx:id="bUploadBank" mnemonicParsing="false" onAction="#clickUploadCSV" style="-fx-background-color: lightgreen;" text="Cargos pagos">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
@@ -144,7 +144,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnRegisterPayment" mnemonicParsing="false" onAction="#clickRegisterPayment" text="Realizar pago">
+                  <Button fx:id="btnRegisterPayment" mnemonicParsing="false" onAction="#clickRegisterPayment" style="-fx-background-color: silver;" text="Realizar pago">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>

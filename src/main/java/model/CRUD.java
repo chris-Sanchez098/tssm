@@ -528,28 +528,25 @@ public class CRUD extends ConexionDB {
     }
 
     /**
-     * record a customer payment
-     * @param userId String
+     *
+     * @param date
+     * @param cc
+     * @return
      */
-    public static void registerPayment(String userId){
-        int paymentId = 0;
+    public static boolean registerPayment(String date, String cc){
         try {
             Connection connection = connect();
             Statement st = connection.createStatement();
-            String query = "SELECT * FROM payment WHERE customer_id = '"+userId+"'";
-            ResultSet result = st.executeQuery(query);
-            while (result.next()) {
-                paymentId = result.getInt("payment_id");
-                System.out.println("id de pago: " + paymentId);
-            }
-            String query1 = "INSERT INTO pay (payment_processed, payment_id) VALUES('"+true+"', '"+paymentId+"'" +
-                    "'local')";
-            st.executeQuery(query1);
+            String query = "INSERT INTO pay (payment_date, cc, source) VALUES('"+ date +"', '"+cc+"'," +
+                    "'Local');";
+            st.execute(query);
             st.close();
             connection.close();
+            return true;
         } catch (Exception e) {
             System.out.println("Error en registerPayment!!: " + e.getMessage());
         }
+        return false;
     }
 
     public static ObservableList<Sales> getSales(String id){

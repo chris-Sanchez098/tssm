@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.CRUD;
@@ -111,6 +112,8 @@ public class PaymentController implements Initializable {
                 txtPaymentValue.setText(Double.toString(pay.getTotal()));
                 dateCutFinalField.setText(dateFinal + "-15");
                 dateCutInitField.setText(dateInit + "-16");
+                btnRegisterPayment.setStyle("-fx-background-color: lightgreen; ");
+                btnSearchCustomer.setStyle("-fx-background-color: silver;");
             }
             else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -122,33 +125,35 @@ public class PaymentController implements Initializable {
         }
     }
 
+    /**
+     * clean the GUI
+     */
     public void cleanGUIPayment(){
         txtUserName.setText("");
         txtPaymentValue.setText("");
         dateCutInitField.setText("");
         dateCutFinalField.setText("");
+
     }
 
     public void clickRegisterPayment(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText("¿está seguro de registrar el pago?");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Estado de pago");
+        alert.setHeaderText(null);
+        if(!txtUserName.getText().isEmpty()){
+            if(CRUD.registerPayment(dateFinal+ "-15", cc)){
+                alert.setContentText("El pago fue registrado con exito.");
+                cleanGUIPayment();
+            }
+            else{
+                alert.setContentText("El pago no fue regristrado: ya existia en sistema");
+                cleanGUIPayment();
+            }
+        } else{
+            alert.setContentText("El pago no fue regristrado: no hay datos suficientes");
+        }
         alert.showAndWait();
-        if((alert.getResult().getButtonData().isDefaultButton())){
-            String paymentId = txtCustomerId.getText();
-            CRUD.registerPayment(paymentId);
-            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-            alert1.setHeaderText(null);
-            alert1.setContentText("El pago fue registrado con exito.");
-            alert1.showAndWait();
-            cleanGUIPayment();
-        }
-        else{
-            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-            alert2.setHeaderText(null);
-            alert2.setContentText("El pago fue cancelado.");
-            alert2.showAndWait();
-            cleanGUIPayment();
-        }
+        btnRegisterPayment.setStyle("-fx-background-color: silver; ");
     }
 
     private void setComboBox(){
@@ -193,6 +198,15 @@ public class PaymentController implements Initializable {
             return (year - 1) + "-12";
         }
             return (getYear()) + "-" + (getMonth() - 1);
+    }
+
+    @FXML
+    private void changeColorEvent(KeyEvent event){
+        if(!txtCustomerId.getText().isEmpty()){
+            btnSearchCustomer.setStyle("-fx-background-color:  lightgreen;");
+        }else{
+            btnSearchCustomer.setStyle("-fx-background-color: silver;");
+        }
     }
 
     @Override
