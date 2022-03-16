@@ -471,7 +471,7 @@ public class CRUD extends ConexionDB {
      * @param data ObservableList<String []>
      */
     public static void insertConsume(ObservableList<String[]> data)  {
-        if (data.size() == 7) {
+        if (data.size() != 0) {
             try {
                 Connection connection = connect();
                 Statement st = connection.createStatement();
