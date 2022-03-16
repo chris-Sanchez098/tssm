@@ -260,4 +260,22 @@ public class UpdateCustomerController implements Initializable{
         }
         return true;
     }
+
+    public void clickClearFields(ActionEvent actionEvent) {
+        cleanGUI();
+    }
+
+    /**
+     * Reset GUI state
+     */
+    public void cleanGUI() {
+        tfName.setText("");
+        tfCC.setText("");
+        tfEmail.setText("");
+        tfAddress.setText("");
+        tfCity.setText("");
+        tfDepartment.setText("");
+        comboBoxTypeClient.getSelectionModel().selectFirst();
+        comboBoxMobilPlan.getSelectionModel().selectFirst();
+    }
 }
