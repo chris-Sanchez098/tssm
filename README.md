@@ -6,10 +6,10 @@ así como consultar la información financiera y sobre ventas referentes a la em
 
 ## Autores 
 _Forman parte de nuetro equipo:_
-* **Edwin Cuaran** - *Desarrolador* - [edwin1007](https://github.com/edwin1007)
-* **Franklyn Narvaez** - *Desarrolador* - [Franklynnarvaez](https://github.com/Franklynnarvaez)
-* **Christian Sanchez** - *Desarrolador* - [chris-Sanchez098](https://github.com/chris-Sanchez098)
-* **Víctor Sapuyes** - *Desarrolador* - [victor262108](https://github.com/victor262108)
+* **Edwin Cuaran** - *Desarrollador* - [edwin1007](https://github.com/edwin1007)
+* **Franklyn Narvaez** - *Desarrollador* - [Franklynnarvaez](https://github.com/Franklynnarvaez)
+* **Christian Sanchez** - *Desarrollador* - [chris-Sanchez098](https://github.com/chris-Sanchez098)
+* **Víctor Sapuyes** - *Desarrollador* - [victor262108](https://github.com/victor262108)
 
 ## Licencia 
 
