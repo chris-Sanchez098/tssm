@@ -13,4 +13,4 @@ _Forman parte de nuetro equipo:_
 
 ## Licencia 
 
-Este proyecto está bajo la Licencia  Apache License, Version 2.0. Mira el archivo [LICENSE.md](LICENSE.md) para detalles
+Este proyecto está bajo la Licencia  Apache License, Version 2.0. Ver el archivo [LICENSE.md](LICENSE.md) para detalles
